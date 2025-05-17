@@ -15,7 +15,7 @@ namespace Kalayci.Mvc.Controllers
 
 
 
-        public IActionResult Privacy()
+        public IActionResult SpoolList()
         {
             return View();
         }
