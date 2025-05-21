@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Kalayci.Shared.Entities;
+
 
 namespace Kalayci.Entities.Concrete
 {
-    public class Project
+    public class Project :EntityBase, IEntity
     {
-
+       
         public string ProjectName{ get; set; }
-        //spoollar projeye dahildir
-        public ICollection<SpoolList> spoolLists{ get; set; }
 
-        // 1 adet proje yetkilisi olur ama admin rolüde projeyi değiştirebilir
+
+        public int shipYardId { get; set; }
+        public ShipYard shipYard{ get; set; }
+
+        // Projeyi Oluşturan kişi
         public int UserId { get; set; }
         public User User { get; set; }
+
+        //spoollar projeye dahildir
+        public  ICollection<Spool> spoolLists { get; set; }
     }
 }
