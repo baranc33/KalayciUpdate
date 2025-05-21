@@ -4,13 +4,26 @@
 	<meta charset="utf-8" />
 	<meta name="author" content="Hakan Baran Çakır">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - Kalayci.Mvc</title>
+	<title>@ViewData["Title"] - Kalayci</title>
 	<meta name="google-site-verification" content="FBK8GFLdJa-AC73yw8nMRg1PC9BawWtLSu8yH2yjIbE" />
 	<meta name="description" content="Kalaycı Denizcilik Geçmişten Günümüze Kalite ve Güvenilirliğiyle Hizmet Vermektedir">
 	<meta name="keyword" content="Denizcilik , Kalaycı , Kalayci , Kalaycı Denizcilik , Kalayci Denizcilik , Gemi , inşaat , gemi inşaat , pipe ,Marine , Gemi inşaat">
+
+	@* <link rel="icon" type="image/png" href="~/Template/img/kalayci_denizcilik_logo_Temiz.png"> *@
+	<link  rel="shortcut icon" href="~/kalayci.ico" type="image/x-icon" />
+	<link  rel="icon" href="/kalayci.ico" type="image/ico" />
 	
 
-	@await Html.PartialAsync("_LayoutCssPartial");
+		<link  rel="shortcut icon" href="~/Template/img/kalayci_denizcilik_logo_Temiz.png" type="image/x-icon" />
+	<link  rel="icon" href="~/Template/img/kalayci_denizcilik_logo_Temiz.png" type="image/ico" />
+	<mimeMap fileExtension=".ico" mimeType="image/ico" />
+
+
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/Kalayci.Mvc.styles.css" asp-append-version="true" />
+	@await Html.PartialAsync("_LayoutCssPartial")
+
 
 </head>
 <body>
@@ -25,16 +38,21 @@
 		<div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.1s" style="background-color:#7fb0d1">
 			<div class="container py-3">
 				<div class="d-flex align-items-center">
-					<a href="index.html">
+					<a asp-action="index" asp-controller="home">
 						
 						<h1 class="text-white fw-bold m-0">
 							<img  width="50" height="50"  alt="LogoBulunamadı" src="~/Template/img/kalayci_denizcilik_logo_Temiz.png" > 
 							Kalaycı Denizcilik</h1>
 					</a> 
 					<div class="ms-auto d-flex align-items-center" >
-						<small class="ms-4"><i class="fa fa-map-marker-alt me-3"></i>Kavakpınar mah. izci sokak no:23 D:16 Pendik</small>
-						<small class="ms-4"><i class="fa fa-envelope me-3"></i>info@kalaycidenizcilik.com</small>
-						<small class="ms-4"><i class="fa fa-phone-alt me-3"></i>+90 (533) 765 54 27</small>
+						<div>
+							<small class="ms-4"><i class="fa fa-map-marker-alt me-3"></i>Kavakpınar mah. izci sokak no:23 D:16 Pendik / İstanbul</small>
+							<br />
+							<small class="ms-4"><i class="fa fa-envelope me-3"></i>info@kalaycidenizcilik.com</small>
+							<small class="ms-4"><i class="fa fa-phone-alt me-3"></i>+90 (533) 765 54 27</small>
+
+						</div>
+
 						<div class="ms-3 d-flex">
 
 							<a class="btn btn-sm-square btn-light text-primary ms-2" 
@@ -71,7 +89,8 @@
 							<a id="index" asp-controller="Home" asp-action="index" class="nav-item nav-link">Ana Sayfa</a>
 							<a id="about" asp-controller="Home" asp-action="About" class="nav-item nav-link">Hakkımızda</a>
 							<a id="service" asp-controller="Home" asp-action="ServiceTrading" class="nav-item nav-link">Projelerimiz</a>
-							<a id="team"  asp-controller="Home" asp-action="Team" class="nav-item nav-link">Takım</a>
+							<a id="team" asp-controller="Home" asp-action="Team" class="nav-item nav-link">Takım</a>
+							<a id="team" asp-controller="Home" asp-action="Referance" class="nav-item nav-link">Referanslar</a>
 							<a id="contact" asp-controller="Home" asp-action="contact" class="nav-item nav-link">iletişim</a>
 						</div>
 						<div class="ms-auto d-none d-lg-block">
