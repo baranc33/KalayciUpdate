@@ -10,7 +10,8 @@ namespace Kalayci.Shared.Enums
     {
         Atolye=0,
         Kaynak=1,
-        Sevk=2,
-        Tershanede=3
+        devreTeslim = 2,
+        Sevk =3,
+        Tershanede=4
     }
 }

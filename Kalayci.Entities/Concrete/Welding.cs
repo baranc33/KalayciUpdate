@@ -1,4 +1,4 @@
-﻿using Kalayci.Shared.Entities;
+﻿using Kalayci.Shared.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,41 @@ namespace Kalayci.Entities.Concrete
 {
     public class Welding : EntityBase, IEntity
     {
-        public byte Status{ get; set; }// enumdan çağırılcak
-        public  string WeldingByName{ get; set; }// kaynak yapan kişi
+        public byte Status{ get; set; }//0 bekliyor - 1 başladı - 2 bitti 
+
+        // burda boru türüne göre kaynak seçenekleri olcak
+
+        public byte SpoolCraftedMaterial { get; set; }
+
+
+        // daha sonra burda ctor içine göre seçenekler oluşturacağız. 
+
+         
+
+
+
+
+
+        public int spoolId { get; set; } // hangi spool gönderildi
+        public Spool? spool { get; set; }
+
+
+
+
+        public string Statu()
+        {
+            switch (this.Status)
+            {
+                case 0:
+                    return "Bekliyor";
+                case 1:
+                    return "Başladı";
+                case 2:
+                    return "Bitti";
+                default:
+                    return "Bekliyor";
+            }
+
+        }
     }
 }

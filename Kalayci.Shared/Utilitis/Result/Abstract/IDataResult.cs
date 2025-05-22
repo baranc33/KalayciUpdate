@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kalayci.Shared.Enums
+namespace Kalayci.Shared.Utilitis.Result.Abstract
 {
-    // sevk durumu
-    public enum shipping
+    public interface IDataResult<out T> : IResult
     {
+        public T Data { get; }
+
     }
 }

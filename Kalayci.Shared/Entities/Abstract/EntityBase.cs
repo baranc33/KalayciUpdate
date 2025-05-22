@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kalayci.Shared.Entities
+namespace Kalayci.Shared.Entities.Abstract
 {
     public class EntityBase
     {

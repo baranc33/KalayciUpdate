@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Utilities\**" />
-    <EmbeddedResource Remove="Utilities\**" />
-    <None Remove="Utilities\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -22,7 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utilitis\Result\ComplexType\" />
+    <ProjectReference Include="..\Kalayci.Entities\Kalayci.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Concrete\EntityFrameWork\Mappings\" />
+    <Folder Include="Concrete\EntityFrameWork\Repositories\" />
   </ItemGroup>
 
 </Project>

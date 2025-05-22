@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kalayci.Shared.Entities
+namespace Kalayci.Shared.Entities.Abstract
 {
     public interface IEntity
     {

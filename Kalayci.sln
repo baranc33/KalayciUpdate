@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalayci.Entities", "Kalayci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalayci.Shared", "Kalayci.Shared\Kalayci.Shared.csproj", "{C0B4BC69-1EE3-418C-8553-6C39675145B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalayci.Data", "Kalayci.Data\Kalayci.Data.csproj", "{D02F3F83-5CC3-4765-BD83-A77C3EF8ECE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalayci.Services", "Kalayci.Services\Kalayci.Services.csproj", "{02397A78-9E1E-4316-A557-2BD69CBC62A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{C0B4BC69-1EE3-418C-8553-6C39675145B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0B4BC69-1EE3-418C-8553-6C39675145B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0B4BC69-1EE3-418C-8553-6C39675145B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D02F3F83-5CC3-4765-BD83-A77C3EF8ECE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D02F3F83-5CC3-4765-BD83-A77C3EF8ECE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D02F3F83-5CC3-4765-BD83-A77C3EF8ECE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D02F3F83-5CC3-4765-BD83-A77C3EF8ECE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02397A78-9E1E-4316-A557-2BD69CBC62A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02397A78-9E1E-4316-A557-2BD69CBC62A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02397A78-9E1E-4316-A557-2BD69CBC62A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02397A78-9E1E-4316-A557-2BD69CBC62A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

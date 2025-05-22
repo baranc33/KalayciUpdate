@@ -1,22 +1,34 @@
-﻿using Kalayci.Shared.Entities;
+﻿using Kalayci.Shared.Entities.Abstract;
 
 
 namespace Kalayci.Entities.Concrete
 {
     public class Project :EntityBase, IEntity
     {
-       
-        public string ProjectName{ get; set; }
-
-
+       // hangi tershaneye bağlı
+        public ShipYard? shipYard { get; set; }
         public int shipYardId { get; set; }
-        public ShipYard shipYard{ get; set; }
+
+
+
+        // proje adı
+        public string ProjectName { get; set; } = "Kalaycı Denizcilik";
+
+
+
+
 
         // Projeyi Oluşturan kişi
         public int UserId { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
 
-        //spoollar projeye dahildir
-        public  ICollection<Spool> spoolLists { get; set; }
+
+
+        //projeye bağlı spool listesi
+        public  ICollection<Spool>? spoolLists { get; set; }
+
+
+
+
     }
 }

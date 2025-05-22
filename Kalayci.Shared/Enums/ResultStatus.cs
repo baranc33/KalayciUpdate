@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Shared.Enums
 {
-    // tershane montaj
-    public enum ShipyardAssembly
+    public enum ResultStatus
     {
-        Bekliyor = 0,
-        Başladı = 1,
-        Bitti = 2
-
+        Success = 0,
+        Error = 1,
+        Warning = 2,
+        Info = 3
     }
 }
