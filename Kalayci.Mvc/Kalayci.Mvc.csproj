@@ -17,11 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kalayci.Services\Kalayci.Services.csproj" />
+    <Folder Include="wwwroot\Template\img\ship\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Template\img\ship\" />
+    <ProjectReference Include="..\Kalayci.Data\Kalayci.Data.csproj" />
+    <ProjectReference Include="..\Kalayci.Entities\Kalayci.Entities.csproj" />
+    <ProjectReference Include="..\Kalayci.Services\Kalayci.Services.csproj" />
+    <ProjectReference Include="..\Kalayci.Shared\Kalayci.Shared.csproj" />
   </ItemGroup>
 
 </Project>
