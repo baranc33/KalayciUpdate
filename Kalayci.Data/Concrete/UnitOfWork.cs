@@ -14,7 +14,7 @@ namespace Kalayci.Data.Concrete
 
         public ICircuitListRepository CircuitList => throw new NotImplementedException();
 
-        public IRoleRepository Role => throw new NotImplementedException();
+        //public IRoleRepository Role => throw new NotImplementedException();
 
         public IProjectRepository Project => throw new NotImplementedException();
 
@@ -26,7 +26,7 @@ namespace Kalayci.Data.Concrete
 
         public ISpoolRepository Spool => throw new NotImplementedException();
 
-        public IUserRepository User => throw new NotImplementedException();
+        //public IUserRepository User => throw new NotImplementedException();
 
         public IWeldingRepository Welding => throw new NotImplementedException();
 

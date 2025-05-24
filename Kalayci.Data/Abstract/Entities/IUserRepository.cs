@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Data.Abstract.Entities
 {
-    public interface IUserRepository : IEntityRepository<User>
-    {
-    }
+    //public interface IUserRepository : IEntityRepository<User>
+    //{
+    //}
 }

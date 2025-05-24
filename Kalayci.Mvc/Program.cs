@@ -1,7 +1,35 @@
+using Kalayci.Data.Concrete.EntityFrameWork.Context;
+using Kalayci.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
+using System;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+
+var config = builder.Configuration;
+var connetionstring = config.GetConnectionString("mysql");
+builder.Services.AddDbContext<KalayciContext>(opt =>
+{
+    opt.UseMySQL(connetionstring);
+    //opt.UseMySql(connetionstring, version);
+});
+
+
+
+builder.Services.AddIdentity<KalayciUser, KalayciRole>(opt =>
+{
+    //opt.User.RequireUniqueEmail = true;
+})
+.AddEntityFrameworkStores<KalayciContext>()// ef hangisini kullanacak belirtiyoruz.
+    ;
+
+
+
 
 var app = builder.Build();
 

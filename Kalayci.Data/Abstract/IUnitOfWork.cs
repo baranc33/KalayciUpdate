@@ -14,13 +14,13 @@ namespace Kalayci.Data.Abstract
 
         ICircuitDeliveryRepository CircuitDelivery { get; }
         ICircuitListRepository CircuitList { get; }
-        IRoleRepository Role { get; }
+        //IRoleRepository Role { get; }
         IProjectRepository Project { get; }
         ISendingRepository Sending { get; }
         IShipYardRepository ShipYard { get; }
         IShipyardAssemblyRepository ShipyardAssembly { get; }
         ISpoolRepository Spool { get; }
-        IUserRepository User { get; }
+        //IUserRepository User { get; }
         IWeldingRepository Welding { get; }
         IWorkPlaceRepository WorkPlace { get; }
 

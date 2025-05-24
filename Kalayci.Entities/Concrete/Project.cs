@@ -20,7 +20,7 @@ namespace Kalayci.Entities.Concrete
 
         // Projeyi Oluşturan kişi
         public int UserId { get; set; }
-        public User? User { get; set; }
+        public KalayciUser? User { get; set; }
 
 
 
