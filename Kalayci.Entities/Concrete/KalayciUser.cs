@@ -30,6 +30,7 @@ namespace Kalayci.Entities.Concrete
         public virtual bool IsDeleted { get; set; } = false;
         public virtual string CreatedByName { get; set; } = "Admin";
         public virtual string ModifiedByName { get; set; } = "Admin";
-        public ICollection<Project>? Projects { get; set; }
+        public ICollection<Project> Projects { get; set; }
+        public ICollection<Point> Points { get; set; }
     }
 }
