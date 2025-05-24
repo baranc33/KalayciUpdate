@@ -11,21 +11,25 @@ namespace Kalayci.Entities.Concrete
 {
     public class KalayciUser : IdentityUser
     {
-        //public string? Name{ get; set; }
-        //public string? LastName{ get; set; }
-        //public string? Image{ get; set; }
-        //public string? Job { get; set; }
-        //public string? Linkedin { get; set; }
-        //public string? Facebook { get; set; }
-        //public string? Instegram { get; set; }
-        //public string? Phone { get; set; }
-        //public string? Mail { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string Image { get; set; }
+        public string Job { get; set; }
+        public string Linkedin { get; set; }
+    
 
-        //public string? PasswordBackUp { get; set; }
-        //public byte Statu{ get; set; }
+        public string Phone { get; set; }
+        public string Mail { get; set; }
 
+        public string? PasswordBackUp { get; set; }
 
 
-        //public ICollection<Project>? Projects{ get; set; }
+
+        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
+        public virtual DateTime ModifiedDate { get; set; } = DateTime.Now;
+        public virtual bool IsDeleted { get; set; } = false;
+        public virtual string CreatedByName { get; set; } = "Admin";
+        public virtual string ModifiedByName { get; set; } = "Admin";
+        public ICollection<Project>? Projects { get; set; }
     }
 }

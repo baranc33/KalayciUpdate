@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Entities.Concrete
 {
+
+    // tershane montaj
     public class ShipyardAssembly : EntityBase, IEntity
     {
-        public byte Status { get; set; }
+        public byte Status { get; set; } = 0;
         public  string? SpoolAssemblyByName { get; set; } //Montajı yapan
         public DateTime SpoolAssemblyDateTime { get; set; } //Montajı yapan
 
         public int spoolId { get; set; } // hangi spool gönderildi
-        public Spool? spool { get; set; }
+        public Spool spool { get; set; }
 
         public string Statu()
         {

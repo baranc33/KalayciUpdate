@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\EntityFrameWork\Mappings\" />
     <Folder Include="Concrete\EntityFrameWork\Repositories\" />
   </ItemGroup>
 

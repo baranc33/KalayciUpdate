@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Entities.Concrete
 {
+    // atolye
     public class WorkPlace : EntityBase, IEntity
     {
         public byte Status { get; set; } = 0; // 0 Bekliyor - 1 başladı  -2 bitti
@@ -16,8 +17,8 @@ namespace Kalayci.Entities.Concrete
         public string? SpoolCreatedByName{ get; set; }// spoolu yapan usta
 
 
-        public int spoolId { get; set; } // hangi spool gönderildi
-        public Spool? spool { get; set; }
+        public int spoolId { get; set; }
+        public Spool spool { get; set; }
 
         public string Statu()
         {

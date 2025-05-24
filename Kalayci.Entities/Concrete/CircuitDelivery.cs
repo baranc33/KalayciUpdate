@@ -11,14 +11,16 @@ namespace Kalayci.Entities.Concrete
     public class CircuitDelivery: EntityBase, IEntity
     {
         // bu sayfa detayda gözükeceği için seçenekler halinde görünür.
-        public bool KaliteKontrol { get; set; }//KaliteKontrol 
-        public bool Taslama { get; set; }// Taslama 
-        public bool BasıncTesti { get; set; }//BasıncTesti 
-        public bool Olculendirme { get; set; }//Olculendirme 
-        public bool KaynakTesti { get; set; }//KaynakTesti 
+        public bool QualityControl { get; set; }//KaliteKontrol 
+        public bool Grinding { get; set; }// Taslama 
+        public bool PressureTest { get; set; }//BasıncTesti 
+        public bool Dimensioning { get; set; }//Olculendirme 
+        public bool WeldingTest { get; set; }//KaynakTesti 
+
+
 
         public int spoolId { get; set; } // hangi spool gönderildi
-        public  Spool? spool { get; set; }
+        public  Spool spool { get; set; }
 
 
          

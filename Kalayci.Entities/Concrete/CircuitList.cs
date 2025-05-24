@@ -10,6 +10,8 @@ namespace Kalayci.Entities.Concrete
     // devre isimleri
     public class CircuitList : EntityBase, IEntity
     {
-        public string? CircuitName{ get; set; }
+        public string CircuitName{ get; set; }
+        public ICollection<Spool>? spoolLists { get; set; }
+
     }
 }

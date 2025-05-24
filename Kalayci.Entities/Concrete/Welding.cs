@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Entities.Concrete
 {
+    // kaynak
     public class Welding : EntityBase, IEntity
     {
         public byte Status{ get; set; }//0 bekliyor - 1 başladı - 2 bitti 
 
         // burda boru türüne göre kaynak seçenekleri olcak
 
-        public byte SpoolCraftedMaterial { get; set; }
+        public byte SpoolWeldingType { get; set; }
 
 
         // daha sonra burda ctor içine göre seçenekler oluşturacağız. 
@@ -25,7 +26,7 @@ namespace Kalayci.Entities.Concrete
 
 
         public int spoolId { get; set; } // hangi spool gönderildi
-        public Spool? spool { get; set; }
+        public Spool spool { get; set; }
 
 
 
