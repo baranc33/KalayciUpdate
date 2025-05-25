@@ -15,6 +15,7 @@ namespace Kalayci.Entities.Concrete
         public string LastName { get; set; }
         public string Image { get; set; }
         public string Job { get; set; }
+        public int JobKategory { get; set; }// burdan takım sayfası yönetilecek
         public string Linkedin { get; set; }
     
 

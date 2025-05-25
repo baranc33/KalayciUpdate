@@ -17,8 +17,8 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
             builder.Property(c => c.Id).ValueGeneratedOnAdd();
 
             builder.Property(r => r.CreatedByName).IsRequired(true);
-            builder.Property(r => r.Place).IsRequired(false);
-            builder.Property(r => r.Status).IsRequired(false);
+            builder.Property(r => r.Place).IsRequired(true);
+            builder.Property(r => r.Status).IsRequired(true);
 
             builder.Property(r => r.CreatedByName).HasMaxLength(100);
             builder.Property(r => r.ModifiedByName).IsRequired(true);

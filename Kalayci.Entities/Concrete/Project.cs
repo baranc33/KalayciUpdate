@@ -18,7 +18,7 @@ namespace Kalayci.Entities.Concrete
 
 
 
-        // Projeyi Oluşturan kişi
+        // Proje sorumlusu
         public string UserId { get; set; }
         public KalayciUser? User { get; set; }
 
@@ -26,6 +26,7 @@ namespace Kalayci.Entities.Concrete
 
         //projeye bağlı spool listesi
         public  ICollection<Spool>? spoolLists { get; set; }
+        public  ICollection<Project>? projects{ get; set; }
 
 
 

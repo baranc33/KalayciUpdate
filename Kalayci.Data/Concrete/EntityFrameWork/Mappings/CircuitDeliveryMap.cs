@@ -39,7 +39,6 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
 
 
             // bir tane spool birtanedir
-            //builder.HasOne<Spool>(a => a.spool).WithMany(u => u.CircuitDelivery).HasForeignKey(a => a.spo);
 
         }
     }

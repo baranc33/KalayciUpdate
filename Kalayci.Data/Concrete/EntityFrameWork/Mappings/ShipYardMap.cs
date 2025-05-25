@@ -30,6 +30,8 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
             builder.Property(r => r.ModifiedDate).IsRequired(true);
             builder.Property(r => r.ModifiedDate).IsRequired(true);
             builder.Property(r => r.IsDeleted).IsRequired(true);
+
+ 
         }
     }
 }

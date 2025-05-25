@@ -17,6 +17,8 @@ namespace Kalayci.Entities.Concrete
         public DateTime WorkStartDate{ get; set; }
         public DateTime WorkFinishDate { get; set; }
         public string AutorizedProject { get; set; }
+
+
         public ICollection<Point> points { get; set; }
 
     }

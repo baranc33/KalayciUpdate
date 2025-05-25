@@ -33,7 +33,7 @@ namespace Kalayci.Entities.Concrete
 
         public string Statu()
         {
-            switch (this.Status)
+            switch (this.Status)//0 1 2
             {
                 case 0:
                     return "Bekliyor";

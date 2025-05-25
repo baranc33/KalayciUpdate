@@ -10,17 +10,19 @@ namespace Kalayci.Data.Abstract
 
     public interface IUnitOfWork : IAsyncDisposable
     {
-        //IArticleRepository Articles { get; }
 
         ICircuitDeliveryRepository CircuitDelivery { get; }
         ICircuitListRepository CircuitList { get; }
-        //IRoleRepository Role { get; }
+        //IKalayciRoleRepository Role { get; }
+        //IKalayciUserRepository User{ get; }
         IProjectRepository Project { get; }
+        IPersonelRepository Personel { get; }
+        IPointRepository Point { get; }
         ISendingRepository Sending { get; }
         IShipYardRepository ShipYard { get; }
-        IShipyardAssemblyRepository ShipyardAssembly { get; }
+        IShipYardAssemblyRepository ShipyardAssembly { get; }
         ISpoolRepository Spool { get; }
-        //IUserRepository User { get; }
+     
         IWeldingRepository Welding { get; }
         IWorkPlaceRepository WorkPlace { get; }
 

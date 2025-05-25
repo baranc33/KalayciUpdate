@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Data.Abstract.Entities
 {
-    public interface IShipYardAssemblyRepository : IEntityRepository<ShipyardAssembly>
+    public interface IPointRepository : IEntityRepository<Point>
     {
     }
 }

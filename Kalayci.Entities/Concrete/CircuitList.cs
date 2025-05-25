@@ -1,4 +1,4 @@
-﻿using Kalayci.Shared.Entities.Abstract;
+﻿ using Kalayci.Shared.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;

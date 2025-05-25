@@ -18,10 +18,9 @@ namespace Kalayci.Entities.Concrete
         public string UserGivePoint { get; set; }
 
         public string UserId { get; set; }
-        public KalayciUser? User { get; set; }
 
-
-        public string PersonelId { get; set; }
+    
+        public int PersonelId { get; set; }
         public Personel Personel { get; set; }
 
     }

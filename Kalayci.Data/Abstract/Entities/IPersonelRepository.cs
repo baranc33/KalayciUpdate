@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Data.Abstract.Entities
 {
-    //public interface IRoleRepository : IEntityRepository<Role>
-    //{
-    //}
+    public interface IPersonelRepository : IEntityRepository<Personel>
+    {
+    }
 }

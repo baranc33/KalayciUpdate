@@ -35,16 +35,17 @@
 		</div>
 		<!-- Spinner End -->
 		<!-- Topbar Start -->
-		<div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.1s" style="background-color:#7fb0d1">
+		<div class="container-fluid bg-primary text-primay bg-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.1s" @* style="background-color:#7fb0d1" *@>
 			<div class="container py-3">
 				<div class="d-flex align-items-center">
 					<a asp-action="index" asp-controller="home">
 						
-						<h1 class="text-white fw-bold m-0">
-							<img  width="50" height="50"  alt="LogoBulunamadı" src="~/Template/img/kalayci_denizcilik_logo_Temiz.png" > 
+						<h1 class="text-primary fw-bold m-0 ">
+							<img  width="50" height="50" style="margin-top:-10px;"  alt="LogoBulunamadı" src="~/Template/img/kalayci_denizcilik_logo_Temiz.png" > 
 							Kalaycı Denizcilik</h1>
 					</a> 
-					<div class="ms-auto d-flex align-items-center" >
+				
+					<div class="ms-auto d-flex align-items-center "  >
 						<div>
 							<small class="ms-4"><i class="fa fa-map-marker-alt me-3"></i>Kavakpınar mah. izci sokak no:23 D:16 Pendik / İstanbul</small>
 							<br />
@@ -65,11 +66,13 @@
 				</div>
 			</div>
 		</div>
+		<hr />
+
 		<!--   Topbar End -->
 		@* @await Html.PartialAsync("_Navbar"); *@
 
 		<!-- Navbar Start -->
-		<div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s">
+		<div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s" style="margin-top:-20px;">
 			<div class="container">
 
 				@*      <a href="index.html" style="margin-left:-200px;  margin-top:15px; position:absolute; ">
@@ -90,7 +93,7 @@
 							<a id="about" asp-controller="Home" asp-action="About" class="nav-item nav-link">Hakkımızda</a>
 							<a id="service" asp-controller="Home" asp-action="ServiceTrading" class="nav-item nav-link">Projelerimiz</a>
 							<a id="team" asp-controller="Home" asp-action="Team" class="nav-item nav-link">Takım</a>
-							<a id="team" asp-controller="Home" asp-action="Referance" class="nav-item nav-link">Referanslar</a>
+							<a id="referance" asp-controller="Home" asp-action="Referance" class="nav-item nav-link">Referanslar</a>
 							<a id="contact" asp-controller="Home" asp-action="contact" class="nav-item nav-link">iletişim</a>
 						</div>
 						@* <div class="ms-auto d-none d-lg-block">

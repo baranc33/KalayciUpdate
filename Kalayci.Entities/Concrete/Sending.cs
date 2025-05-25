@@ -15,6 +15,7 @@ namespace Kalayci.Entities.Concrete
         public byte Status { get; set; } = 0;// sevk edildimi
 
 
+
         public int spoolId { get; set; } // hangi spool gönderildi
         public Spool? spool { get; set; }
 
