@@ -26,9 +26,9 @@ namespace Kalayci.Mvc.Extentions.Programcs
                 opt.Password.RequireUppercase = true; // Şifre büyük harf içermeli
                 opt.Password.RequireNonAlphanumeric = false; // Şifre özel karakter içermelimi
                 opt.Password.RequireDigit = false; // Şifre rakam içermelimi
-                opt.SignIn.RequireConfirmedEmail = true; // E-posta onayı zorunlu mu
+                //opt.SignIn.RequireConfirmedEmail = false; // E-posta onayı zorunlu mu
                 opt.SignIn.RequireConfirmedPhoneNumber = false; // Telefon onayı zorunlu mu
-                opt.Lockout.AllowedForNewUsers = false; // Yeni kullanıcılar için kilitleme
+                //opt.Lockout.AllowedForNewUsers = false; // Yeni kullanıcılar için kilitleme
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60); // Kilitleme süresi
                 opt.Lockout.MaxFailedAccessAttempts = 5; // Maksimum deneme sayısı
 

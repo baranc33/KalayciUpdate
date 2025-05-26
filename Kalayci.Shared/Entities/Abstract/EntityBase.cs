@@ -10,11 +10,11 @@ namespace Kalayci.Shared.Entities.Abstract
     public class EntityBase
     {
 
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
-        public virtual DateTime ModifiedDate { get; set; } = DateTime.Now;
-        public virtual bool IsDeleted { get; set; } = false;
-        public virtual string CreatedByName { get; set; } = "Admin";
-        public virtual string ModifiedByName { get; set; } = "Admin";
+        public  int Id { get; set; }
+        public  DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime ModifiedDate { get; set; } = DateTime.Now;
+        public bool IsDeleted { get; set; } = false;
+        public  string CreatedByName { get; set; } = "Admin";
+        public  string ModifiedByName { get; set; } = "Admin";
     }
 }

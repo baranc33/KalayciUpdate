@@ -17,7 +17,7 @@ namespace Kalayci.Entities.Concrete
 
 
         public int spoolId { get; set; } // hangi spool gönderildi
-        public Spool? spool { get; set; }
+        public Spool spool { get; set; }
 
         public string Statu()
         {

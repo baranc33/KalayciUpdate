@@ -15,36 +15,66 @@ namespace Kalayci.Data.Concrete
 
 
         private readonly KalayciContext _context;
+
+
+        private BranchRepository _branchRepository;
         private CircuitDeliveryRepository _circuitDeliveryRepository;
+        private CircuitListRepository _circuitListRepository;
+        private KalayciRoleRepository _roleRepository;
+        private KalayciUserRepository _kalayciUserRepository;
+        private PersonelRepository _personelRepository;
+        private PointRepository _pointRepository;
+        private ProjectRepository _projectRepository;
+        private SendingRepository _sendingRepository;
+        private ShipYardAssemblyRepository _shipYardAssemblyRepository;
+        private ShipYardRepository _shipYardRepository;
+        private SpoolRepository _spoolRepository;
+        private WeldingRepository _weldingRepository;
+        private WorkPlaceRepository _workPlaceRepository;
 
 
 
 
-        public ICircuitDeliveryRepository CircuitDelivery => 
+        public IBranchRepository BranchRepository =>
+            _branchRepository ?? new BranchRepository(_context);
+        public ICircuitDeliveryRepository CircuitDelivery =>
             _circuitDeliveryRepository ?? new CircuitDeliveryRepository(_context);
 
-        public ICircuitListRepository CircuitList => throw new NotImplementedException();
+        public ICircuitListRepository CircuitList =>
+            _circuitListRepository ?? new CircuitListRepository(_context);
 
-        public IProjectRepository Project => throw new NotImplementedException();
+        public IProjectRepository Project =>
+            _projectRepository ?? new ProjectRepository(_context);
 
-        public IPersonelRepository Personel => throw new NotImplementedException();
+        public IPersonelRepository Personel =>
+            _personelRepository ?? new PersonelRepository(_context);
 
-        public IPointRepository Point => throw new NotImplementedException();
+        public IPointRepository Point =>
+            _pointRepository ?? new PointRepository(_context);
 
-        public ISendingRepository Sending => throw new NotImplementedException();
+        public ISendingRepository Sending =>
+            _sendingRepository ?? new SendingRepository(_context);
 
-        public IShipYardRepository ShipYard => throw new NotImplementedException();
+        public IShipYardRepository ShipYard =>
+            _shipYardRepository ?? new ShipYardRepository(_context);
 
-        public IShipYardAssemblyRepository ShipyardAssembly => throw new NotImplementedException();
+        public IShipYardAssemblyRepository ShipyardAssembly =>
+            _shipYardAssemblyRepository ?? new ShipYardAssemblyRepository(_context);
 
-        public ISpoolRepository Spool => throw new NotImplementedException();
+        public ISpoolRepository Spool =>
+            _spoolRepository ?? new SpoolRepository(_context);
 
-        public IWeldingRepository Welding => throw new NotImplementedException();
+        public IWeldingRepository Welding =>
+            _weldingRepository ?? new WeldingRepository(_context);
 
-        public IWorkPlaceRepository WorkPlace => throw new NotImplementedException();
+        public IWorkPlaceRepository WorkPlace =>
+            _workPlaceRepository ?? new WorkPlaceRepository(_context);
 
+        public IKalayciRoleRepository Role =>
+            _roleRepository ?? new KalayciRoleRepository(_context);
 
-
+        public IKalayciUserRepository User =>
+            _kalayciUserRepository ?? new KalayciUserRepository(_context);
 
         public async ValueTask DisposeAsync()
         {

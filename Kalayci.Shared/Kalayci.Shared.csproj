@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Concrete\" />
     <Folder Include="Utilitis\Result\ComplexType\" />
   </ItemGroup>
 

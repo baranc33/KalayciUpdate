@@ -16,15 +16,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
         {
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedOnAdd();
-
-
-            builder.Property(r => r.QualityControl).IsRequired(true);
-            builder.Property(r => r.Grinding).IsRequired(true);
-            builder.Property(r => r.PressureTest).IsRequired(true);
-            builder.Property(r => r.Dimensioning).IsRequired(true);
-            builder.Property(r => r.WeldingTest).IsRequired(true);
-
-
+ 
 
 
             builder.Property(r => r.CreatedByName).IsRequired(true);
@@ -32,9 +24,8 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
             builder.Property(r => r.ModifiedByName).IsRequired(true);
             builder.Property(r => r.ModifiedByName).HasMaxLength(100);
             builder.Property(r => r.CreatedDate).IsRequired(true);
-            builder.Property(r => r.ModifiedDate).IsRequired(true);
-            builder.Property(r => r.ModifiedDate).IsRequired(true);
-            builder.Property(r => r.IsDeleted).IsRequired(true);
+            //builder.Property(r => r.ModifiedDate).IsRequired(true);
+            //builder.Property(r => r.IsDeleted).IsRequired(true);
 
 
 

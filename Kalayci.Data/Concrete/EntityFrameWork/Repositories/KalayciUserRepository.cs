@@ -1,4 +1,5 @@
 ﻿using Kalayci.Data.Abstract.Entities;
+using Kalayci.Data.Concrete.EntityFrameWork.Context;
 using Kalayci.Entities.Concrete;
 using Kalayci.Shared.Data.Concrete;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
 {
-    //public class KalayciUserRepository : EfEntityRepositoryBase<KalayciUser>, IKalayciUserRepository
-    //{
+    public class KalayciUserRepository : EfEntityRepositoryBase<KalayciUser>, IKalayciUserRepository
+    {
 
-    //    public KalayciUserRepository(DbContext context) : base(context)
-    //    {
-    //    }
-    //}
+        public KalayciUserRepository(KalayciContext context) : base(context)
+        {
+        }
+    }
 }

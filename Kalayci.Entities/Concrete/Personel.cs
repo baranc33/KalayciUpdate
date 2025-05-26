@@ -13,11 +13,13 @@ namespace Kalayci.Entities.Concrete
         public string LastName{ get; set; }
         public string Phone{ get; set; }
         public string Picture{ get; set; }
-        public string Branch{ get; set; }
         public DateTime WorkStartDate{ get; set; }
         public DateTime WorkFinishDate { get; set; }
         public string AutorizedProject { get; set; }
 
+
+        public int branchId { get; set; }
+        public Branch branch { get; set; }
 
         public ICollection<Point> points { get; set; }
 

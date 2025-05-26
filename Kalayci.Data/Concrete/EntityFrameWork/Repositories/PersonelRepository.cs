@@ -1,4 +1,5 @@
 ﻿using Kalayci.Data.Abstract.Entities;
+using Kalayci.Data.Concrete.EntityFrameWork.Context;
 using Kalayci.Entities.Concrete;
 using Kalayci.Shared.Data.Concrete;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
     public class PersonelRepository : EfEntityRepositoryBase<Personel>, IPersonelRepository
     {
 
-        public PersonelRepository(DbContext context) : base(context)
+        public PersonelRepository(KalayciContext context) : base(context)
         {
         }
     }

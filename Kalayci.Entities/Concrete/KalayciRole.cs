@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Entities.Concrete
 {
-    public class KalayciRole : IdentityRole 
+    public class KalayciRole : IdentityRole ,IEntity
     {
 
    

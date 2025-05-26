@@ -1,7 +1,13 @@
 using Kalayci.Data.Concrete.EntityFrameWork.Context;
 using Kalayci.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
+using Kalayci.Services;
+using Kalayci.Services.Concrete;
+using Kalayci.Services.Extentions;
 using System;
+using Kalayci.Data.Abstract.Entities;
+using Kalayci.Data.Concrete.EntityFrameWork.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +19,8 @@ builder.Services.AddControllersWithViews();
 
 var config = builder.Configuration;
 var connetionstring = config.GetConnectionString("mysql");
+//var version = new MySqlServerVersion(new Version(5, 5, 38));
+
 builder.Services.AddDbContext<KalayciContext>(opt =>
 {
     opt.UseMySQL(connetionstring);
@@ -29,6 +37,8 @@ builder.Services.AddIdentity<KalayciUser, KalayciRole>(opt =>
     ;
 
 
+//builder.Services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile));
+builder.Services.LoadMyServices();
 
 
 var app = builder.Build();

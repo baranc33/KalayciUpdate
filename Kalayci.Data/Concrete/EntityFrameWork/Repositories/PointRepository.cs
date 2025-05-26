@@ -1,4 +1,5 @@
 ﻿using Kalayci.Data.Abstract.Entities;
+using Kalayci.Data.Concrete.EntityFrameWork.Context;
 using Kalayci.Entities.Concrete;
 using Kalayci.Shared.Data.Concrete;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
     public class PointRepository : EfEntityRepositoryBase<Point>, IPointRepository
     {
 
-        public PointRepository(DbContext context) : base(context)
+        public PointRepository(KalayciContext context) : base(context)
         {
         }
     }

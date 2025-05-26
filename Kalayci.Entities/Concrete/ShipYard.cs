@@ -14,7 +14,7 @@ namespace Kalayci.Entities.Concrete
 
 
         //Tershaneye Bağlı projeler burdan çağırılacak
-        public ICollection<Project>? Projects { get; set; }
+        public ICollection<Project> Projects { get; set; }
 
     }
 }

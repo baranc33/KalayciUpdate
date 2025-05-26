@@ -11,7 +11,7 @@ namespace Kalayci.Entities.Concrete
     {
         //bire çok ilişkiler
         // spoollar projeler bağlı olacak
-        public Project? Project { get; set; }
+        public Project Project { get; set; }
         public int ProjectId { get; set; }
 
 
@@ -24,7 +24,7 @@ namespace Kalayci.Entities.Concrete
 
 
 
-        public string? SpoolName { get; set; }
+        public string SpoolName { get; set; }
         public byte spoolStatus { get; set; } // spool nerde ? enumdan çağırcaz
         // 0 atolye -1 kaynakta  - 2 devre teslimde  - 3 sevke hazır -4 tershanede
 

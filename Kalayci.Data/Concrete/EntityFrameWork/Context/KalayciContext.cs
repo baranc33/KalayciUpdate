@@ -20,6 +20,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
 
 
 
+        public DbSet<Branch> Branches { get; set; }
         public DbSet<CircuitDelivery> CircuitDelivery { get; set; }
         public DbSet<CircuitList> CircuitList { get; set; }
         public DbSet<Project> Project { get; set; }
@@ -40,6 +41,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.ApplyConfiguration(new BranchMap());
             modelBuilder.ApplyConfiguration(new ShipYardMap());
             modelBuilder.ApplyConfiguration(new ProjectMap());
             modelBuilder.ApplyConfiguration(new KalayciUserMap());

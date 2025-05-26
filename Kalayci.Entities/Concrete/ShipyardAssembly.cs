@@ -13,7 +13,7 @@ namespace Kalayci.Entities.Concrete
     public class ShipyardAssembly : EntityBase, IEntity
     {
         public byte Status { get; set; } = 0;
-        public  string? SpoolAssemblyByName { get; set; } //Montajı yapan
+        public  string SpoolAssemblyByName { get; set; } //Montajı yapan
         public DateTime SpoolAssemblyDateTime { get; set; } //Montajı yapan
 
         public int spoolId { get; set; } // hangi spool gönderildi

@@ -1,4 +1,5 @@
-﻿using Kalayci.Shared.Data.Abstract;
+﻿using Kalayci.Data.Concrete.EntityFrameWork.Context;
+using Kalayci.Shared.Data.Abstract;
 using Kalayci.Shared.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,50 +11,44 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Shared.Data.Concrete
 {
-    
+
     public class EfEntityRepositoryBase<TEntity> : IEntityRepository<TEntity>
 where TEntity : class, IEntity, new()
     {
-        private readonly DbContext _context;
-
-        public EfEntityRepositoryBase(DbContext context)
+        private readonly KalayciContext _context;
+        public EfEntityRepositoryBase(KalayciContext context)
         {
             _context = context;
         }
-        public async Task<TEntity> AddAsync(TEntity entity)
+
+        public async Task<TEntity> AddAsync(TEntity Entity)
         {
-            await _context.Set<TEntity>().AddAsync(entity);
-            return entity;
+            await _context.Set<TEntity>().AddAsync(Entity);
+            return Entity;
         }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
-        {
-            await Task.Run(() =>
-            {
-                _context.Set<TEntity>().Update(entity);
-
-            });
-            return entity;
-
-        }
-        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-            return await _context.Set<TEntity>().AnyAsync(predicate);
-        }
-
-
-        public async Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-            return await _context.Set<TEntity>().CountAsync(predicate);
-        }
-
-        public async Task DeleteAsync(TEntity entity)
+        public async Task<TEntity> UpdateAsync(TEntity Entity)
         {
             await Task.Run(() =>
             {
-                _context.Set<TEntity>().Remove(entity);
+                _context.Set<TEntity>().Update(Entity);
+            });
+            return Entity;
+        }
+
+
+
+        public async Task DeleteAsync(TEntity Entity)
+        {
+            await Task.Run(() =>
+            {
+                _context.Set<TEntity>().Remove(Entity);
             });
         }
+
+
+
+
 
         public async Task<IList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, params Expression<Func<TEntity, object>>[] includeProperties)
         {
@@ -96,6 +91,21 @@ where TEntity : class, IEntity, new()
 
             return await query.SingleOrDefaultAsync();
 
+        }
+
+
+
+
+
+        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _context.Set<TEntity>().AnyAsync(predicate);
+        }
+
+
+        public async Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _context.Set<TEntity>().CountAsync(predicate);
         }
 
     }

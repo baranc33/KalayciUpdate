@@ -14,7 +14,7 @@ namespace Kalayci.Entities.Concrete
          
 
 
-        public string? SpoolCreatedByName{ get; set; }// spoolu yapan usta
+        public string SpoolCreatedByName{ get; set; }// spoolu yapan usta
 
 
         public int spoolId { get; set; }
