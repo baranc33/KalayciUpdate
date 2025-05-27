@@ -3,6 +3,7 @@ using System;
 using Kalayci.Data.Concrete.EntityFrameWork.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -16,14 +17,18 @@ namespace Kalayci.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.3")
+                .HasAnnotation("ProductVersion", "8.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.Branch", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BranchDetay")
                         .IsRequired()
@@ -57,6 +62,19 @@ namespace Kalayci.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Branches");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BranchDetay = "Bilgi işlem departmanı, şirketin bilgi teknolojileri altyapısını yönetir ve destekler.",
+                            BranchName = "Bilgi işlem",
+                            CreatedByName = "System",
+                            CreatedDate = new DateTime(2025, 5, 27, 14, 59, 30, 453, DateTimeKind.Local).AddTicks(4906),
+                            IsDeleted = false,
+                            ModifiedByName = "System",
+                            ModifiedDate = new DateTime(2025, 5, 27, 14, 59, 30, 453, DateTimeKind.Local).AddTicks(4904)
+                        });
                 });
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.CircuitDelivery", b =>
@@ -64,6 +82,8 @@ namespace Kalayci.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedByName")
                         .IsRequired()
@@ -115,6 +135,8 @@ namespace Kalayci.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CircuitName")
                         .IsRequired()
@@ -169,6 +191,36 @@ namespace Kalayci.Data.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            ConcurrencyStamp = "b10d0cc2-ff7e-4937-a8f2-e019f3e85dcf",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            ConcurrencyStamp = "cce1584c-a2ad-4dee-8317-abb72431daec",
+                            Name = "Yonetici",
+                            NormalizedName = "YONETICI"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            ConcurrencyStamp = "9f6b9242-1813-4b71-9407-05ebb18a6e13",
+                            Name = "Muhendis",
+                            NormalizedName = "MUHENDIS"
+                        },
+                        new
+                        {
+                            Id = "4",
+                            ConcurrencyStamp = "6a489a09-5176-40e9-8cc2-ad6999bd73df",
+                            Name = "Atolye",
+                            NormalizedName = "ATOLYE"
+                        });
                 });
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.KalayciUser", b =>
@@ -179,7 +231,7 @@ namespace Kalayci.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("BranchId")
+                    b.Property<int?>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -201,17 +253,8 @@ namespace Kalayci.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("Image")
-                        .HasMaxLength(11840)
-                        .HasColumnType("varchar(11840)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Linkedin")
                         .HasMaxLength(100)
@@ -221,11 +264,7 @@ namespace Kalayci.Data.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Mail")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedByName")
                         .IsRequired()
@@ -234,11 +273,6 @@ namespace Kalayci.Data.Migrations
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -256,10 +290,6 @@ namespace Kalayci.Data.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Phone")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("longtext");
 
@@ -276,6 +306,9 @@ namespace Kalayci.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
+                    b.Property<int>("personelId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BranchId");
@@ -287,6 +320,9 @@ namespace Kalayci.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
+                    b.HasIndex("personelId")
+                        .IsUnique();
+
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
@@ -296,10 +332,7 @@ namespace Kalayci.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("AutorizedProject")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedByName")
                         .IsRequired()
@@ -352,6 +385,23 @@ namespace Kalayci.Data.Migrations
                     b.HasIndex("branchId");
 
                     b.ToTable("Personel");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedByName = "System",
+                            CreatedDate = new DateTime(2025, 5, 27, 14, 59, 30, 454, DateTimeKind.Local).AddTicks(9358),
+                            IsDeleted = false,
+                            LastName = "İşlem",
+                            ModifiedByName = "System",
+                            ModifiedDate = new DateTime(2025, 5, 27, 14, 59, 30, 454, DateTimeKind.Local).AddTicks(9368),
+                            Name = "Bilgi",
+                            Phone = "555 004 63 33",
+                            WorkFinishDate = new DateTime(2125, 5, 27, 14, 59, 30, 454, DateTimeKind.Local).AddTicks(9377),
+                            WorkStartDate = new DateTime(2025, 5, 27, 14, 59, 30, 454, DateTimeKind.Local).AddTicks(9375),
+                            branchId = 1
+                        });
                 });
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.Point", b =>
@@ -359,6 +409,8 @@ namespace Kalayci.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedByName")
                         .IsRequired()
@@ -412,6 +464,8 @@ namespace Kalayci.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("CreatedByName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -462,6 +516,8 @@ namespace Kalayci.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("CreatedByName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -504,6 +560,8 @@ namespace Kalayci.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("CreatedByName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -538,6 +596,8 @@ namespace Kalayci.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedByName")
                         .IsRequired()
@@ -584,6 +644,8 @@ namespace Kalayci.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CircuitListId")
                         .HasColumnType("int");
@@ -636,6 +698,8 @@ namespace Kalayci.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("CreatedByName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -677,6 +741,8 @@ namespace Kalayci.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedByName")
                         .IsRequired()
@@ -721,6 +787,8 @@ namespace Kalayci.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("ClaimType")
                         .HasColumnType("longtext");
 
@@ -743,6 +811,8 @@ namespace Kalayci.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("longtext");
@@ -830,13 +900,17 @@ namespace Kalayci.Data.Migrations
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.KalayciUser", b =>
                 {
-                    b.HasOne("Kalayci.Entities.Concrete.Branch", "Branch")
+                    b.HasOne("Kalayci.Entities.Concrete.Branch", null)
                         .WithMany("KalayciUsers")
-                        .HasForeignKey("BranchId")
+                        .HasForeignKey("BranchId");
+
+                    b.HasOne("Kalayci.Entities.Concrete.Personel", "personel")
+                        .WithOne("User")
+                        .HasForeignKey("Kalayci.Entities.Concrete.KalayciUser", "personelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Branch");
+                    b.Navigation("personel");
                 });
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.Personel", b =>
@@ -1021,6 +1095,8 @@ namespace Kalayci.Data.Migrations
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.Personel", b =>
                 {
+                    b.Navigation("User");
+
                     b.Navigation("points");
                 });
 

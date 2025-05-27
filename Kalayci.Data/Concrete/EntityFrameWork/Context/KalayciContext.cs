@@ -42,9 +42,14 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new BranchMap());
+
+            modelBuilder.ApplyConfiguration(new PersonelMap());
+
+
             modelBuilder.ApplyConfiguration(new ShipYardMap());
             modelBuilder.ApplyConfiguration(new ProjectMap());
             modelBuilder.ApplyConfiguration(new KalayciUserMap());
+            modelBuilder.ApplyConfiguration(new KalayciRoleMap());
             modelBuilder.ApplyConfiguration(new CircuitDeliveryMap());
            
             modelBuilder.ApplyConfiguration(new CircuitListMap());
@@ -53,7 +58,6 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
             modelBuilder.ApplyConfiguration(new WeldingMap());
             modelBuilder.ApplyConfiguration(new WorkPlaceMap());
 
-            modelBuilder.ApplyConfiguration(new PersonelMap());
             modelBuilder.ApplyConfiguration(new PointMap());
             modelBuilder.ApplyConfiguration(new ShipyardAssemblyMap());
             modelBuilder.ApplyConfiguration(new SendingMap());

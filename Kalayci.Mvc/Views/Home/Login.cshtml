@@ -1,4 +1,6 @@
-﻿<style>
+﻿@model LoginDto
+
+<style>
 	import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 	/* Reseting */
 	* {
@@ -101,22 +103,24 @@
 
 
 <div class="wrapper " style="margin-left:35%">
+	<div asp-validation-summary="ModelOnly" class="text-danger" style="margin-top:-64px"></div>
 	<div class="logo">
 		<img src="~/Template/img/kalayci_denizcilik_logo_Temiz.png" alt="">
 	</div>
 	<div class="text-center mt-4 name">
 		Kalayci Denizcilik
 	</div>
-	<form class="p-3 mt-3">
+	<form class="p-3 mt-3" asp-controller="Home" asp-action="Login" method="post">
 		<div class="form-field d-flex align-items-center">
 			<span class="far fa-user"></span>
-			<input type="text" name="userName" id="userName" placeholder="Kullanıcı adınız">
+			<input asp-for="@Model.UserName" type="text" name="userName" id="userName" placeholder="Kullanıcı adınız">
 		</div>
 		<div class="form-field d-flex align-items-center">
 			<span class="fas fa-key"></span>
-			<input type="password" name="password" id="pwd" placeholder="Şifreniz">
+			<input asp-for="@Model.Password" type="password" name="password" id="pwd" placeholder="Şifreniz">
 		</div>
-		<button class="btn mt-3" type="submit">Giriş yap</button>
+		@* <button class="btn mt-3" type="submit">Giriş yap</button> *@
+		<button type="submit" class="btn mt-3">Giriş Yap</button>
 	</form>
 @* 	<div class="text-center fs-6">
 		<a href="#">Forget password?</a> or <a href="#">Sign up</a>

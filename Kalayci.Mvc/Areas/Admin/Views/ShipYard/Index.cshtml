@@ -1,0 +1,107 @@
+﻿@model ICollection<ShipYard>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+ 
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Tersane Listesi</h1>
+
+    <div class="card mb-4">
+        <div class="card-body row">
+            <div class="col-7">
+
+                Bu Sayfada Tersaneler ile ilgili işlemler Yapılmaktadır
+            </div>
+            <a  asp-action=""  class="btn btn-primary col-3 offset-2"  >
+                Tersane Ekle
+            </a>
+        </div>
+    </div>
+    @if (Model != null)
+    {
+
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                DataTable Example
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Tersane Adı</th>
+                            <th>Tersane Projeleri</th>
+                            <th>Tersane Güncelleme</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ShipYardName</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Projeleri Gör</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Güncelle</a>
+
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <h2>
+                Henüz bir Tersane Eklenmemiştir
+            </h2>
+        </div>
+    }
+
+</div>
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Ekle
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="" asp-controller="" asp-area="" method="post">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

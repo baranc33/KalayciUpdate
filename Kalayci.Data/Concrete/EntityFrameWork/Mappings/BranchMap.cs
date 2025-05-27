@@ -41,19 +41,19 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
 
 
 
-            //builder.HasData(
-            //  new Branch
-            //  {
-            //      Id=1,
-            //      ModifiedDate = DateTime.Now,
-            //      CreatedDate = DateTime.Now,
-            //      BranchName = "Bilgi işlem",
-            //      BranchDetay="Bilgi işlem departmanı, şirketin bilgi teknolojileri altyapısını yönetir ve destekler.",
-            //      IsDeleted = false,
-            //      CreatedByName = "System",
-            //      ModifiedByName = "System"
-            //  }
-            //    );
+            builder.HasData(
+              new Branch
+              {
+                  Id=1,
+                  ModifiedDate = DateTime.Now,
+                  CreatedDate = DateTime.Now,
+                  BranchName = "Bilgi işlem",
+                  BranchDetay="Bilgi işlem departmanı, şirketin bilgi teknolojileri altyapısını yönetir ve destekler.",
+                  IsDeleted = false,
+                  CreatedByName = "System",
+                  ModifiedByName = "System"
+              }
+                );
 
         }
     }

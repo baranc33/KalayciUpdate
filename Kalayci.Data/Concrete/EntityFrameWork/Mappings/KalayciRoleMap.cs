@@ -13,6 +13,37 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
     {
         public void Configure(EntityTypeBuilder<KalayciRole> builder)
         {
+
+
+
+            builder.HasData(
+              new KalayciRole
+              {
+                  Id = "1",
+                  Name = "Admin",
+                  NormalizedName = "ADMIN",
+                  ConcurrencyStamp = Guid.NewGuid().ToString()
+              },
+              new KalayciRole
+              {
+                  Id = "2",
+                  Name = "Yonetici",
+                  NormalizedName = "YONETICI",
+                  ConcurrencyStamp = Guid.NewGuid().ToString()
+              }, new KalayciRole
+              {
+                  Id = "3",
+                  Name = "Muhendis",
+                  NormalizedName = "MUHENDIS",
+                  ConcurrencyStamp = Guid.NewGuid().ToString()
+              }, new KalayciRole
+              {
+                  Id = "4",
+                  Name = "Atolye",
+                  NormalizedName = "ATOLYE",
+                  ConcurrencyStamp = Guid.NewGuid().ToString()
+              }
+                );
         }
     }
 }

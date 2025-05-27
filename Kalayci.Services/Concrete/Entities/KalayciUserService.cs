@@ -4,6 +4,7 @@ using Kalayci.Entities.Dto;
 using Kalayci.Services.Abstract.Entities;
 using Kalayci.Shared.Data.Abstract;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,10 @@ namespace Kalayci.Services.Concrete.Entities
             {
                 UserName = model.UserName,
                 Email = model.Email,
+                PasswordBackUp=model.Password,
+                PhoneNumber = model.Phone,
+                personelId = model.PersonelId,
+
             };
 
 
@@ -91,6 +96,12 @@ namespace Kalayci.Services.Concrete.Entities
             {
                 return "Geçersiz kullanıcı adı veya  şifresi";
             }
+        }
+
+        public async Task<ICollection<KalayciUser>> GetAllUser()
+        {
+            return  await _userManager.Users.Include(p=>p.personel).ThenInclude(b=>b.branch)
+                .ToListAsync();
         }
     }
 }

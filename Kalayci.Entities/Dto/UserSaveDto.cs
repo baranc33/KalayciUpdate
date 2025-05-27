@@ -32,7 +32,6 @@ namespace Kalayci.Entities.Dto
         [Display(Name = "Email :")]
         public string Email { get; set; } = null!;
 
-        [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Telefon alanı boş bırakılamaz.")]
         [Display(Name = "Telefon :")]
         public string Phone { get; set; } = null!;
@@ -56,5 +55,7 @@ namespace Kalayci.Entities.Dto
         [Display(Name = "Kayıt Kodu:")]
         [Required(ErrorMessage = "Kaydetme Şifresi Zorunludur. Bilgi işlemden Alınız.")]
         public string SignInPassword { get; set; } = null!;
+
+        public int PersonelId { get; set; }
     }
 }

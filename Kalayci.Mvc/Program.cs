@@ -19,11 +19,11 @@ builder.Services.AddControllersWithViews();
 
 var config = builder.Configuration;
 var connetionstring = config.GetConnectionString("mysql");
-//var version = new MySqlServerVersion(new Version(5, 5, 38));
+var version = new MySqlServerVersion(new Version(10, 6, 18));
 
 builder.Services.AddDbContext<KalayciContext>(opt =>
 {
-    opt.UseMySQL(connetionstring);
+    opt.UseMySql(connetionstring,version);
     //opt.UseMySql(connetionstring, version);
 });
 
@@ -39,7 +39,18 @@ builder.Services.AddIdentity<KalayciUser, KalayciRole>(opt =>
 
 //builder.Services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile));
 builder.Services.LoadMyServices();
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    var cookieBuilder = new CookieBuilder();
 
+    cookieBuilder.Name = "KalayciCoocki";// cookie ismi
+    opt.LoginPath = new PathString("/Home/Login");// giriþ yapmadýysa yönlendirilecek sayfa
+    opt.LogoutPath = new PathString("/Home/logout");
+    opt.AccessDeniedPath = new PathString("/Home/AccessDenied");
+    opt.Cookie = cookieBuilder;
+    opt.ExpireTimeSpan = TimeSpan.FromDays(10);// cookie süresi
+    opt.SlidingExpiration = true;// giriþ yaptýðý sürece time span sýfýrlanýr
+});
 
 var app = builder.Build();
 
@@ -57,6 +68,12 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+
+
+app.MapAreaControllerRoute(name: "Admin",
+    areaName: "Admin",
+    pattern: "Admin/{controller=Home}/{action=AdminIndex}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

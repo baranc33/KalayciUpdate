@@ -15,7 +15,10 @@ namespace Kalayci.Data.Concrete
 
 
         private readonly KalayciContext _context;
-
+        public UnitOfWork(KalayciContext context)
+        {
+            _context=context;
+        }
 
         private BranchRepository _branchRepository;
         private CircuitDeliveryRepository _circuitDeliveryRepository;

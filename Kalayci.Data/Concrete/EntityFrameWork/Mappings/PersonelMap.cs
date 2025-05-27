@@ -36,8 +36,8 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
             builder.Property(r => r.WorkStartDate).IsRequired(true);
 
 
-            builder.Property(r => r.AutorizedProject).IsRequired(true);
-            builder.Property(r => r.AutorizedProject).HasMaxLength(100);
+            //builder.Property(r => r.AutorizedProject).IsRequired(true);
+            //builder.Property(r => r.AutorizedProject).HasMaxLength(100);
 
 
             builder.Property(r => r.CreatedByName).IsRequired(true);
@@ -45,16 +45,35 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
             builder.Property(r => r.ModifiedByName).IsRequired(true);
             builder.Property(r => r.ModifiedByName).HasMaxLength(100);
             builder.Property(r => r.CreatedDate).IsRequired(true);
-            //builder.Property(r => r.ModifiedDate).IsRequired(true);
-            //builder.Property(r => r.IsDeleted).IsRequired(true);
+            builder.Property(r => r.ModifiedDate).IsRequired(true);
+            builder.Property(r => r.IsDeleted).IsRequired(true);
 
 
+            builder
+          .HasOne(a => a.User).WithOne(u => u.personel)
+          .HasForeignKey<KalayciUser>(s => s.personelId);
 
 
 
 
 
             builder.HasOne<Branch>(a => a.branch).WithMany(u => u.Personels).HasForeignKey(a => a.branchId);
+            builder.HasData(
+         new Personel
+         {
+             Id=1,
+             Name="Bilgi",
+             LastName="İşlem",
+             Phone="555 004 63 33",
+             Picture=null,
+             WorkStartDate=DateTime.Now,
+             WorkFinishDate=DateTime.Now.AddYears(100),
+             branchId=1,
+
+
+
+         }
+           );
 
         }
     }

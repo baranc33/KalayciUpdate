@@ -14,7 +14,7 @@ namespace Kalayci.Shared.Entities.Abstract
         public  DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; } = false;
-        public  string CreatedByName { get; set; } = "Admin";
-        public  string ModifiedByName { get; set; } = "Admin";
+        public  string CreatedByName { get; set; } = "System";
+        public  string ModifiedByName { get; set; } = "System";
     }
 }

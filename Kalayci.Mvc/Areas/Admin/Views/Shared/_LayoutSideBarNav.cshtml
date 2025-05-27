@@ -1,0 +1,124 @@
+﻿@using System.Security.Claims
+<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+    <div class="sb-sidenav-menu">
+        <div class="nav">
+            <div class="sb-sidenav-menu-heading">Ana Sayfa</div>
+            <a class="nav-link" asp-action="" asp-controller="" asp-area="">
+                <div class="sb-nav-link-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                Spool Takip
+            </a>
+
+
+
+            @if (User.HasClaim(x => x.Type==ClaimTypes.Role && x.Value=="Admin"))
+            {
+                <div class="sb-sidenav-menu-heading">Admin / Yönetici</div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    Admin Sayfaları
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" asp-action="Index" asp-controller="User" asp-area="Admin">Kullanıcılar</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">Roller</a>
+                </nav>
+            </div>
+            }
+            <!---->
+            @if (User.HasClaim(x => x.Type==ClaimTypes.Role && x.Value=="Admin" || x.Value=="Yonetici"))
+            {
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    Yönetici Sayfaları
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" asp-action="Index" asp-controller="ShipYard" asp-controller="Admin">Tershaneler</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">Devre Listesi</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">Branşlar</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">Personeller</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">Spoollar</a>
+
+                </nav>
+            </div>
+            }
+            <!---->
+            @if (User.HasClaim(x => x.Type==ClaimTypes.Role && x.Value=="Muhendis"||x.Value=="Admin" || x.Value=="Yonetici"))
+            { 
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    Mühendis Sayfaları
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts3" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" asp-action="" asp-controller="" asp-controller="">Boş Sayfa</a>
+
+                    </nav>
+                </div>
+            }
+            @if (User.HasClaim(x => x.Type==ClaimTypes.Role && x.Value=="Muhendis"||x.Value=="Admin" || x.Value=="Atolye"))
+            {
+                <!---->
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts4">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    Atolye Sayfaları
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts4" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">Boş Sayfa</a>
+
+                </nav>
+            </div>
+            }
+
+
+
+            <!---->
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts5">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-user-tie"></i></div>
+                Web Sitesi
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts5" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">Ana Sayfa</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">  Hakkımızda</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">  Projelerimiz</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">  Takım</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">  Referanslar</a>
+                    <a class="nav-link" asp-action="" asp-controller="" asp-controller="">  iletişim</a>
+
+                </nav>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>

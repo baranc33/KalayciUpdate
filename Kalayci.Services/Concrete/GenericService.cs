@@ -5,7 +5,6 @@ using Kalayci.Shared.Entities.Abstract;
 using Kalayci.Shared.Enums;
 using Kalayci.Shared.Utilitis.Result.Abstract;
 using Kalayci.Shared.Utilitis.Result.Concrete;
-using Org.BouncyCastle.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

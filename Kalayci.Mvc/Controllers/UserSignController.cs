@@ -1,4 +1,5 @@
 ﻿using Kalayci.Entities.Dto;
+using Kalayci.Mvc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kalayci.Mvc.Controllers
@@ -8,30 +9,20 @@ namespace Kalayci.Mvc.Controllers
 
 
 
-        [HttpGet]
-        public IActionResult SaveUser()
-        {
-            return View();
-        }
-
-
         [HttpPost]
-        public IActionResult SaveUser(UserSaveDto model )
+        public IActionResult SignInUser(LoginDto model)
         {
-            if (model.SignInPassword!="l@G:YsrjT062-7U-"  )
-            {
-                TempData["ErrorMessage"] = "Kayıt şifresi yanlış Bilgi işleme başvurunuz.";
-                return View();
-            }
-            if (!ModelState.IsValid)
-            {
-                TempData["ErrorMessage"] = "Lütfen formu eksiksiz doldurunuz.";
-                return View(model);
-            }
+
+            if (!ModelState.IsValid) return View();
+
+
+
 
 
             return View();
         }
+
+
 
 
     }

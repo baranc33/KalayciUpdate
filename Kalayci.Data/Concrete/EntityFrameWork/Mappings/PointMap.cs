@@ -30,8 +30,8 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
             builder.Property(r => r.ModifiedByName).IsRequired(true);
             builder.Property(r => r.ModifiedByName).HasMaxLength(100);
             builder.Property(r => r.CreatedDate).IsRequired(true);
-            //builder.Property(r => r.ModifiedDate).IsRequired(true);
-            //builder.Property(r => r.IsDeleted).IsRequired(true);
+            builder.Property(r => r.ModifiedDate).IsRequired(true);
+            builder.Property(r => r.IsDeleted).IsRequired(true);
 
             builder.HasOne<Personel>(a => a.Personel).WithMany(u => u.points).HasForeignKey(a => a.PersonelId);
         }

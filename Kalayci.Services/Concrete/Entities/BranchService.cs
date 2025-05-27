@@ -16,5 +16,6 @@ namespace Kalayci.Services.Concrete.Entities
     {
         public BranchService(IEntityRepository<Branch> repository, IUnitOfWork unitOfWork) : base( unitOfWork, repository)
         { }
+
     }
 }
