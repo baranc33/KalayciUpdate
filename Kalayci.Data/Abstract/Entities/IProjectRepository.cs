@@ -10,5 +10,7 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface IProjectRepository : IEntityRepository<Project>
     {
+       Task<ICollection<Project>> projectsWithUser();
+        Task<ICollection<Project>> projectsWithUserAndSpoolList();
     }
 }

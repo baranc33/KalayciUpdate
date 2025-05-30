@@ -14,6 +14,7 @@ namespace Kalayci.Services.Abstract.Entities
 
         Task<ICollection<KalayciUser>> GetAllUser();
         Task<IdentityResult> CreateUser(UserSaveDto model);
+        Task<KalayciUser> GettAllIncludePersonelThenIncludeBranch(string UserID);
 
         Task<string> Login(LoginDto model);
     }

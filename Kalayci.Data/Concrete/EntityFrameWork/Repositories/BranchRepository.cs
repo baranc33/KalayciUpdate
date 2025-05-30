@@ -13,9 +13,20 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
 {
     public class BranchRepository : EfEntityRepositoryBase<Branch>, IBranchRepository
     {
-
+        private KalayciContext _context;
         public BranchRepository(KalayciContext context) : base(context)
         {
+            _context = context;
+        }
+
+
+      
+
+        public async Task<ICollection<Branch>> GetBranchesAsyncOrderByName()
+        {
+           return await _context.Branches.Where(x => x.IsDeleted == false)
+                .OrderBy(x => x.BranchName)
+                .ToListAsync();
         }
     }
 }

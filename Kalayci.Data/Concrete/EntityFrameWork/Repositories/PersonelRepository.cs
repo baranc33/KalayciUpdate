@@ -13,9 +13,20 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
 {
     public class PersonelRepository : EfEntityRepositoryBase<Personel>, IPersonelRepository
     {
-
-        public PersonelRepository(KalayciContext context) : base(context)
+        private  KalayciContext _context;
+        public PersonelRepository(KalayciContext context ) : base(context)
         {
+            _context = context;
         }
+
+        public async Task<ICollection<Personel>> GettAllIncludeBranch()
+        {
+            ICollection<Personel> personels = await _context.Personel.Where(x=>x.IsDeleted==false).Include(x=>x.branch).OrderBy(x=>x.Name).ToListAsync();
+
+
+                return personels;
+        }
+
+      
     }
 }

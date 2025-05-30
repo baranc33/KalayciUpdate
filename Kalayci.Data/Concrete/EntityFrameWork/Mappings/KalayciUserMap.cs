@@ -25,9 +25,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
             builder.Property(r => r.PasswordBackUp).HasMaxLength(100);
 
 
-
-
-
+            
 
 
 

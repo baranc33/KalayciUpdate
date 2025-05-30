@@ -13,9 +13,11 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
 {
     public class PointRepository : EfEntityRepositoryBase<Point>, IPointRepository
     {
+        private KalayciContext _context;
 
         public PointRepository(KalayciContext context) : base(context)
         {
+            _context = context;
         }
     }
 }

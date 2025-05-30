@@ -9,5 +9,7 @@ namespace Kalayci.Services.Abstract.Entities
 {
     public interface IPersonelService : IGenericService<Personel>
     {
+        Task<ICollection<Personel>> GettAllIncludeBranch();
+
     }
 }

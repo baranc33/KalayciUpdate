@@ -49,6 +49,24 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
             builder.Property(r => r.IsDeleted).IsRequired(true);
 
 
+
+
+
+
+            //builder.Property(r => r.SgkScilNo).IsRequired(true);
+            //builder.Property(r => r.SgkScilNo).HasMaxLength(100);
+
+
+            
+
+            //builder.Property(r => r.TcNo).IsRequired(true);
+            //builder.Property(r => r.TcNo).HasMaxLength(11);
+
+
+
+
+
+
             builder
           .HasOne(a => a.User).WithOne(u => u.personel)
           .HasForeignKey<KalayciUser>(s => s.personelId);

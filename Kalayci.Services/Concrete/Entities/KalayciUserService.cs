@@ -1,4 +1,5 @@
 ﻿using Kalayci.Data.Abstract;
+using Kalayci.Data.Abstract.Entities;
 using Kalayci.Entities.Concrete;
 using Kalayci.Entities.Dto;
 using Kalayci.Services.Abstract.Entities;
@@ -19,18 +20,17 @@ namespace Kalayci.Services.Concrete.Entities
         protected SignInManager<KalayciUser> _signInManager { get; }
 
         protected RoleManager<KalayciRole>? _roleManager { get; }
+        protected IKalayciUserRepository _kalayciUserRepository;
 
         // kullanııcıyı bulma
 
- 
-        public KalayciUserService(IEntityRepository<KalayciUser> repository, IUnitOfWork unitOfWork, UserManager<KalayciUser> userManager, SignInManager<KalayciUser> signInManager, RoleManager<KalayciRole> roleManager) : base(unitOfWork, repository)
-        {
 
+        public KalayciUserService(IEntityRepository<KalayciUser> repository, IUnitOfWork unitOfWork, UserManager<KalayciUser> userManager, SignInManager<KalayciUser> signInManager, RoleManager<KalayciRole> roleManager, IKalayciUserRepository kalayciUserRepository) : base(unitOfWork, repository)
+        {
+            this._kalayciUserRepository= kalayciUserRepository;
             this._userManager = userManager;
             this._signInManager = signInManager;
             this._roleManager = roleManager;
-
-
 
         }
 
@@ -102,6 +102,11 @@ namespace Kalayci.Services.Concrete.Entities
         {
             return  await _userManager.Users.Include(p=>p.personel).ThenInclude(b=>b.branch)
                 .ToListAsync();
+        }
+
+        public async Task<KalayciUser> GettAllIncludePersonelThenIncludeBranch(string UserID)
+        {
+            return await _kalayciUserRepository.GettAllIncludePersonelThenIncludeBranch(UserID);
         }
     }
 }

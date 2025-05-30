@@ -52,7 +52,18 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
                   IsDeleted = false,
                   CreatedByName = "System",
                   ModifiedByName = "System"
-              }
+              },
+            new Branch
+            {
+                Id=2,
+                ModifiedDate = DateTime.Now,
+                CreatedDate = DateTime.Now,
+                BranchName = "Mühendis",
+                BranchDetay="Boru Donatım Mühendisi.",
+                IsDeleted = false,
+                CreatedByName = "System",
+                ModifiedByName = "System"
+            }
                 );
 
         }

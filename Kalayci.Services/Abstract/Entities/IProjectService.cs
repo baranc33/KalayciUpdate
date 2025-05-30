@@ -9,5 +9,7 @@ namespace Kalayci.Services.Abstract.Entities
 {
     public interface IProjectService : IGenericService<Project>
     {
+        Task<ICollection<Project>> projectsWithUser();
+        Task<ICollection<Project>> projectsWithUserAndSpoolList();
     }
 }

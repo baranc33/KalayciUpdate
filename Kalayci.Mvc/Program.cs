@@ -8,6 +8,7 @@ using System;
 using Kalayci.Data.Abstract.Entities;
 using Kalayci.Data.Concrete.EntityFrameWork.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using Kalayci.Mvc.Extentions.Programcs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,14 +28,14 @@ builder.Services.AddDbContext<KalayciContext>(opt =>
     //opt.UseMySql(connetionstring, version);
 });
 
+CustomIdentitySettings.AddIdentityWitjExtentions(builder.Services);
 
-
-builder.Services.AddIdentity<KalayciUser, KalayciRole>(opt =>
-{
-    //opt.User.RequireUniqueEmail = true;
-})
-.AddEntityFrameworkStores<KalayciContext>()// ef hangisini kullanacak belirtiyoruz.
-    ;
+//builder.Services.AddIdentity<KalayciUser, KalayciRole>(opt =>
+//{
+//    //opt.User.RequireUniqueEmail = true;
+//})
+//.AddEntityFrameworkStores<KalayciContext>()// ef hangisini kullanacak belirtiyoruz.
+//    ;
 
 
 //builder.Services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile));
@@ -48,7 +49,7 @@ builder.Services.ConfigureApplicationCookie(opt =>
     opt.LogoutPath = new PathString("/Home/logout");
     opt.AccessDeniedPath = new PathString("/Home/AccessDenied");
     opt.Cookie = cookieBuilder;
-    opt.ExpireTimeSpan = TimeSpan.FromDays(10);// cookie süresi
+    opt.ExpireTimeSpan = TimeSpan.FromDays(30);// cookie süresi
     opt.SlidingExpiration = true;// giriþ yaptýðý sürece time span sýfýrlanýr
 });
 

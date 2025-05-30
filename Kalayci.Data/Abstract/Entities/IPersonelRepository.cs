@@ -10,5 +10,6 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface IPersonelRepository : IEntityRepository<Personel>
     {
+      Task<ICollection<Personel>> GettAllIncludeBranch();
     }
 }

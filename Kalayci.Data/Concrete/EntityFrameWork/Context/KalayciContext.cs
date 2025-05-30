@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Data.Concrete.EntityFrameWork.Context
 {
-    public class KalayciContext : IdentityDbContext<KalayciUser, KalayciRole,string>
+    public class KalayciContext : IdentityDbContext<KalayciUser, KalayciRole, string>
     {
 
         public KalayciContext(DbContextOptions<KalayciContext> options) : base(options)
@@ -33,6 +33,8 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
         public DbSet<Personel> Personel { get; set; }
         public DbSet<Point> Point { get; set; }
 
+        public DbSet<PersonelProject> PersonelProjects { get; set; }
+
 
 
 
@@ -51,7 +53,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
             modelBuilder.ApplyConfiguration(new KalayciUserMap());
             modelBuilder.ApplyConfiguration(new KalayciRoleMap());
             modelBuilder.ApplyConfiguration(new CircuitDeliveryMap());
-           
+
             modelBuilder.ApplyConfiguration(new CircuitListMap());
             modelBuilder.ApplyConfiguration(new SpoolMap());
 
@@ -61,6 +63,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
             modelBuilder.ApplyConfiguration(new PointMap());
             modelBuilder.ApplyConfiguration(new ShipyardAssemblyMap());
             modelBuilder.ApplyConfiguration(new SendingMap());
+            modelBuilder.ApplyConfiguration(new PersonelProjectMap());
 
         }
 

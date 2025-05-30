@@ -10,5 +10,7 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface IKalayciUserRepository : IEntityRepository<KalayciUser>
     {
+        Task<KalayciUser> GettAllIncludePersonelThenIncludeBranch(string UserID);
+
     }
 }

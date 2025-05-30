@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel
 {
-    public class AddUserViewModel
+    public class AddUserAdminViewModel
     {
 
-        public UserSaveDto UserSaveDto { get; set; }
+        public UserSaveDtoAdmin UserSaveDto { get; set; }
 
-        public int PersonelD { get; set; }
+        public string PersonelD { get; set; }
 
         public ICollection<Personel> personels { get; set; }= new List<Personel>();
     }

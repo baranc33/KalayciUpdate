@@ -14,6 +14,7 @@ namespace Kalayci.Entities.Dto
         {
         }
 
+
         public UserSaveDto(string userName, string email, string phone, string password)
         {
             UserName = userName;
@@ -57,5 +58,7 @@ namespace Kalayci.Entities.Dto
         public string SignInPassword { get; set; } = null!;
 
         public int PersonelId { get; set; }
+
+        public string UserNameLastName{ get; set; } = null!;
     }
 }

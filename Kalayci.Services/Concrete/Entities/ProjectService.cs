@@ -1,4 +1,5 @@
 ﻿using Kalayci.Data.Abstract;
+using Kalayci.Data.Abstract.Entities;
 using Kalayci.Entities.Concrete;
 using Kalayci.Services.Abstract.Entities;
 using Kalayci.Shared.Data.Abstract;
@@ -12,7 +13,20 @@ namespace Kalayci.Services.Concrete.Entities
 {
     public class ProjectService : GenericService<Project>, IProjectService
     {
-        public ProjectService(IEntityRepository<Project> repository, IUnitOfWork unitOfWork) : base(unitOfWork, repository)
-        { }
+        private readonly IProjectRepository _projectRepository;
+        public ProjectService(IEntityRepository<Project> repository, IUnitOfWork unitOfWork,IProjectRepository projectRepository) : base(unitOfWork, repository)
+        {
+            _projectRepository = projectRepository;
+        }
+
+        public async Task<ICollection<Project>> projectsWithUser()
+        {
+          return await _projectRepository.GetAllAsync(x => x.IsDeleted == false);
+        }
+
+        public async Task<ICollection<Project>> projectsWithUserAndSpoolList()
+        {
+           return await _projectRepository.GetAllAsync(x => x.IsDeleted == false);
+        }
     }
 }

@@ -43,6 +43,13 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
                   NormalizedName = "ATOLYE",
                   ConcurrencyStamp = Guid.NewGuid().ToString()
               }
+              , new KalayciRole
+              {
+                  Id = "5",
+                  Name = "Müşteri",
+                  NormalizedName = "MUSTERI",
+                  ConcurrencyStamp = Guid.NewGuid().ToString()
+              }
                 );
         }
     }

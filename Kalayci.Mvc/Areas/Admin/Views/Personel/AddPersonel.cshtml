@@ -1,0 +1,136 @@
+﻿@model PersonelAddViewModel
+@section CSS {
+    <link href="~/Admin/css/AddPersonelCss.css" rel="stylesheet">
+
+}
+@{
+    ViewData["Title"] = "AddPersonel";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+
+    input[type="date"] {
+        background-color: #001D4D;
+        padding: 10px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 100px;
+        font-family: "Sans Serif Collection",monospace;
+        color: #ffffff;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+    }
+
+</style>
+
+@if (TempData["Message"]!=null)
+{
+    <div class="alert alert-danger center display-4" role="alert">
+        @TempData["Message"]
+    </div>
+}
+<section class="get-in-touch">
+    <h1 class="title">Personel Ekleme Sayfası</h1>
+    <form class="contact-form row" method="post" asp-area="Admin" asp-controller="Personel" asp-action="AddPersonel">
+        <div class="form-field col-md-6 ">
+            <input class="input-text js-input " type="text" required asp-for="Name">
+            <label class="label" Asp-for="Name"></label>
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-field col-md-6">
+            <input class="input-text js-input" type="text" required asp-for="LastName">
+            <label class="label" Asp-for="LastName"></label>
+            <span class="text-danger" asp-validation-for="LastName"></span>
+        </div>
+        <div class="form-field col-md-6" style="margin-top:50px;">
+            <input class="input-text js-input" type="text" required asp-for="SgkRegistrationNumber">
+            <label class="label" Asp-for="SgkRegistrationNumber"></label>
+            <span class="text-danger" asp-validation-for="SgkRegistrationNumber"></span>
+        </div>
+
+        <div class="form-field col-md-6" style="margin-top:50px;">
+            <input class="input-text js-input" type="text" required asp-for="TcNumber">
+            <label class="label" Asp-for="TcNumber"></label>
+            <span class="text-danger" asp-validation-for="TcNumber"></span>
+        </div>
+
+
+
+
+        <div class="form-field col-lg-6 " style="margin-top:50px;">
+            <input asp-for="Phone" id="phone" class="input-text js-input" type="text" required>
+            <label asp-for="Phone" class="label" for="phone"> </label>
+        </div>
+        <div class="form-field col-lg-6 "></div>
+
+        <div class="form-field col-lg-6 " style="margin-top:-1px;">
+            <label for="browser">Branşı:</label>
+            <select asp-for="branchId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                @foreach (var item in Model.branches)
+                {
+                    <option value="@item.Id">@item.BranchName</option>
+                }
+            </select>
+        </div>
+
+
+        @*    <div class="form-field col-lg-6 " style="margin-top:50px;">
+            <label class="label my-5" >Personel Branşı</label>
+            <input list="encodings" value="" class="col-sm-6 custom-select custom-select-sm form-select">
+            <datalist id="encodings">
+                @foreach (var item in Model.branches)
+                {
+                    <option value="@item.BranchName">@item.BranchName</option>
+                    <input  value="@item.Id" asp-for="@Model.branchId" />
+                }
+            </datalist>
+        </div>
+ *@
+        <div class="form-field col-md-6 ">
+
+            <label class="label mb-4" >Cinsiyet:</label>
+            <div class="container " style="margin-left:100px;">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" asp-for="Gender" id="inlineRadio1" value="true" checked>
+                    <label class="form-check-label" asp-for="Gender" for="inlineRadio1">Erkek</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" asp-for="Gender" id="inlineRadio2" value="false">
+                    <label class="form-check-label" for="inlineRadio2">Kadın</label>
+                </div>
+            </div>
+            <span class="text-danger" asp-validation-for="Gender"></span>
+            <hr />
+        </div>
+
+        <div class="form-field col-lg-6">
+            <label asp-for="BirthDay" style="padding-bottom:80px;" for="birthday"></label>
+            <input asp-for="BirthDay" type="date" id="birthday" name="birthday">
+        </div>
+
+        <div class="form-field col-lg-6 ">
+            <label asp-for="WorkStartDate" for="birthday"></label>
+            <input asp-for="WorkStartDate" type="date" id="birthday" name="WorkStartDate">
+        </div>
+
+
+        <div class="form-field col-12  ">
+            <input class="submit-btn rounded-2" type="submit" value="Kaydet" />
+        </div>
+    </form>
+</section>
+
+
+<script>
+
+                $('#inlineRadio1').change(function() {
+       if (this.value === 'true') {
+    @Model.Gender=true;
+       } else {
+    @Model.Gender=false;
+       }
+    });
+</script>

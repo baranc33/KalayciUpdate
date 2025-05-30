@@ -1,0 +1,116 @@
+﻿@model ICollection<Personel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Personel Listesi</h1>
+
+    <div class="card mb-4">
+        <div class="card-body row">
+            <div class="col-7">
+                Bu Sayfada Personeller ile ilgili işlemler Yapılmaktadır
+            </div>
+        </div>
+    </div>
+
+ 
+
+    @if (Model.Count>0)
+    {
+
+
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between">
+                <div class="">
+                    <img src="~/img/MPSIcon.png" alt="..." />
+                </div>
+                <div class="">
+                    <a asp-area="Admin" asp-controller="Personel" asp-action="AddPersonel" class="btn btn-primary"> Personel Ekle</a>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            @* <th>İş Yeri</th> *@
+                   @*          <th>Scil No</th>
+                            <th>TC Kimlik </th> *@
+                            <th>Adı</th>
+                            <th>Soy Adı</th>
+                            <th>Doğum Tarihi</th>
+                            <th>Cinsiyet</th>
+                            <th>İşe Giriş Tarihi</th>
+                            <th>İşi</th>
+                            @*<th>Genel</th>
+                            <th>Sağlık</th>
+                            <th>Eğitimi Veren 1</th>
+                            <th>Eğitimi Veren 2</th> 
+                            <th>Genel Puan</th> *@
+                            @* <th>Teknik Puan</th> *@
+                            <th>Güncelle</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @* <td>Kalaycı Denizcilik</td> *@
+                      @*           <td>@item.SgkRegistrationNumber</td>
+                                <td>@item.TcNumber</td> *@
+                                <td>@item.Name</td>
+                                <td>@item.LastName</td>
+                                <td>@item.BirthDay.ToString("d")</td>
+                                <td>@item.Gender</td>
+                                <td>@item.WorkStartDate.ToString("d")</td>
+                                  <td>@item.branch.BranchName</td>
+                      @*          <td>-</td>
+                               <td>-</td>
+                                <td>-</td>
+                                <td>-</td>  *@
+                       @*          <td>@item.OverallScore</td>
+                                <td>@item.TechnicalPoint</td> *@
+                                <td>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Güncelle</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Sil</a>
+
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <h2>
+                Henüz bir Tersane Eklenmemiştir
+            </h2>
+        </div>
+    }
+
+</div>
+
+

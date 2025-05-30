@@ -9,5 +9,8 @@ namespace Kalayci.Services.Abstract.Entities
 {
     public interface IBranchService:IGenericService<Branch>
     {
+
+
+        Task<ICollection<Branch>> GetBranchesAsyncOrderByName();
     }
 }

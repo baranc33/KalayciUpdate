@@ -46,6 +46,7 @@
                             <th>Branşı </th>
                             <th>Kullanıcı Güncelleme</th>
                             <th>Rol Atama</th>
+                            <th>Kullanıcı Sil</th>
                         </tr>
                     </thead>
 
@@ -61,10 +62,13 @@
                                 <td>@item.personel.branch.BranchName</td>
                        
                                 <td>
-                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Güncelle</a>
+                                    <a class="btn btn-primary" asp-route-UserId="@item.Id" asp-action="UpdateUser" asp-controller="User" asp-area="Admin">Güncelle</a>
                                 </td>
                                 <td>
                                     <a class="btn btn-primary" asp-route-id="@item.Id" asp-action="AssignRoleToUser" asp-controller="User" asp-area="Admin">Yetkilendir</a>
+                                </td>  
+                                <td>
+                                    <a class="btn btn-primary" asp-route-UserId="@item.Id" asp-action="RemoveUser" asp-controller="User" asp-area="Admin">Sil</a>
                                 </td>
                             </tr>
                         }

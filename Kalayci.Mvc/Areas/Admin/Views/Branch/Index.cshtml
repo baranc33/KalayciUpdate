@@ -1,0 +1,115 @@
+﻿@model BranchViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Branş Listesi</h1>
+
+    <div class="card mb-4">
+        <div class="card-body row">
+            <div class="col-7">
+                Bu Sayfada Branş ile ilgili işlemler Yapılmaktadır
+            </div>
+        </div>
+    </div>
+
+    @if (TempData["Message"]!=null)
+    {
+        <div class="alert alert-danger center display-4" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    <form method="post" asp-area="Admin" asp-controller="Branch" asp-action="AddBranch">
+        <div class="row  bg-infom rounded-3 container mb-3 " style="margin-left:3px;">
+
+        <div class=" col-8 ">
+            <label asp-for="@Model.BranchName" class="form-label"> </label>
+                <input type="text" class="form-control" asp-for="@Model.BranchName">
+                <span class="text-danger" asp-validation-for="@Model.BranchName"></span>
+        </div>
+            <button type="submit" class="btn btn-primary pt-3 col-3 h-25 my-4">
+                <h5>
+                    Kaydet
+                </h5>
+            </button>
+            <div class="col-11 mb-4 h-100">
+                <label asp-for="@Model.BranchDetay" class="form-label"> </label>
+                <input type="text" class="form-control" asp-for="@Model.BranchDetay">
+                <span class="text-danger" asp-validation-for="@Model.BranchDetay"></span>
+            </div>
+
+           
+        </div>
+    </form>
+    @if (Model.Branches.Count>0)
+    {
+
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <img src="~/img/MPSIcon.png" alt="..." />
+               
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Branş Adı</th>
+                            <th>Branş Açıklaması</th>
+                            <th>Branş a Bağlı Personeller</th>
+                            <th>Branşı Güncelle</th>
+                            <th>Branşı Sil</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Branches)
+                        {
+                            <tr>
+                                <td>@item.BranchName</td>
+                                <td>@item.BranchDetay</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Personeller</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Güncelle</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Sil</a>
+
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <h2>
+                Henüz bir Tersane Eklenmemiştir
+            </h2>
+        </div>
+    }
+
+</div>
+
+

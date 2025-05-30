@@ -13,9 +13,20 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
 {
     public class KalayciUserRepository : EfEntityRepositoryBase<KalayciUser>, IKalayciUserRepository
     {
-
+        private KalayciContext _context;
         public KalayciUserRepository(KalayciContext context) : base(context)
         {
+            _context=context;
+        }
+
+        public async Task<KalayciUser> GettAllIncludePersonelThenIncludeBranch(string UserID)
+        {
+
+            return await _context.Users.Where(x => x.Id==UserID)
+                    .Include(x => x.personel)
+                .ThenInclude(x => x.branch).SingleOrDefaultAsync();
+
+
         }
     }
 }

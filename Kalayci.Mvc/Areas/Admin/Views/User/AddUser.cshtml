@@ -1,4 +1,4 @@
-﻿@model AddUserViewModel
+﻿@model AddUserAdminViewModel
 @{
     ViewData["Title"] = "AddUser";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -49,7 +49,7 @@
 
                             <div asp-validation-summary=ModelOnly class="alert alert-danger" role="alert">
                             </div>
-                            <div class="row">
+                             <div class="row">
                                 <div class="col-md-5 mb-4">
 
                                     <div data-mdb-input-init class="form-outline">
@@ -87,7 +87,7 @@
 
                             </div>
 
-                            <div class="row">
+                        @*     <div class="row">
                                 <div class="col-md-6 mb-4 pb-2">
                                     <div data-mdb-input-init class="form-outline">
                                         <label asp-for="UserSaveDto.Phone" class="form-label" for="firstName"></label>
@@ -104,22 +104,37 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div>  *@
 
-                            <div class="row">
+                            @*         <div class="row">
                                 <div class="col-12">
                                     <label class="form-label select-label">Branşı</label>
                                     <select asp-for="@Model.PersonelD" class="form-select" aria-label="Default select example">
                                         @foreach (var item in Model.personels)
                                         {
                                             <option asp-for="@Model.PersonelD" value="@item.Id">@item.Name @item.LastName</option>
-                                        })
+                                            <input type="hidden" asp-for="@Model.UserSaveDto.UserNameLastName" value="@item.Name @item.LastName" />
+                                        }
 
                                     </select>
 
                                 </div>
+                            </div> *@
+                            <div class="row">
+                                <div class="col-12">
+                                    <label  for="exampleDataList" class="form-label">Personel Listesi</label>
+                                    <input asp-for="@Model.PersonelD" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Personel Seçiniz...">
+                                    <datalist id="datalistOptions">
+                                        @foreach (var item in Model.personels)
+                                        {
+                                            <option asp-for="@Model.PersonelD" value="@item.Id-@item.Name @item.LastName /  @item.branch.BranchName"> </option>
+                                        }
+                                    </datalist>
+                                </div>
                             </div>
-                          @*   <div class="row">
+
+
+                            @*   <div class="row">
 
                                 <div class="col-md-6 mb-4">
 

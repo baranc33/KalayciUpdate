@@ -10,5 +10,7 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface IBranchRepository : IEntityRepository<Branch>
     {
+
+        Task<ICollection<Branch>> GetBranchesAsyncOrderByName();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Kalayci.Data.Abstract;
+using Kalayci.Data.Abstract.Entities;
 using Kalayci.Entities.Concrete;
 using Kalayci.Services.Abstract.Entities;
 using Kalayci.Shared.Data.Abstract;
@@ -12,7 +13,15 @@ namespace Kalayci.Services.Concrete.Entities
 {
     public class PersonelService : GenericService<Personel>, IPersonelService
     {
-        public PersonelService(IEntityRepository<Personel> repository, IUnitOfWork unitOfWork) : base(unitOfWork, repository)
-        { }
+        private IPersonelRepository _personelRepository;
+        public PersonelService(IEntityRepository<Personel> repository, IUnitOfWork unitOfWork, IPersonelRepository personelRepository) : base(unitOfWork, repository)
+        {
+            _personelRepository=personelRepository;
+        }
+
+        public async Task<ICollection<Personel>> GettAllIncludeBranch()
+        {
+          return await _personelRepository.GettAllIncludeBranch();
+        }
     }
 }

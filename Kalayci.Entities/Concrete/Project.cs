@@ -26,7 +26,8 @@ namespace Kalayci.Entities.Concrete
 
         //projeye bağlı spool listesi
         public  ICollection<Spool> spoolLists { get; set; }
-        public  ICollection<Project> projects{ get; set; }
+        public  ICollection<PersonelProject> PersonelProjects { get; set; }
+
 
 
 

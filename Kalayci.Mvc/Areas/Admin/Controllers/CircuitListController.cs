@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Kalayci.Services.Abstract.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kalayci.Mvc.Areas.Admin.Controllers
@@ -7,6 +8,12 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
     [Area("Admin")]
     public class CircuitListController : Controller
     {
+
+        private ICircuitListService _circuitListService;
+        public CircuitListController(ICircuitListService circuitListService)
+        {
+            _circuitListService=circuitListService;
+        }
         public IActionResult Index()
         {
             return View();
