@@ -25,14 +25,20 @@ namespace Kalayci.Entities.Concrete
         public string Phone{ get; set; }
         public string Picture{ get; set; }
         public DateTime WorkStartDate{ get; set; }
-        public DateTime WorkFinishDate { get; set; } 
+        public DateTime WorkFinishDate { get; set; }
         //public string AutorizedProject { get; set; }
+
+
+        public string ManagerUserId { get; set; }
+        public KalayciUser ManagerUser { get; set; }
+
 
 
         public int branchId { get; set; }
         public Branch branch { get; set; }
         public KalayciUser User{ get; set; }
         public ICollection<Point> points { get; set; }
+        public ICollection<EmployeeExit> employeeExits{ get; set; }
         public ICollection<PersonelProject> PersonelProjects { get; set; }
 
     }

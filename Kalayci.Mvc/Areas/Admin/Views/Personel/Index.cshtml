@@ -10,26 +10,28 @@
     <h1 class="mt-4">Personel Listesi</h1>
 
     <div class="card mb-4">
-        <div class="card-body row">
+        <div class="card-body row justify-content-between">
             <div class="col-7">
                 Bu Sayfada Personeller ile ilgili işlemler Yapılmaktadır
             </div>
+            <div class="col-2 offset-1">
+                <a asp-area="Admin" asp-controller="Personel" asp-action="AddPersonel" class="btn btn-primary"> Personel Ekle</a>
+            </div>
         </div>
+
+
     </div>
 
- 
+
 
     @if (Model.Count>0)
     {
 
 
         <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between">
+            <div class="card-header d-flex ">
                 <div class="">
                     <img src="~/img/MPSIcon.png" alt="..." />
-                </div>
-                <div class="">
-                    <a asp-area="Admin" asp-controller="Personel" asp-action="AddPersonel" class="btn btn-primary"> Personel Ekle</a>
                 </div>
 
             </div>
@@ -38,14 +40,15 @@
                     <thead>
                         <tr>
                             @* <th>İş Yeri</th> *@
-                   @*          <th>Scil No</th>
+                            @*          <th>Scil No</th>
                             <th>TC Kimlik </th> *@
                             <th>Adı</th>
                             <th>Soy Adı</th>
-                            <th>Doğum Tarihi</th>
-                            <th>Cinsiyet</th>
-                            <th>İşe Giriş Tarihi</th>
                             <th>İşi</th>
+                            <th>Telefon</th>
+                            <th>Cinsiyet</th>
+                            <th>Doğum Tarihi</th>
+                            <th>İşe Giriş Tarihi</th>
                             @*<th>Genel</th>
                             <th>Sağlık</th>
                             <th>Eğitimi Veren 1</th>
@@ -61,21 +64,22 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                @* <td>Kalaycı Denizcilik</td> *@
-                      @*           <td>@item.SgkRegistrationNumber</td>
-                                <td>@item.TcNumber</td> *@
+
                                 <td>@item.Name</td>
                                 <td>@item.LastName</td>
+                                <td>@item.branch.BranchName</td>
+                                <td>@item.Phone</td>
+                                @if(item.Gender==true)
+                                {
+                                    <td>Bay</td>
+                                }
+                                else
+                                {
+                                    <td>Bayan</td>
+                                }
                                 <td>@item.BirthDay.ToString("d")</td>
-                                <td>@item.Gender</td>
                                 <td>@item.WorkStartDate.ToString("d")</td>
-                                  <td>@item.branch.BranchName</td>
-                      @*          <td>-</td>
-                               <td>-</td>
-                                <td>-</td>
-                                <td>-</td>  *@
-                       @*          <td>@item.OverallScore</td>
-                                <td>@item.TechnicalPoint</td> *@
+                      
                                 <td>
                                     <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Güncelle</a>
                                 </td>

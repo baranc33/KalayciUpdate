@@ -11,7 +11,8 @@ namespace Kalayci.Entities.Concrete
     {
         public byte SavePoint{ get; set; }
 
-        public DateTime GiveDate{ get; set; }
+        public DateTime GiveDateStart{ get; set; }
+        public DateTime GiveDateFinish { get; set; }
 
 
         // puanı veren kişi Oluşturan kişi
@@ -20,6 +21,7 @@ namespace Kalayci.Entities.Concrete
         public string UserId { get; set; }
 
     
+        //hangi personel
         public int PersonelId { get; set; }
         public Personel Personel { get; set; }
 

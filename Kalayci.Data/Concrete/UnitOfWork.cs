@@ -20,6 +20,7 @@ namespace Kalayci.Data.Concrete
             _context=context;
         }
 
+        private EmployeeExitRepository _employeeExitRepository;
         private BranchRepository _branchRepository;
         private CircuitDeliveryRepository _circuitDeliveryRepository;
         private CircuitListRepository _circuitListRepository;
@@ -78,6 +79,9 @@ namespace Kalayci.Data.Concrete
 
         public IKalayciUserRepository User =>
             _kalayciUserRepository ?? new KalayciUserRepository(_context);
+
+        public IEmployeeExitRepository EmployeeExitRepository =>
+             _employeeExitRepository ?? new EmployeeExitRepository(_context);
 
         public async ValueTask DisposeAsync()
         {

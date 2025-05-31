@@ -26,5 +26,9 @@ namespace Kalayci.Services.Concrete.Entities
 
             return await _branchRepository.GetBranchesAsyncOrderByName();
         }
+
+
+
+         
     }
 }

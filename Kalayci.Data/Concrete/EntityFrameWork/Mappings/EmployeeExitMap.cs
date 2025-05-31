@@ -1,6 +1,6 @@
 ﻿using Kalayci.Entities.Concrete;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
 {
-    public class PointMap : IEntityTypeConfiguration<Point>
+    public class EmployeeExitMap : IEntityTypeConfiguration<EmployeeExit>
     {
-        public void Configure(EntityTypeBuilder<Point> builder)
+        public void Configure(EntityTypeBuilder<EmployeeExit> builder)
         {
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedOnAdd();
@@ -19,10 +19,10 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
 
 
 
-            builder.Property(r => r.SavePoint).IsRequired(true);
-            builder.Property(r => r.GiveDateStart).IsRequired(true);
-            builder.Property(r => r.GiveDateFinish).IsRequired(true);
-
+            builder.Property(r => r.PersonelId).IsRequired(true);
+            builder.Property(r => r.StartWorkTime).IsRequired(true);
+            builder.Property(r => r.FinishWorkTime).IsRequired(true);
+            builder.Property(r => r.PersonelNoteAverage).IsRequired(true);
 
 
 
@@ -34,7 +34,9 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
             builder.Property(r => r.ModifiedDate).IsRequired(true);
             builder.Property(r => r.IsDeleted).IsRequired(true);
 
-            builder.HasOne<Personel>(a => a.Personel).WithMany(u => u.points).HasForeignKey(a => a.PersonelId);
+
+            builder.HasOne<Personel>(a => a.Personel).WithMany(u => u.employeeExits).HasForeignKey(a => a.PersonelId);
+
         }
     }
 }

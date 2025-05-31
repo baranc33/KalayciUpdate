@@ -100,13 +100,37 @@ namespace Kalayci.Services.Concrete.Entities
 
         public async Task<ICollection<KalayciUser>> GetAllUser()
         {
-            return  await _userManager.Users.Include(p=>p.personel).ThenInclude(b=>b.branch)
+            return await _userManager.Users.Include(p => p.personel).ThenInclude(b => b.branch)
                 .ToListAsync();
         }
 
-        public async Task<KalayciUser> GettAllIncludePersonelThenIncludeBranch(string UserID)
+   
+        public async Task<ICollection<KalayciUser>> GetEngineerList()
         {
-            return await _kalayciUserRepository.GettAllIncludePersonelThenIncludeBranch(UserID);
+            ICollection<KalayciUser> users = await _kalayciUserRepository.GetAllIncludePersonelThenIncludeBranch();
+            ICollection<KalayciUser> engiierlist = new List<KalayciUser>();
+
+            foreach (var user in users)
+            {
+                if (user.personel.branchId==2)
+                {
+                    engiierlist.Add(user);
+                }
+            }
+
+            return engiierlist;
+        }
+
+        public async Task<KalayciUser> IncludePersonelThenIncludeBranch(string UserID)
+        {
+            return await _kalayciUserRepository.IncludePersonelThenIncludeBranch(UserID);
+
+        }
+
+        public async Task<ICollection<KalayciUser>> GetAllIncludePersonelThenIncludeBranch()
+        {
+            return await _kalayciUserRepository.GetAllIncludePersonelThenIncludeBranch();
+
         }
     }
 }

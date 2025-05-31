@@ -41,9 +41,9 @@ where TEntity : class, IEntity, new()
         public async Task DeleteAsync(TEntity Entity)
         {
             await Task.Run(() =>
-            {
-                _context.Set<TEntity>().Remove(Entity);
-            });
+                     {
+                         _context.Set<TEntity>().Remove(Entity);
+                     });
         }
 
 

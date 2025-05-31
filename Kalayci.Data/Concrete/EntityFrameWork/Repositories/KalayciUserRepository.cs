@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,14 +20,22 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
             _context=context;
         }
 
-        public async Task<KalayciUser> GettAllIncludePersonelThenIncludeBranch(string UserID)
+      
+
+        public async Task<KalayciUser> IncludePersonelThenIncludeBranch(string UserID)
         {
 
             return await _context.Users.Where(x => x.Id==UserID)
                     .Include(x => x.personel)
                 .ThenInclude(x => x.branch).SingleOrDefaultAsync();
+        }
 
-
+        public async Task<ICollection<KalayciUser>> GetAllIncludePersonelThenIncludeBranch()
+        {
+            return await _context.Users.Where(x => x.IsDeleted==false)
+                  .Include(x => x.personel)
+              .ThenInclude(x => x.branch).
+              ToListAsync();
         }
     }
 }

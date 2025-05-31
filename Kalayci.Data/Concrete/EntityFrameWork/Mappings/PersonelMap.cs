@@ -76,6 +76,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
 
 
             builder.HasOne<Branch>(a => a.branch).WithMany(u => u.Personels).HasForeignKey(a => a.branchId);
+            builder.HasOne<KalayciUser>(a => a.ManagerUser).WithMany(u => u.ManagePersonel).HasForeignKey(a => a.ManagerUserId);
             builder.HasData(
          new Personel
          {

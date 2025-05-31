@@ -32,6 +32,11 @@ namespace Kalayci.Services.Extentions
 
 
 
+
+            serviceCollection.AddScoped<IEmployeeExitRepository, EmployeeExitRepository>();
+            serviceCollection.AddScoped<IEmployeeExitService, EmployeeExitService>();
+
+
             serviceCollection.AddScoped<IBranchRepository, BranchRepository>();
             serviceCollection.AddScoped<IBranchService, BranchService>();
 

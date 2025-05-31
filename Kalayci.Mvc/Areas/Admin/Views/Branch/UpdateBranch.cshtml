@@ -1,0 +1,38 @@
+﻿@model UpdateBranchViewModel
+@{
+    ViewData["Title"] = "UpdateBranch";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section CSS {
+    <link href="~/Admin/css/AddPersonelCss.css" rel="stylesheet">
+}
+
+@if (TempData["Message"]!=null)
+{
+    <div class="alert alert-danger center display-4" role="alert">
+        @TempData["Message"]
+    </div>
+}
+<section class="get-in-touch">
+    <h1 class="title">Branş Güncelleme Sayfası</h1>
+    <form class="contact-form row" method="post" asp-area="Admin" asp-controller="Branch" asp-action="UpdateBranch">
+        <input type="hidden" value="@Model.BranchId" asp-for="BranchId" />
+        
+        <div class="form-field col-md-6 ">
+            <input class="input-text js-input " type="text" required asp-for="BranchName">
+            <label class="label" Asp-for="BranchName"></label>
+            <span class="text-danger" asp-validation-for="BranchName"></span>
+        </div>
+        <div class="form-field col-md-12">
+            <input class="input-text js-input" type="text" required asp-for="BranchDetay">
+            <label class="label" Asp-for="BranchDetay"></label>
+            <span class="text-danger" asp-validation-for="BranchDetay"></span>
+        </div>
+  
+
+        <div class="form-field col-12  ">
+            <input class="submit-btn rounded-2" type="submit" value="Kaydet" />
+        </div>
+    </form>
+</section>
+ 

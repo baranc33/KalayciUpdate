@@ -22,7 +22,10 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
 
         public async Task<ICollection<Project>> projectsWithUser()
         {
-            return await _context.Project.Include(x => x.User).ToListAsync();
+            return await _context.Project.Include(x => x.User)
+                .ThenInclude(p=>p.personel)
+                .Include(t=>t.shipYard)
+                .ToListAsync();
         }
 
         public async Task<ICollection<Project>> projectsWithUserAndSpoolList()

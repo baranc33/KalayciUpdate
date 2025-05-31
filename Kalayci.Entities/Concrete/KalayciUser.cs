@@ -34,5 +34,6 @@ namespace Kalayci.Entities.Concrete
         public virtual string ModifiedByName { get; set; } = "Admin";
         public ICollection<Project> Projects { get; set; }
         public ICollection<Point> Points { get; set; }
+        public ICollection<Personel> ManagePersonel { get; set; }
     }
 }

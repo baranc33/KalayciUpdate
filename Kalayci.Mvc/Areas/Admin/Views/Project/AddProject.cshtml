@@ -1,0 +1,65 @@
+﻿@model ProjectAddViewModel
+@{
+    ViewData["Title"] = "AddProject";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section CSS {
+<link href="~/Admin/css/AddPersonelCss.css" rel="stylesheet">
+
+}
+@if (TempData["Message"]!=null)
+{
+    <div class="alert alert-danger center display-4 my-5 mx-5" role="alert">
+        @TempData["Message"]
+    </div>
+}
+else
+{
+
+
+    <section class="get-in-touch">
+        <h1 class="title">Proje Ekleme Sayfası</h1>
+        <form class="contact-form row" method="post" asp-area="Admin" asp-controller="Project" asp-action="AddProject">
+            <div class="form-field col-md-12 ">
+                <input class="input-text js-input " type="text" required asp-for="ProjectNameDto">
+                <label class="label" Asp-for="ProjectNameDto"></label>
+                <span class="text-danger" asp-validation-for="ProjectNameDto"></span>
+            </div>
+
+
+            <div class="form-field col-md-12 ">
+                <select asp-for="ShipYardNameDto" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                    <option value="0" selected>Lütfen Projenin Bağlı Bulunduğu Tersaneyi Seçiniz</option>
+
+                    @foreach(var item in Model.ShipYards)
+                    {
+                        <option asp-for="@Model.ShipYardNameDto" value="@item.Id">@item.ShipYardName</option>
+                    }
+
+                </select>
+                <span class="text-danger" asp-validation-for="ShipYardNameDto"></span>
+            </div>
+
+
+
+
+            <div class="form-field col-md-12 ">
+                <select asp-for="UsersId" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                    <option value="0" selected>Lütfen Projenin Yetkilisini Giriniz</option>
+
+                    @foreach (var item in Model.Users)
+                    {
+                        <option asp-for="@Model.UsersId" value="@item.Id">@item.personel.Name  @item.personel.LastName</option>
+                    }
+
+                </select>
+                <span class="text-danger" asp-validation-for="ShipYardNameDto"></span>
+            </div>
+     
+
+        <div class="form-field col-12  ">
+            <input class="submit-btn rounded-2" type="submit" value="Kaydet" />
+        </div>
+    </form>
+</section>
+}

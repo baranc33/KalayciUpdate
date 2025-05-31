@@ -26,7 +26,7 @@
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Arama" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <input class="form-control" type="text" placeholder="Proje Ara" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
             </div>
         </form>
@@ -37,10 +37,10 @@
                     @User.Identity.Name
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li><a class="dropdown-item" href="#!">Profil Düzenle</a></li>
+                    <li><a class="dropdown-item" href="#!">Talep Oluştur</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="LogOut">Logout</a></li>
+                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="LogOut">Çıkış Yap</a></li>
                 </ul> 
             </li>
         </ul>

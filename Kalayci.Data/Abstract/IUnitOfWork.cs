@@ -10,6 +10,7 @@ namespace Kalayci.Data.Abstract
 
     public interface IUnitOfWork : IAsyncDisposable
     {
+        IEmployeeExitRepository EmployeeExitRepository { get; }
         IBranchRepository BranchRepository { get; }
         ICircuitDeliveryRepository CircuitDelivery { get; }
         ICircuitListRepository CircuitList { get; }

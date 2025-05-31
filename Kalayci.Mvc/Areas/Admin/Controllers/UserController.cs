@@ -40,7 +40,7 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateUser(string UserId)
         {
 
-            KalayciUser user = await _kalayciUserService.GettAllIncludePersonelThenIncludeBranch(UserId);
+            KalayciUser user = await _kalayciUserService.IncludePersonelThenIncludeBranch(UserId);
             UpdateUserViewModel model = new UpdateUserViewModel
             {
                 Kalayci = user,

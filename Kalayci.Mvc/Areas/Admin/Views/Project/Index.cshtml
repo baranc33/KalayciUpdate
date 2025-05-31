@@ -1,8 +1,102 @@
-﻿
+﻿@model ProjectListViewModel
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Proje Listesi";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Proje Listesi</h1>
+
+    <div class="card mb-4">
+        <div class="card-body row justify-content-between">
+            <div class="col-7">
+                Bu Sayfada Projelerle ile ilgili işlemler Yapılmaktadır
+            </div>
+            <div class="col-2 offset-3">
+                <a asp-area="Admin" asp-controller="Project" asp-action="AddProject" class="btn btn-primary"> Proje Ekle</a>
+            </div>
+
+        </div>
+    </div>
+
+    @if (TempData["Message"]!=null)
+    {
+        <div class="alert alert-danger center display-4" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+ 
+    @if (Model.Projects.Count>0)
+    {
+
+
+        <div class="card mb-4">
+            <div class="card-header d-flex ">
+                <div class="">
+                    <img src="~/img/MPSIcon.png" alt="..." />
+                </div>
+               
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Tersane Adı</th>
+                            <th>Proje Adı</th>
+                            <th>Proje Sorumlusu</th>
+                            <th>Proje incele  </th>
+                            <th>Branşı Güncelle</th>
+                            <th>Branşı Sil</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Projects)
+                        {
+                            <tr>
+                                <td>@item.shipYard.ShipYardName</td>
+                                <td>@item.ProjectName</td>
+                                <td>@item.User.personel.Name  @item.User.personel.LastName</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-route-ProjectId="@item.Id" asp-action="ProjectSpoolList" asp-controller="Spool" asp-area="Admin">incele</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Güncelle</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" asp-route-ProjectId="@item.Id" asp-action="RemoveProject" asp-controller="Project" asp-area="Admin">Sil</a>
+
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <h2>
+                Henüz bir Proje Eklenmemiştir
+            </h2>
+        </div>
+    }
+
+</div>
+
 

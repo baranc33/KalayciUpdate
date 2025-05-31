@@ -10,11 +10,21 @@
     <h1 class="mt-4">Branş Listesi</h1>
 
     <div class="card mb-4">
-        <div class="card-body row">
+        <div class="card-body  row justify-content-between">
             <div class="col-7">
                 Bu Sayfada Branş ile ilgili işlemler Yapılmaktadır
             </div>
+
+
+            <div class="col-2 offset-3">
+                <a asp-area="Admin" asp-controller="Branch" asp-action="BracnhListExport" class="btn btn-primary"> Excel Oluştur</a>
+            </div>
         </div>
+
+
+
+
+
     </div>
 
     @if (TempData["Message"]!=null)
@@ -26,11 +36,11 @@
     <form method="post" asp-area="Admin" asp-controller="Branch" asp-action="AddBranch">
         <div class="row  bg-infom rounded-3 container mb-3 " style="margin-left:3px;">
 
-        <div class=" col-8 ">
-            <label asp-for="@Model.BranchName" class="form-label"> </label>
+            <div class=" col-8 ">
+                <label asp-for="@Model.BranchName" class="form-label"> </label>
                 <input type="text" class="form-control" asp-for="@Model.BranchName">
                 <span class="text-danger" asp-validation-for="@Model.BranchName"></span>
-        </div>
+            </div>
             <button type="submit" class="btn btn-primary pt-3 col-3 h-25 my-4">
                 <h5>
                     Kaydet
@@ -42,9 +52,12 @@
                 <span class="text-danger" asp-validation-for="@Model.BranchDetay"></span>
             </div>
 
-           
+
         </div>
     </form>
+   
+    
+    
     @if (Model.Branches.Count>0)
     {
 
@@ -52,7 +65,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <img src="~/img/MPSIcon.png" alt="..." />
-               
+
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -76,10 +89,10 @@
                                     <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Personeller</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Güncelle</a>
+                                    <a class="btn btn-primary" asp-route-BranchId="@item.Id" asp-action="UpdateBranch" asp-controller="Branch" asp-area="Admin">Güncelle</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Sil</a>
+                                    <a class="btn btn-primary" asp-route-BranchId="@item.Id" asp-action="RemoveBranch" asp-controller="Branch" asp-area="Admin">Sil</a>
 
                                 </td>
                             </tr>
@@ -113,3 +126,5 @@
 </div>
 
 
+
+ 

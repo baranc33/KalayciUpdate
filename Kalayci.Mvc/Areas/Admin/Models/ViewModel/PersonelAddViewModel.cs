@@ -1,4 +1,4 @@
-﻿using Kalayci.Entities.Concrete;
+﻿
 using System.ComponentModel.DataAnnotations;
 
 namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel
@@ -75,6 +75,6 @@ namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel
 
 
         public int branchId { get; set; }
-        public ICollection<Branch> branches { get; set; } =  new List<Branch>();
+        public ICollection<Kalayci.Entities.Concrete.Branch> branches { get; set; } =  new List<Kalayci.Entities.Concrete.Branch>();
     }
 }

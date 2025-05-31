@@ -20,6 +20,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
 
 
 
+        public DbSet<EmployeeExit> EmployeeExits { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<CircuitDelivery> CircuitDelivery { get; set; }
         public DbSet<CircuitList> CircuitList { get; set; }
@@ -44,6 +45,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new BranchMap());
+            modelBuilder.ApplyConfiguration(new EmployeeExitMap());
 
             modelBuilder.ApplyConfiguration(new PersonelMap());
 
