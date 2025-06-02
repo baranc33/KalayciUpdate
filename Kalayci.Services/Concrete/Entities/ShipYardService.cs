@@ -1,4 +1,5 @@
 ﻿using Kalayci.Data.Abstract;
+using Kalayci.Data.Abstract.Entities;
 using Kalayci.Entities.Concrete;
 using Kalayci.Services.Abstract.Entities;
 using Kalayci.Shared.Data.Abstract;
@@ -12,7 +13,16 @@ namespace Kalayci.Services.Concrete.Entities
 {
     public class ShipYardService : GenericService<ShipYard>, IShipYardService
     {
-        public ShipYardService(IEntityRepository<ShipYard> repository, IUnitOfWork unitOfWork) : base(unitOfWork, repository)
-        { }
+        private readonly IShipYardRepository _shipYardRepository;
+        public ShipYardService(IEntityRepository<ShipYard> repository, IUnitOfWork unitOfWork, IShipYardRepository shipYardRepository) : base(unitOfWork, repository)
+        {
+            _shipYardRepository= shipYardRepository;
+        }
+
+
+        public async Task<ShipYard> GetAllShipYardInculudeProjectsThenInculedeUser(int shipYardId)
+        {
+        return await _shipYardRepository.GetAllShipYardInculudeProjectsThenInculedeUser(shipYardId);
+        }
     }
 }

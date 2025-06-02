@@ -1,14 +1,13 @@
-﻿@using Kalayci.Mvc.Areas.Admin.Models.ViewModel.Project
-@model ProjectListViewModel
-
+﻿@model ShipYard
 @{
-    ViewData["Title"] = "Proje Listesi";
+    ViewData["Title"] = "ShipYardProject";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 
+
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Proje Listesi</h1>
+    <h1 class="mt-4"> @TempData["ShipYardName"] Proje Listesi</h1>
 
     <div class="card mb-4">
         <div class="card-body row justify-content-between">
@@ -28,8 +27,8 @@
             @TempData["Message"]
         </div>
     }
- 
-    @if (Model.Projects.Count>0)
+
+    @if (Model.Projects.Count()>0)
     {
 
 
@@ -38,31 +37,31 @@
                 <div class="">
                     <img src="~/img/MPSIcon.png" alt="..." />
                 </div>
-               
+
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Tersane Adı</th>
                             <th>Proje Adı</th>
                             <th>Proje Sorumlusu</th>
-                            <th>Proje Proje Başlama Tarihi</th>
+                            <th>Proje Başlangıç Tarihi</th>
                             <th>Personel Listesi</th>
                             <th>Proje incele  </th>
-                            <th>Projeyi Güncelle</th>
-                            <th>Projeyi Sil</th>
+                            <th>Proje Güncelle  </th>
+                            <th>Proje Sil  </th>
+
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach (var item in Model.Projects)
                         {
-                            <tr>
-                                <td>@item.shipYard.ShipYardName</td>
+                            <tr> 
                                 <td>@item.ProjectName</td>
                                 <td>@item.User.personel.Name  @item.User.personel.LastName</td>
-                                <td>@item.ProjectStartTime</td>
+                                <td>@item.ProjectStartTime.ToString("d")</td>
+
                                 <td>
                                     <a class="btn btn-primary" asp-route-ProjectId="@item.Id" asp-action="ProjectPersonelList" asp-controller="Spool" asp-area="Admin">Çalışanları Görüntüle</a>
                                 </td>
@@ -70,7 +69,7 @@
                                     <a class="btn btn-primary" asp-route-ProjectId="@item.Id" asp-action="ProjectSpoolList" asp-controller="Spool" asp-area="Admin">incele</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" asp-route-projectId="@item.Id" asp-action="UpdateProject" asp-controller="Project" asp-area="Admin">Güncelle</a>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Güncelle</a>
                                 </td>
                                 <td>
                                     <a class="btn btn-primary" asp-route-ProjectId="@item.Id" asp-action="RemoveProject" asp-controller="Project" asp-area="Admin">Sil</a>

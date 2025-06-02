@@ -1,7 +1,8 @@
 ﻿@model ICollection<Personel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Admin Personel Service";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
 }
 
 
@@ -12,7 +13,7 @@
     <div class="card mb-4">
         <div class="card-body row justify-content-between">
             <div class="col-7">
-                Bu Sayfada Personeller ile ilgili işlemler Yapılmaktadır
+
 
                 @if (TempData["Message"] != null)
                 {
@@ -20,6 +21,13 @@
                         <p> @TempData["Message"] </p>
                     </div>
                 }
+                else
+                {
+                    <div>
+                        Bu Sayfada Personeller ile ilgili işlemler Yapılmaktadır
+                    </div>
+                }
+
             </div>
             <div class="col-2 offset-1">
                 <a asp-area="Admin" asp-controller="Personel" asp-action="AddPersonel" class="btn btn-primary"> Personel Ekle</a>
@@ -47,15 +55,15 @@
                     <thead>
                         <tr>
                             @* <th>İş Yeri</th> *@
-                            @*          <th>Scil No</th>
-                            <th>TC Kimlik </th> *@
+                            @*          <th>Scil No</th>*@
+                            <th>TC Kimlik </th>
                             <th>Adı</th>
                             <th>Soy Adı</th>
                             <th>İşi</th>
-                            <th>Telefon</th>
+                            @*    <th>Telefon</th>
                             <th>Cinsiyet</th>
                             <th>Doğum Tarihi</th>
-                            <th>İşe Giriş Tarihi</th>
+                            <th>İşe Giriş Tarihi</th> *@
                             @*<th>Genel</th>
                             <th>Sağlık</th>
                             <th>Eğitimi Veren 1</th>
@@ -72,26 +80,16 @@
                         {
                             <tr>
 
+                                <td>@item.TcNumber</td>
                                 <td>@item.Name</td>
                                 <td>@item.LastName</td>
                                 <td>@item.branch.BranchName</td>
-                                <td>@item.Phone</td>
-                                @if(item.Gender==true)
-                                {
-                                    <td>Bay</td>
-                                }
-                                else
-                                {
-                                    <td>Bayan</td>
-                                }
-                                <td>@item.BirthDay.ToString("d")</td>
-                                <td>@item.WorkStartDate.ToString("d")</td>
-                      
+
                                 <td>
-                                    <a class="btn btn-primary" asp-route-PersonelId="@item.Id" asp-action="PersonelUpdate" asp-controller="Personel" asp-area="Admin">Detay</a>
+                                    <a class="btn btn-primary" asp-action="" asp-controller="Personel" asp-area="Admin">Güncelle</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" asp-action="" asp-controller="" asp-area="">Çıkış ver</a>
+                                    <a class="btn btn-primary" asp-route-PersonelId="@item.Id" asp-action="AdminPersonelDelete" asp-controller="Personel" asp-area="Admin">Sil</a>
 
                                 </td>
                             </tr>
@@ -126,11 +124,10 @@
 
 
 
-
 <script>
-
-        var messageBoxColor='@TempData["MessageColor"]';
-        console.log(messageBoxColor);
-         var d=document.getElementById("MessageBox");
-    d.classList.add(messageBoxColor);
+                 
+    var messageBoxColor='@TempData["MessageColor"]';
+    console.log(messageBoxColor);
+     var d=document.getElementById("MessageBox");
+d.classList.add(messageBoxColor);
 </script>

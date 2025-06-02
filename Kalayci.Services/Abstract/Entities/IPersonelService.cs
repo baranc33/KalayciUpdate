@@ -11,5 +11,6 @@ namespace Kalayci.Services.Abstract.Entities
     {
         Task<ICollection<Personel>> GettAllIncludeBranch();
 
+      Task<ICollection<Personel>> GettBranchPersonels(int BranchId);
     }
 }

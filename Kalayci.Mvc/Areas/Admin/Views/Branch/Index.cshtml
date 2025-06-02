@@ -86,7 +86,7 @@
                                 <td>@item.BranchName</td>
                                 <td>@item.BranchDetay</td>
                                 <td>
-                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Personeller</a>
+                                    <a class="btn btn-primary" asp-route-BranchId="@item.Id" asp-action="ListBranchPersonel" asp-controller="Branch" asp-area="Admin">Personeller</a>
                                 </td>
                                 <td>
                                     <a class="btn btn-primary" asp-route-BranchId="@item.Id" asp-action="UpdateBranch" asp-controller="Branch" asp-area="Admin">Güncelle</a>

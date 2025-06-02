@@ -40,6 +40,7 @@
                     <thead>
                         <tr>
                             <th>Tersane Adı</th>
+                            <th>Yetkili Personel</th>
                             <th>Tersane Projeleri</th>
                             <th>Tersane Güncelleme</th>
                             <th>Tersane sil</th>
@@ -51,11 +52,12 @@
                         {
                             <tr>
                                 <td>@item.ShipYardName</td>
+                                <td>@item.ShipYardManagementName</td>
                                 <td>
-                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Projeleri Gör</a>
+                                    <a class="btn btn-primary" asp-route-ShipYardID="@item.Id"  asp-action="ShipYardProject" asp-controller="ShipYard" asp-area="Admin">Projeleri Gör</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" asp-action="" asp-controller="" asp-area="">Güncelle</a>
+                                    <a class="btn btn-primary" asp-route-ShipYardId="@item.Id" asp-action="ShipYardUpdates" asp-controller="ShipYard" asp-area="Admin">Güncelle</a>
 
                                 </td>
                                 <td>
@@ -111,14 +113,26 @@
                 <form asp-action="AddShipYard" asp-controller="ShipYard" asp-area="Admin" method="post">
                     <div class="row">
                         <div class=" mb-4">
-
                             <div data-mdb-input-init class="form-outline">
                                 <label asp-for="ShipYardName" class="form-label" for="firstName"></label>
                                 <input asp-for="ShipYardName" type="text" id="firstName" class="form-control form-control-lg" />
                                 <span class="text-danger" asp-validation-for="ShipYardName"></span>
                             </div>
-
                         </div>
+
+                        <div class=" mb-4">
+                            <div data-mdb-input-init class="form-outline">
+                                <label asp-for="ShipYardManagementName" class="form-label" for="firstName"></label>
+                                <select asp-for="ShipYardManagementName"  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                    @foreach (var item in Model.Users)
+                                    {
+                                        <option value="@item.personelId"> @item.personelId-@item.personel.Name @item.personel.LastName</option>
+                                    }
+                                </select>
+                                <span class="text-danger" asp-validation-for="ShipYardManagementName"></span>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="modal-footer">

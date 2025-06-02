@@ -23,10 +23,31 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
             _branchService = branchService;
         }
 
+        public async Task<IActionResult> ListBranchPersonel(int BranchId)
+        {
+            ICollection<Personel> personels = await _personelService.GettBranchPersonels(BranchId);
+            if (personels.Count > 0)
+            {
+                foreach (var item in personels)
+                {
+                    TempData["BranchName"] =item.branch.BranchName;
+                    break;
+                }
+               
+            }
+            return View(personels);
+        }
+
+
+
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> UpdateBranch(int BranchId)
         {
-            Branch branch= await GetBranch(BranchId);
+            Branch branch = await GetBranch(BranchId);
 
             UpdateBranchViewModel model = new UpdateBranchViewModel
             {
@@ -54,7 +75,7 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
 
             foreach (var item in branches)
             {
-                if(item.BranchName==requestModel.BranchName)
+                if (item.BranchName==requestModel.BranchName)
                 {
                     TempData["Message"]="Bu Branş Adı Kayıtlıdır.";
                     return RedirectToAction("Index");

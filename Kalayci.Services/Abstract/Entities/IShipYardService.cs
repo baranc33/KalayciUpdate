@@ -9,5 +9,6 @@ namespace Kalayci.Services.Abstract.Entities
 {
     public interface IShipYardService : IGenericService<ShipYard>
     {
+        Task<ShipYard> GetAllShipYardInculudeProjectsThenInculedeUser(int shipYardId);
     }
 }

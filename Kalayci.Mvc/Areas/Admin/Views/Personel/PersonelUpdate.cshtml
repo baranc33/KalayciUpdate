@@ -1,5 +1,4 @@
-﻿
-@model PersonelAddViewModels
+﻿@model PersonelUpdateViewModel
 @section CSS {
     <link href="~/Admin/css/AddPersonelCss.css" rel="stylesheet">
 }
@@ -7,7 +6,7 @@
     ViewData["Title"] = "AddPersonel";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
- <style>
+<style>
     input[type="date"] {
         background-color: #001D4D;
         padding: 10px;
@@ -21,7 +20,7 @@
         outline: none;
         border-radius: 5px;
     }
- </style>
+</style>
 
 @if (TempData["Message"]!=null)
 {
@@ -29,6 +28,14 @@
         @TempData["Message"]
     </div>
 }
+
+<div class="container">
+    <div class="row">
+        <a class="btn btn-success col-2 offset-8">Detaylı Döküman Dosyası</a>
+        <a class="btn btn-danger col-2 ">Çıkış Ver</a>
+    </div>
+</div>
+
 <section class="get-in-touch">
     <h1 class="title">Personel Ekleme Sayfası</h1>
     <form class="contact-form row" method="post" asp-area="Admin" asp-controller="Personel" asp-action="AddPersonel">
@@ -73,12 +80,10 @@
             </select>
         </div>
 
-
-       
-
+         
         <div class="form-field col-md-6 ">
 
-            <label class="label mb-4" >Cinsiyet:</label>
+            <label class="label mb-4">Cinsiyet:</label>
             <div class="container " style="margin-left:100px;">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="Gender" asp-for="Gender" id="inlineRadio2" value="false">
@@ -86,23 +91,39 @@
 
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="Gender" asp-for="Gender" id="inlineRadio1" value="true" checked="checked">
-                    <label class="form-check-label" asp-for="Gender" for="inlineRadio2">Erkek</label></div>
+                    <input class="form-check-input" type="radio" name="Gender" asp-for="Gender" id="inlineRadio1" value="true" checked="checked">
+                    <label class="form-check-label" asp-for="Gender" for="inlineRadio2">Erkek</label>
+                </div>
             </div>
             <span class="text-danger" asp-validation-for="Gender"></span>
             <hr />
         </div>
 
-        <div class="form-field col-lg-6 ">
-            <label asp-for="BirthDay" style="margin-bottom:100px;"  for="birthday"></label>
+
+
+        <div class="form-field col-lg-6">
+            <label asp-for="BirthDay" style="margin-bottom:100px;" for="birthday"></label>
             <input asp-for="BirthDay" type="date" id="birthday" name="birthday">
             <span class="text-danger" asp-validation-for="BirthDay"></span>
         </div>
 
         <div class="form-field col-lg-6 ">
-            <label asp-for="WorkStartDate" for="birthday"></label>
-            <input asp-for="WorkStartDate" type="date" id="birthday" name="WorkStartDate">
+            <label asp-for="WorkStartDate"   for="WorkStartDate"></label>
+            <input asp-for="WorkStartDate" type="date" id="WorkStartDate" name="WorkStartDate">
         </div>
+
+
+        <div class="form-field col-lg-6 " style="margin-top:-1px;">
+            <label for="browser">Branşı:</label>
+            <select asp-for="branchId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                @foreach (var item in Model.branches)
+                {
+                    <option value="@item.Id">@item.BranchName</option>
+                }
+            </select>
+        </div>
+
+
 
 
         <div class="form-field col-12  ">

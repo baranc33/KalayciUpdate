@@ -1,0 +1,68 @@
+﻿@model ShipYardUpdateViewModel
+@{
+    ViewData["Title"] = "ShipYardUpdates";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section CSS {
+    <link href="~/Admin/css/AddPersonelCss.css" rel="stylesheet">
+}
+
+<style>
+    input[type="date"] {
+        background-color: #001D4D;
+        padding: 10px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 100px;
+        font-family: "Sans Serif Collection",monospace;
+        color: #ffffff;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+    }
+</style>
+@if (TempData["Message"]!=null)
+{
+    <div class="alert alert-danger center display-4" role="alert">
+        @TempData["Message"]
+    </div>
+}
+<section class="get-in-touch">
+    <h1 class="title">Tersane Adı Güncellleme Sayfası</h1>
+    <form class="contact-form row" method="post" asp-area="Admin" asp-controller="ShipYard" asp-action="ShipYardUpdates">
+
+        <input type="hidden" asp-for="ShipYardID" value="@Model.ShipYardID" />
+        <div class="form-field col-12 ">
+            <input class="input-text js-input " type="text" required asp-for="ShipYardName">
+            <label class="label" Asp-for="ShipYardName"></label>
+            <span class="text-danger" asp-validation-for="ShipYardName"></span>
+        </div>
+
+
+        <div class="form-field col-12">
+            <div data-mdb-input-init class="form-outline">
+                <label asp-for="@Model.ShipYardManagerName" class="form-label" for="firstName"></label>
+                <select asp-for="@Model.ShipYardManagerName" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option asp-for="@Model.ShipYardManagerName" selected value="@Model.PersonelID-@Model.ShipYardManagerName">@Model.PersonelID-@Model.ShipYardManagerName</option>
+                    @foreach (var item in Model.Users)
+                    {
+                        <option value="@item.personelId"> @item.personelId-@item.personel.Name @item.personel.LastName</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="ShipYardManagerName"></span>
+            </div>
+
+
+
+            </select> 
+
+        </div>
+
+
+
+        <div class="form-field col-12  ">
+            <input class="submit-btn rounded-2" type="submit" value="Kaydet" />
+        </div>
+    </form>
+</section>

@@ -4,6 +4,7 @@ using Kalayci.Data.Concrete.EntityFrameWork.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kalayci.Data.Migrations
 {
     [DbContext(typeof(KalayciContext))]
-    partial class KalayciContextModelSnapshot : ModelSnapshot
+    [Migration("20250602092153_PersonelProjectUpdate")]
+    partial class PersonelProjectUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,10 +73,10 @@ namespace Kalayci.Data.Migrations
                             BranchDetay = "Bilgi işlem departmanı, şirketin bilgi teknolojileri altyapısını yönetir ve destekler.",
                             BranchName = "Bilgi işlem",
                             CreatedByName = "System",
-                            CreatedDate = new DateTime(2025, 6, 2, 13, 32, 31, 931, DateTimeKind.Local).AddTicks(8807),
+                            CreatedDate = new DateTime(2025, 6, 2, 12, 21, 53, 145, DateTimeKind.Local).AddTicks(1527),
                             IsDeleted = false,
                             ModifiedByName = "System",
-                            ModifiedDate = new DateTime(2025, 6, 2, 13, 32, 31, 931, DateTimeKind.Local).AddTicks(8806)
+                            ModifiedDate = new DateTime(2025, 6, 2, 12, 21, 53, 145, DateTimeKind.Local).AddTicks(1527)
                         },
                         new
                         {
@@ -81,10 +84,10 @@ namespace Kalayci.Data.Migrations
                             BranchDetay = "Boru Donatım Mühendisi.",
                             BranchName = "Mühendis",
                             CreatedByName = "System",
-                            CreatedDate = new DateTime(2025, 6, 2, 13, 32, 31, 931, DateTimeKind.Local).AddTicks(8811),
+                            CreatedDate = new DateTime(2025, 6, 2, 12, 21, 53, 145, DateTimeKind.Local).AddTicks(1531),
                             IsDeleted = false,
                             ModifiedByName = "System",
-                            ModifiedDate = new DateTime(2025, 6, 2, 13, 32, 31, 931, DateTimeKind.Local).AddTicks(8811)
+                            ModifiedDate = new DateTime(2025, 6, 2, 12, 21, 53, 145, DateTimeKind.Local).AddTicks(1531)
                         });
                 });
 
@@ -253,35 +256,35 @@ namespace Kalayci.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "d0063eaa-c67a-41ee-ab7d-1e63ec344e10",
+                            ConcurrencyStamp = "caef6d07-4423-4b51-802d-b73be092a32b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "f8170ca0-4e0e-4569-978c-da9f2aefe8fb",
+                            ConcurrencyStamp = "233f96d9-795f-48c7-8876-844cf23a71af",
                             Name = "Yonetici",
                             NormalizedName = "YONETICI"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "d1ea4746-6960-44ba-a3b5-d7b54bec6d90",
+                            ConcurrencyStamp = "0923149f-81ee-4e10-b386-a45ecdfcc89a",
                             Name = "Muhendis",
                             NormalizedName = "MUHENDIS"
                         },
                         new
                         {
                             Id = "4",
-                            ConcurrencyStamp = "620d1aae-a1ed-4427-843c-59268c1abe07",
+                            ConcurrencyStamp = "f860a483-f09b-4cef-ad0e-be852e54ce1d",
                             Name = "Atolye",
                             NormalizedName = "ATOLYE"
                         },
                         new
                         {
                             Id = "5",
-                            ConcurrencyStamp = "ea261d31-8b42-4403-b250-c6d835f83640",
+                            ConcurrencyStamp = "096eba86-6aaa-4de2-a316-e1fd3b2fcd67",
                             Name = "Müşteri",
                             NormalizedName = "MUSTERI"
                         });
@@ -479,18 +482,18 @@ namespace Kalayci.Data.Migrations
                             Id = 1,
                             BirthDay = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedByName = "System",
-                            CreatedDate = new DateTime(2025, 6, 2, 13, 32, 31, 935, DateTimeKind.Local).AddTicks(1877),
+                            CreatedDate = new DateTime(2025, 6, 2, 12, 21, 53, 148, DateTimeKind.Local).AddTicks(4823),
                             Gender = false,
                             IsDeleted = false,
                             LastName = "İşlem",
                             ModifiedByName = "System",
-                            ModifiedDate = new DateTime(2025, 6, 2, 13, 32, 31, 935, DateTimeKind.Local).AddTicks(1880),
+                            ModifiedDate = new DateTime(2025, 6, 2, 12, 21, 53, 148, DateTimeKind.Local).AddTicks(4827),
                             Name = "Bilgi",
                             OverallScore = (byte)0,
                             Phone = "555 004 63 33",
                             TechnicalPoint = (byte)0,
-                            WorkFinishDate = new DateTime(2125, 6, 2, 13, 32, 31, 935, DateTimeKind.Local).AddTicks(1883),
-                            WorkStartDate = new DateTime(2025, 6, 2, 13, 32, 31, 935, DateTimeKind.Local).AddTicks(1883),
+                            WorkFinishDate = new DateTime(2125, 6, 2, 12, 21, 53, 148, DateTimeKind.Local).AddTicks(4829),
+                            WorkStartDate = new DateTime(2025, 6, 2, 12, 21, 53, 148, DateTimeKind.Local).AddTicks(4828),
                             branchId = 1
                         });
                 });
@@ -630,16 +633,10 @@ namespace Kalayci.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime?>("ProjectFinishTime")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("ProjectName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
-
-                    b.Property<DateTime>("ProjectStartTime")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
@@ -727,20 +724,12 @@ namespace Kalayci.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("PersonelID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShipYardManagementName")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("ShipYardName")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonelID");
 
                     b.ToTable("ShipYard");
                 });
@@ -1163,15 +1152,6 @@ namespace Kalayci.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("spool");
-                });
-
-            modelBuilder.Entity("Kalayci.Entities.Concrete.ShipYard", b =>
-                {
-                    b.HasOne("Kalayci.Entities.Concrete.Personel", "Personel")
-                        .WithMany()
-                        .HasForeignKey("PersonelID");
-
-                    b.Navigation("Personel");
                 });
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.ShipyardAssembly", b =>

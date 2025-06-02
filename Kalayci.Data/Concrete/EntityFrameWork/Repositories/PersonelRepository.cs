@@ -27,6 +27,12 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
                 return personels;
         }
 
-      
+        public async Task<ICollection<Personel>> GettBranchPersonels(int BranchId)
+        {
+          return  await _context.Personel.Where(x=>x.IsDeleted==false&& x.branchId==BranchId)
+                .Include(u=>u.ManagerUser)
+                .ThenInclude(u => u.personel)
+                .Include(x => x.branch).OrderBy(x => x.Name).ToListAsync();
+        }
     }
 }

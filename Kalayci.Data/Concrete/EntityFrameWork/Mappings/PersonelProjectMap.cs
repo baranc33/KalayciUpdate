@@ -27,6 +27,10 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
                 .WithMany(p => p.PersonelProjects)
                 .HasForeignKey(pp => pp.PersonelId);
 
+            builder.HasOne(pp => pp.Branch)
+            .WithMany(p => p.personelProjects)
+            .HasForeignKey(pp => pp.BranchId);
+
 
             builder.Property(r => r.CreatedByName).IsRequired(true);
             builder.Property(r => r.CreatedByName).HasMaxLength(100);

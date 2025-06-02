@@ -23,5 +23,10 @@ namespace Kalayci.Services.Concrete.Entities
         {
           return await _personelRepository.GettAllIncludeBranch();
         }
+
+        public async Task<ICollection<Personel>> GettBranchPersonels(int BranchId)
+        {
+           return await _personelRepository.GettBranchPersonels(BranchId);
+        }
     }
 }

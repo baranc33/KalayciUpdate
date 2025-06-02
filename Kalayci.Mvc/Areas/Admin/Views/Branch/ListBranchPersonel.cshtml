@@ -1,25 +1,17 @@
 ﻿@model ICollection<Personel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ListBranchPersonel";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 
-
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Personel Listesi</h1>
+    <h1 class="mt-4"> @TempData["BranchName"] Personel Listesi</h1>
 
     <div class="card mb-4">
         <div class="card-body row justify-content-between">
             <div class="col-7">
                 Bu Sayfada Personeller ile ilgili işlemler Yapılmaktadır
-
-                @if (TempData["Message"] != null)
-                {
-                    <div class="alert " id="MessageBox" role="alert">
-                        <p> @TempData["Message"] </p>
-                    </div>
-                }
             </div>
             <div class="col-2 offset-1">
                 <a asp-area="Admin" asp-controller="Personel" asp-action="AddPersonel" class="btn btn-primary"> Personel Ekle</a>
@@ -47,23 +39,21 @@
                     <thead>
                         <tr>
                             @* <th>İş Yeri</th> *@
-                            @*          <th>Scil No</th>
-                            <th>TC Kimlik </th> *@
+                            @*          <th>Scil No</th>*@
+                            <th>TC Kimlik </th> 
                             <th>Adı</th>
                             <th>Soy Adı</th>
-                            <th>İşi</th>
                             <th>Telefon</th>
                             <th>Cinsiyet</th>
-                            <th>Doğum Tarihi</th>
                             <th>İşe Giriş Tarihi</th>
+                            <th>Şefi</th>
                             @*<th>Genel</th>
                             <th>Sağlık</th>
                             <th>Eğitimi Veren 1</th>
                             <th>Eğitimi Veren 2</th> 
                             <th>Genel Puan</th> *@
                             @* <th>Teknik Puan</th> *@
-                            <th>Güncelle</th>
-                            <th>Sil</th>
+
                         </tr>
                     </thead>
 
@@ -72,11 +62,11 @@
                         {
                             <tr>
 
+                                <td>@item.TcNumber</td>
                                 <td>@item.Name</td>
                                 <td>@item.LastName</td>
-                                <td>@item.branch.BranchName</td>
                                 <td>@item.Phone</td>
-                                @if(item.Gender==true)
+                                @if (item.Gender==true)
                                 {
                                     <td>Bay</td>
                                 }
@@ -84,16 +74,22 @@
                                 {
                                     <td>Bayan</td>
                                 }
-                                <td>@item.BirthDay.ToString("d")</td>
-                                <td>@item.WorkStartDate.ToString("d")</td>
-                      
-                                <td>
-                                    <a class="btn btn-primary" asp-route-PersonelId="@item.Id" asp-action="PersonelUpdate" asp-controller="Personel" asp-area="Admin">Detay</a>
-                                </td>
-                                <td>
-                                    <a class="btn btn-danger" asp-action="" asp-controller="" asp-area="">Çıkış ver</a>
 
-                                </td>
+                                <td>@item.WorkStartDate.ToString("d")</td>
+                                @if (item.ManagerUserId==null)
+                                {
+                                    <td >
+                                        <p style="color:red;">
+                                            Şef Atanmamıştır.
+                                        </p>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>@item.ManagerUser.personel.Name @item.ManagerUser.personel.LastName</td>
+
+                                }
+                           
                             </tr>
                         }
 
@@ -123,14 +119,3 @@
     }
 
 </div>
-
-
-
-
-<script>
-
-        var messageBoxColor='@TempData["MessageColor"]';
-        console.log(messageBoxColor);
-         var d=document.getElementById("MessageBox");
-    d.classList.add(messageBoxColor);
-</script>

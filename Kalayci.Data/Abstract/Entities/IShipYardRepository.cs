@@ -10,5 +10,7 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface IShipYardRepository : IEntityRepository<ShipYard>
     {
+
+        Task<ShipYard> GetAllShipYardInculudeProjectsThenInculedeUser(int shipYardId);
     }
 }

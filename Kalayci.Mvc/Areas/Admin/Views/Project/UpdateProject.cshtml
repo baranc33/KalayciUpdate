@@ -1,0 +1,90 @@
+﻿@model ProjectUpdateViewModel
+
+@{
+    ViewData["Title"] = "UpdateProject";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section CSS {
+    <link href="~/Admin/css/AddPersonelCss.css" rel="stylesheet">
+}
+
+
+<style>
+    input[type="date"] {
+        background-color: #001D4D;
+        padding: 10px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 100px;
+        font-family: "Sans Serif Collection",monospace;
+        color: #ffffff;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+    }
+</style>
+
+@if (TempData["Message"]!=null)
+{
+    <div class="alert alert-danger center display-4 my-5 mx-5" role="alert">
+        @TempData["Message"]
+    </div>
+}
+else
+{
+
+
+    <section class="get-in-touch">
+        <h1 class="title">Proje Ekleme Sayfası</h1>
+        <form class="contact-form row" method="post" asp-area="Admin" asp-controller="Project" asp-action="UpdateProject">
+          
+            <input type="hidden" value="@Model.ProjectId" asp-for="ProjectId" />
+            
+            <div class="form-field col-8 my-5">
+                <input class="input-text js-input  " type="text" required asp-for="ProjectName">
+                <label class="label my-5" Asp-for="ProjectName"></label>
+                <span class="text-danger" asp-validation-for="ProjectName"></span>
+            </div>
+
+            <div class="form-field col-4">
+                <label asp-for="ProjectStartTime" style="padding-bottom:80px;" for="ProjectStartTime"></label>
+                <input asp-for="ProjectStartTime" type="date" id="ProjectStartTime" name="ProjectStartTime">
+                <span class="text-danger" asp-validation-for="ProjectStartTime"></span>
+            </div>
+
+            <div class="form-field col-md-12 ">
+                <label asp-for="shipYardId"   ></label>
+                <select asp-for="shipYardId" class="form-select form-select-lg mb-3" aria-label="Large select example">
+
+                    @foreach (var item in Model.shipYards)
+                    {
+                        <option asp-for="shipYardId" value="@item.Id">@item.ShipYardName</option>
+                    }
+
+                </select>
+                <span class="text-danger" asp-validation-for="@Model.shipYardId"></span>
+            </div>
+
+
+            <div class="form-field col-md-12 ">
+                <label asp-for="UserId"   ></label>
+                <select asp-for="UserId" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                    <option value="0" selected>Lütfen Projenin Yetkilisini Giriniz</option>
+
+                    @foreach (var item in Model.Users)
+                    {
+                        <option asp-for="@Model.UserId" value="@item.Id">@item.personel.Name  @item.personel.LastName</option>
+                    }
+
+                </select>
+                <span class="text-danger" asp-validation-for="UserId"></span>
+            </div> 
+
+            <div class="form-field col-12  ">
+                <input class="submit-btn rounded-2" type="submit" value="Kaydet" />
+            </div>
+        </form>
+    </section>
+}

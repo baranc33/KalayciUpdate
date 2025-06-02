@@ -1,5 +1,6 @@
 ﻿using Kalayci.Entities.Concrete;
-using Kalayci.Mvc.Areas.Admin.Models.ViewModel;
+using Kalayci.Mvc.Areas.Admin.Models.ViewModel.Personel;
+using Kalayci.Mvc.Extentions.Identity;
 using Kalayci.Services.Abstract.Entities;
 using Kalayci.Services.Concrete.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -16,18 +17,57 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
     {
         private IPersonelService _personelService;
         private IBranchService _branchService;
-        public PersonelController(IPersonelService personelService, IBranchService branchService)
+        private IKalayciUserService _kalayciUserService;
+        public PersonelController(IPersonelService personelService, IBranchService branchService, IKalayciUserService kalayciUserService)
         {
+            _kalayciUserService = kalayciUserService;
             _branchService =branchService;
             _personelService = personelService;
         }
 
 
 
+
+        [HttpGet]
+        public async Task<IActionResult> PersonelUpdate(int PersonelId)
+        {
+            Personel personel = await _personelService.GetAsync(x => x.Id==PersonelId, m => m.ManagerUser, b => b.branch, p => p.points, e => e.employeeExits, pr => pr.PersonelProjects);
+
+
+            PersonelUpdateViewModel model = new PersonelUpdateViewModel()
+            {
+                PersonelId=personel.Id,
+                Name = personel.Name,
+                LastName = personel.LastName,
+                SgkRegistrationNumber = personel.SgkRegistrationNumber,
+                TcNumber = personel.TcNumber,
+                BirthDay = personel.BirthDay,
+                Gender = personel.Gender,
+                Phone = personel.Phone,
+                WorkStartDate = personel.WorkStartDate,
+                Picture = personel.Picture,
+                branchId = personel.branchId,
+                branches =await _branchService.GetAllAsync(),
+                ManagerId=personel.ManagerUserId,
+                Manager=await _kalayciUserService.GetAllIncludePersonelThenIncludeBranch(),
+
+                // personelin aktif olduğu projeyi getir
+
+                // personele yönetici Ata
+            };
+
+            return View(model);
+        }
+
+
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            ICollection<Personel> personels = await GetĞersonelList();
+            ICollection<Personel> personels = await GetPersonelList();
 
             return View(personels);
         }
@@ -35,7 +75,7 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AddPersonel()
         {
-            PersonelAddViewModel model = new PersonelAddViewModel()
+            PersonelAddViewModels model = new PersonelAddViewModels()
             {
                 branches= await GetBranchList()
             };
@@ -45,22 +85,23 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPersonel(PersonelAddViewModel request)
+        public async Task<IActionResult> AddPersonel(PersonelAddViewModels request)
         {
             if (!ModelState.IsValid)
             {
-                TempData["Message"]="Gerekli Alanları Doldurunuz";
-                return View("Index", new PersonelAddViewModel { branches = await GetBranchList() });
+                TempData["Message"]="Gerekli Alanları Doldurunuz Hatalı Giriş Yapıyorsunuz";
+                return RedirectToAction("Index", new PersonelAddViewModels { branches = await GetBranchList() });
             }
-            ICollection<Personel> personels = await GetĞersonelList();
+            ICollection<Personel> personels = await GetPersonelList();
 
             // tc numarasını dönelim check etmek için
             foreach (var item in personels)
             {
-                if(item.TcNumber ==request.TcNumber)
+                if (item.TcNumber ==request.TcNumber)
                 {
-                    TempData["Message"] = "Bu TC Numarası zaten kayıtlı";
-                    return View("Index", new PersonelAddViewModel { branches = await GetBranchList() });
+                    TempData["Message"] = "Bu TC Numarası zaten kayıtlı Pasif Personel Listesine Göz Atınız.";
+                    TempData["MessageColor"]="alert-danger";
+                    return RedirectToAction("Index");
                 }
             }
 
@@ -72,8 +113,8 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
                 IsDeleted = false,
                 CreatedByName=User.Identity.Name,
                 ModifiedByName = User.Identity.Name,
-                Name = request.Name,
-                LastName = request.LastName,
+                Name = request.Name.ToUpper().Trim(),
+                LastName = request.LastName.ToUpper().Trim(),
                 SgkRegistrationNumber = request.SgkRegistrationNumber,
                 TcNumber = request.TcNumber,
                 BirthDay = request.BirthDay,
@@ -87,10 +128,48 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
 
             await _personelService.AddAsync(personel);
 
-
-
+            TempData["Message"] = $"{personel.Name} {personel.LastName} Personel Listesine Eklenmiştir.";
+            TempData["MessageColor"]="alert-success";
             return RedirectToAction("Index");
         }
+
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> AdminPersonelList()
+        {
+            ICollection<Personel> personels = await _personelService.GettAllIncludeBranch();
+            return View(personels);
+        }
+
+        public async Task<IActionResult> AdminPersonelDelete(int PersonelId)
+        {
+            var personelUser = await _kalayciUserService.GetAsync(x => x.personelId==PersonelId);
+            if (personelUser !=null)
+            {
+                TempData["Message"]= "Bu personelin Kullanıcısı mevcut Önce Kullanıcıyı Siliniz";
+                TempData["MessageColor"]="alert-danger";
+                return RedirectToAction("AdminPersonelList");
+            }
+            Personel personel = await _personelService.GetAsync(x => x.Id == PersonelId);
+            await _personelService.DeleteAsync(personel);
+
+
+            TempData["Message"]= $"{personel.Name} {personel.LastName} Adlı Personel Başarıyla Silinmiştir.";
+            TempData["MessageColor"]="alert-success";
+            return RedirectToAction("AdminPersonelList");
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -98,9 +177,14 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         {
             return await _branchService.GetBranchesAsyncOrderByName();
         }
-        private async Task<ICollection<Personel>> GetĞersonelList()
+        private async Task<ICollection<Personel>> GetPersonelList()
         {
             return await _personelService.GettAllIncludeBranch();
         }
+
+
+
+
+
     }
 }

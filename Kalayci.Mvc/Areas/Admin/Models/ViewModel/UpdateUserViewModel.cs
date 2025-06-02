@@ -7,6 +7,6 @@ namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel
         public KalayciUser Kalayci { get; set; } 
         public string PersonelId { get; set; }
 
-        public ICollection<Personel> Personels { get; set; } = new List<Personel>();
+        public ICollection<Kalayci.Entities.Concrete.Personel> Personels { get; set; } = new List<Kalayci.Entities.Concrete.Personel>();
     }
 }

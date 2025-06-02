@@ -8,6 +8,8 @@ namespace Kalayci.Entities.Concrete
        // hangi tershaneye bağlı
         public ShipYard shipYard { get; set; }
         public int shipYardId { get; set; }
+        public DateTime ProjectStartTime { get; set; } = DateTime.Now;
+        public DateTime? ProjectFinishTime { get; set; } = null; // proje bitiş tarihi opsiyonel olabilir. çünkü bitmeyen projeler var.
 
 
 

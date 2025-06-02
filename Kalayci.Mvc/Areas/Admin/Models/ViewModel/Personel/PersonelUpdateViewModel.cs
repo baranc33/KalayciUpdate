@@ -1,11 +1,12 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel
+namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel.Personel
 {
-    public class PersonelAddViewModel
+    public class PersonelUpdateViewModel
     {
 
+
+        public int PersonelId{ get; set; }
         [Required(ErrorMessage = "Adı Zorunludur")]
         [MinLength(3, ErrorMessage = "Adı en az 3 karakterli olmalıdır.")]
         [Display(Name = "Personel Adı")]
@@ -18,12 +19,7 @@ namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel
 
 
 
-        public enum GenderTypes
-        {
-            Male,
-            Female,
-            Unspecified
-        }
+
 
         [Required(ErrorMessage = "Sicil Numarası Zorunludur")]
         [MinLength(10, ErrorMessage = "Sicil Numarası en az 10 karakterli olmalıdır.")]
@@ -75,6 +71,10 @@ namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel
 
 
         public int branchId { get; set; }
-        public ICollection<Kalayci.Entities.Concrete.Branch> branches { get; set; } =  new List<Kalayci.Entities.Concrete.Branch>();
+        public ICollection<Entities.Concrete.Branch> branches { get; set; } =  new List<Entities.Concrete.Branch>();
+        public string ManagerId { get; set; }
+        public ICollection<Entities.Concrete.KalayciUser> Manager { get; set; } =  new List<Entities.Concrete.KalayciUser>();
+        public int ProjectId { get; set; }
+        public ICollection<Entities.Concrete.Project> Projects{ get; set; } =  new List<Entities.Concrete.Project>();
     }
 }
