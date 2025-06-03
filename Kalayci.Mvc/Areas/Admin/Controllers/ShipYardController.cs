@@ -26,17 +26,17 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> ShipYardProject(int ShipYardID)
-        {
+        //[HttpGet]
+        //public async Task<IActionResult> ShipYardProject(int ShipYardID)
+        //{
 
-            ShipYard shipYardProject = await _shipYardService.GetAllShipYardInculudeProjectsThenInculedeUser(ShipYardID);
+        //    ShipYard shipYardProject = await _shipYardService.GetAllShipYardInculudeProjectsThenInculedeUser(ShipYardID);
  
 
-            TempData["ShipYardName"] = shipYardProject.ShipYardName;
+        //    TempData["ShipYardName"] = shipYardProject.ShipYardName;
 
-            return View(shipYardProject);
-        }
+        //    return View(shipYardProject);
+        //}
 
 
 
@@ -80,7 +80,21 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> ShipYardUpdates(ShipYardUpdateViewModel shipYard)
         {
-            Personel personel = await _personelService.GetAsync(x => x.Id==Convert.ToInt32(shipYard.ShipYardManagerName));
+           
+            
+            
+            //idyi isme gizlediğim için bu şekilde içerden çıkarıyorum.
+            string IdForPersonel = "";
+            for (int i = 0; i < shipYard.ShipYardManagerName.Length; i++)
+            {
+                if (shipYard.ShipYardManagerName[i]=='-')
+                {
+                    break;
+                }
+                IdForPersonel+=shipYard.ShipYardManagerName[i];
+            }
+
+            Personel personel = await _personelService.GetAsync(x => x.Id==Convert.ToInt32(IdForPersonel ));
             shipYard.PersonelID=personel.Id;
             shipYard.User=personel;
             shipYard.ShipYardManagerName=personel.Name+" "+personel.LastName;
@@ -88,15 +102,26 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
             ShipYard DatashipYard = await _shipYardService.GetAsync(s => s.Id==shipYard.ShipYardID);
             ICollection<ShipYard> shipYards = await _shipYardService.GetAllAsync();
 
-            foreach (var item in shipYards)
-            {
-                if (item.ShipYardName.ToUpper().Trim()==shipYard.ShipYardName.ToUpper().Trim())
-                {
-                    TempData["Message"]="Aynı isimde Tersane Kayıtlıdır. Pasif Listesine Bakınız";
-                    return RedirectToAction("Index");
 
+            // ismi değiştirlmişse
+            if (DatashipYard.ShipYardName!=shipYard.ShipYardName)
+            {
+                // aynı isimde başka tersane varmı diye bakıyorum
+                foreach (var item in shipYards)
+                {
+                    if (item.ShipYardName.ToUpper().Trim()==shipYard.ShipYardName.ToUpper().Trim())
+                    {
+                        TempData["Message"]="Aynı isimde Tersane Kayıtlıdır. Pasif Listesine Bakınız";
+                        TempData["MessageColor"] = "alert-danger";
+                        return RedirectToAction("Index");
+                    }
                 }
+
             }
+                      
+                
+
+
             DatashipYard.ShipYardName = shipYard.ShipYardName;
             DatashipYard.ModifiedByName = User.Identity!.Name!;
             DatashipYard.ModifiedDate = DateTime.Now;
@@ -105,6 +130,7 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
 
             await _shipYardService.UpdateAsync(DatashipYard);
             TempData["Message"]=$"Tersane Adı {shipYard.ShipYardName} olarak Değiştirilmiştir.";
+            TempData["MessageColor"] = "alert-success";
             return RedirectToAction("Index");
         }
 
@@ -122,8 +148,18 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
             ICollection<ShipYard> shipYardss = await _shipYardService.GetAllAsync(x => x.IsDeleted == false);
             if (!ModelState.IsValid)
             {
+
+
+                ShipYardViewModel shipYardDto = new ShipYardViewModel
+                {
+                    ShipYards = shipYardss,
+                    Users= await _kalayciUserService.GetAllIncludePersonelThenIncludeBranch(),
+
+                };
+
                 TempData["Message"]="Tersane Adı en az 10 karakterli olmalıdır.";
-                return View("Index", new ShipYardViewModel { ShipYards = shipYardss });
+                TempData["MessageColor"] = "alert-danger";
+                return View("Index", shipYardDto);
             }
 
 
@@ -132,6 +168,7 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
                 if (item.ShipYardName.ToUpper() == model.ShipYardName.ToUpper())
                 {
                     TempData["Message"]="Bu tersane zaten kayıtlı";
+                    TempData["MessageColor"] = "alert-danger";
                     return View("Index", new ShipYardViewModel { ShipYards = shipYardss });
                 }
             }
@@ -151,6 +188,7 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
 
 
             TempData["Message"]=$"{model.ShipYardName} Başarıyla Eklenmiştir.";
+            TempData["MessageColor"] = "alert-success";
             return RedirectToAction("Index");
         }
 
@@ -161,6 +199,7 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
             if (project.Count>0)
             {
                 TempData["Message"] = "Tersaneye Bağlı Projeler Bulunmaktadır.";
+                TempData["MessageColor"] = "alert-danger";
                 return RedirectToAction("Index");
             }
 
@@ -170,10 +209,12 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
             if (shipYard == null)
             {
                 TempData["Message"] = "Tersane bulunamadı.";
+                TempData["MessageColor"] = "alert-danger";
                 return RedirectToAction("Index");
             }
 
             TempData["Message"] = $"{shipYard.ShipYardName} Silinmiştir.";
+            TempData["MessageColor"] = "alert-danger";
             await _shipYardService.DeleteAsync(shipYard);
 
 

@@ -35,7 +35,7 @@ namespace Kalayci.Data.Concrete
         private SpoolRepository _spoolRepository;
         private WeldingRepository _weldingRepository;
         private WorkPlaceRepository _workPlaceRepository;
-
+        private PersonelProjectRepository _personelProjectRepository;
 
 
 
@@ -82,6 +82,9 @@ namespace Kalayci.Data.Concrete
 
         public IEmployeeExitRepository EmployeeExitRepository =>
              _employeeExitRepository ?? new EmployeeExitRepository(_context);
+
+        public IPersonelProjectRepository PersonelProjectRepository =>
+              _personelProjectRepository ?? new PersonelProjectRepository(_context);
 
         public async ValueTask DisposeAsync()
         {

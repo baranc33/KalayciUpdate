@@ -9,14 +9,20 @@ namespace Kalayci.Entities.Concrete
 {
     public class Point : EntityBase, IEntity
     {
-        public byte SavePoint{ get; set; }
+
+        public byte TeamWorkPoint { get; set; }
+        public byte JabTrackingPoint{ get; set; }
+        public byte ContinuityPoint { get; set; }
+
+        public byte AveragePoint { get; set; }
+
 
         public DateTime GiveDateStart{ get; set; }
         public DateTime GiveDateFinish { get; set; }
 
 
         // puanı veren kişi Oluşturan kişi
-        public string UserGivePoint { get; set; }
+        public string UserNameGivePoint { get; set; }
 
         public string UserId { get; set; }
 

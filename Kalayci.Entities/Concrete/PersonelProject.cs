@@ -13,9 +13,11 @@ namespace Kalayci.Entities.Concrete
         public Project Project { get; set; }
         public int PersonelId{ get; set; }
         public Personel Personel { get; set; }
+
         public bool IsActiveWork { get; set; }
         public int BranchId { get; set; }
         public Branch Branch { get; set; }
+        public string ManagerName { get; set; } 
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime? FinishDate { get; set; } = null;
     }

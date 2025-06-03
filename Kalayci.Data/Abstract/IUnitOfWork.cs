@@ -1,4 +1,5 @@
 ﻿using Kalayci.Data.Abstract.Entities;
+using Kalayci.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Kalayci.Data.Abstract
 
     public interface IUnitOfWork : IAsyncDisposable
     {
+
+        IPersonelProjectRepository PersonelProjectRepository { get; }
         IEmployeeExitRepository EmployeeExitRepository { get; }
         IBranchRepository BranchRepository { get; }
         ICircuitDeliveryRepository CircuitDelivery { get; }

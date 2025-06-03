@@ -14,7 +14,11 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
         public void Configure(EntityTypeBuilder<PersonelProject> builder)
         {
 
-            builder.HasKey(c => new {c.ProjectId,c.PersonelId});
+            //builder.HasKey(c => new { c.ProjectId, c.PersonelId });
+
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Id).ValueGeneratedOnAdd();
+
 
 
 

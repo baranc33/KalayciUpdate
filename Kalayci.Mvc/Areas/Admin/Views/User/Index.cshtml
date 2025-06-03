@@ -44,6 +44,7 @@
                             <th>Telefon </th>
                             <th>Email </th>
                             <th>Branşı </th>
+                            <th>Şfiresi </th>
                             <th>Kullanıcı Güncelleme</th>
                             <th>Rol Atama</th>
                             <th>Kullanıcı Sil</th>
@@ -60,6 +61,7 @@
                                 <td>@item.PhoneNumber </td>
                                 <td>@item.Email </td>
                                 <td>@item.personel.branch.BranchName</td>
+                                <td>@item.PasswordBackUp</td>
                        
                                 <td>
                                     <a class="btn btn-primary" asp-route-UserId="@item.Id" asp-action="UpdateUser" asp-controller="User" asp-area="Admin">Güncelle</a>

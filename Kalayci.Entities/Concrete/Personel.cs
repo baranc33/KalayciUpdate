@@ -34,6 +34,7 @@ namespace Kalayci.Entities.Concrete
 
 
 
+
         public int branchId { get; set; }
         public Branch branch { get; set; }
         public KalayciUser User{ get; set; }

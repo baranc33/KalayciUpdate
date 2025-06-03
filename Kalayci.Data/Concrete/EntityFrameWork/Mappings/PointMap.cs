@@ -19,7 +19,14 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
 
 
 
-            builder.Property(r => r.SavePoint).IsRequired(true);
+            builder.Property(r => r.TeamWorkPoint).IsRequired(true);
+            builder.Property(r => r.JabTrackingPoint).IsRequired(true);
+            builder.Property(r => r.ContinuityPoint).IsRequired(true);
+            builder.Property(r => r.AveragePoint).IsRequired(true);
+
+
+
+
             builder.Property(r => r.GiveDateStart).IsRequired(true);
             builder.Property(r => r.GiveDateFinish).IsRequired(true);
 

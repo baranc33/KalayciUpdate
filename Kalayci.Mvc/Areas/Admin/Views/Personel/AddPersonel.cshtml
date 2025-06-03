@@ -104,6 +104,33 @@
             <input asp-for="WorkStartDate" type="date" id="birthday" name="WorkStartDate">
         </div>
 
+        <div class="form-field col-lg-6 " style="margin-top:-1px;">
+            <label asp-for="ManagerId" for="browser"></label>
+            <select asp-for="ManagerId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected value="">Personelin Şefini seçiniz. </option>
+
+                @foreach (var item in Model.Manager)
+                {
+                    <option value="@item.Id">@item.personel.Name @item.personel.LastName / @item.personel.branch.BranchName</option>
+                }
+            </select>
+        </div>
+
+
+
+
+
+        <div class="form-field col-lg-6 " style="margin-top:-1px;">
+            <label asp-for="ProjectId" for="browser"></label>
+            <select asp-for="ProjectId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected value="">Çalıştığı Projeyi Seçiniz. </option>
+
+                @foreach (var item in Model.Projects)
+                {
+                    <option value="@item.Id">@item.shipYard.ShipYardName / @item.ProjectName</option>
+                }
+            </select>
+        </div>
 
         <div class="form-field col-12  ">
             <input class="submit-btn rounded-2" type="submit" value="Kaydet" />
@@ -111,15 +138,4 @@
     </form>
 </section>
 
-@* 
-<script>
-
-                $('#inlineRadio1').change(function() {
-       if (this.value === 'true') {
-    @Model.Gender=true;
-       } else {
-    @Model.Gender=false;
-       }
-    });
-</script>
- *@
+ 

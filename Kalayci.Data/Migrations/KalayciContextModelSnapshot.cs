@@ -70,10 +70,10 @@ namespace Kalayci.Data.Migrations
                             BranchDetay = "Bilgi işlem departmanı, şirketin bilgi teknolojileri altyapısını yönetir ve destekler.",
                             BranchName = "Bilgi işlem",
                             CreatedByName = "System",
-                            CreatedDate = new DateTime(2025, 6, 2, 13, 32, 31, 931, DateTimeKind.Local).AddTicks(8807),
+                            CreatedDate = new DateTime(2025, 6, 3, 16, 19, 35, 924, DateTimeKind.Local).AddTicks(3928),
                             IsDeleted = false,
                             ModifiedByName = "System",
-                            ModifiedDate = new DateTime(2025, 6, 2, 13, 32, 31, 931, DateTimeKind.Local).AddTicks(8806)
+                            ModifiedDate = new DateTime(2025, 6, 3, 16, 19, 35, 924, DateTimeKind.Local).AddTicks(3927)
                         },
                         new
                         {
@@ -81,10 +81,10 @@ namespace Kalayci.Data.Migrations
                             BranchDetay = "Boru Donatım Mühendisi.",
                             BranchName = "Mühendis",
                             CreatedByName = "System",
-                            CreatedDate = new DateTime(2025, 6, 2, 13, 32, 31, 931, DateTimeKind.Local).AddTicks(8811),
+                            CreatedDate = new DateTime(2025, 6, 3, 16, 19, 35, 924, DateTimeKind.Local).AddTicks(3932),
                             IsDeleted = false,
                             ModifiedByName = "System",
-                            ModifiedDate = new DateTime(2025, 6, 2, 13, 32, 31, 931, DateTimeKind.Local).AddTicks(8811)
+                            ModifiedDate = new DateTime(2025, 6, 3, 16, 19, 35, 924, DateTimeKind.Local).AddTicks(3931)
                         });
                 });
 
@@ -253,35 +253,35 @@ namespace Kalayci.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "d0063eaa-c67a-41ee-ab7d-1e63ec344e10",
+                            ConcurrencyStamp = "bdfbc430-c2be-484c-ad55-fde18aaa07dd",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "f8170ca0-4e0e-4569-978c-da9f2aefe8fb",
+                            ConcurrencyStamp = "96c2dda9-0310-403c-aeaa-5b5b661bd86f",
                             Name = "Yonetici",
                             NormalizedName = "YONETICI"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "d1ea4746-6960-44ba-a3b5-d7b54bec6d90",
+                            ConcurrencyStamp = "62b24807-3ff9-4400-91dd-32232bb95105",
                             Name = "Muhendis",
                             NormalizedName = "MUHENDIS"
                         },
                         new
                         {
                             Id = "4",
-                            ConcurrencyStamp = "620d1aae-a1ed-4427-843c-59268c1abe07",
+                            ConcurrencyStamp = "0b5d537e-d943-47d6-8568-f2a9b20f691e",
                             Name = "Atolye",
                             NormalizedName = "ATOLYE"
                         },
                         new
                         {
                             Id = "5",
-                            ConcurrencyStamp = "ea261d31-8b42-4403-b250-c6d835f83640",
+                            ConcurrencyStamp = "7e127d1c-782e-40e9-96d2-5d5a80e2c233",
                             Name = "Müşteri",
                             NormalizedName = "MUSTERI"
                         });
@@ -479,29 +479,29 @@ namespace Kalayci.Data.Migrations
                             Id = 1,
                             BirthDay = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedByName = "System",
-                            CreatedDate = new DateTime(2025, 6, 2, 13, 32, 31, 935, DateTimeKind.Local).AddTicks(1877),
+                            CreatedDate = new DateTime(2025, 6, 3, 16, 19, 35, 929, DateTimeKind.Local).AddTicks(9048),
                             Gender = false,
                             IsDeleted = false,
                             LastName = "İşlem",
                             ModifiedByName = "System",
-                            ModifiedDate = new DateTime(2025, 6, 2, 13, 32, 31, 935, DateTimeKind.Local).AddTicks(1880),
+                            ModifiedDate = new DateTime(2025, 6, 3, 16, 19, 35, 929, DateTimeKind.Local).AddTicks(9058),
                             Name = "Bilgi",
                             OverallScore = (byte)0,
                             Phone = "555 004 63 33",
                             TechnicalPoint = (byte)0,
-                            WorkFinishDate = new DateTime(2125, 6, 2, 13, 32, 31, 935, DateTimeKind.Local).AddTicks(1883),
-                            WorkStartDate = new DateTime(2025, 6, 2, 13, 32, 31, 935, DateTimeKind.Local).AddTicks(1883),
+                            WorkFinishDate = new DateTime(2125, 6, 3, 16, 19, 35, 929, DateTimeKind.Local).AddTicks(9061),
+                            WorkStartDate = new DateTime(2025, 6, 3, 16, 19, 35, 929, DateTimeKind.Local).AddTicks(9060),
                             branchId = 1
                         });
                 });
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.PersonelProject", b =>
                 {
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("PersonelId")
-                        .HasColumnType("int");
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
@@ -517,14 +517,14 @@ namespace Kalayci.Data.Migrations
                     b.Property<DateTime?>("FinishDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActiveWork")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ManagerName")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ModifiedByName")
                         .IsRequired()
@@ -534,14 +534,22 @@ namespace Kalayci.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("PersonelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ProjectId", "PersonelId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BranchId");
 
                     b.HasIndex("PersonelId");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("PersonelProjects");
                 });
@@ -553,6 +561,12 @@ namespace Kalayci.Data.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<byte>("AveragePoint")
+                        .HasColumnType("tinyint unsigned");
+
+                    b.Property<byte>("ContinuityPoint")
+                        .HasColumnType("tinyint unsigned");
 
                     b.Property<string>("CreatedByName")
                         .IsRequired()
@@ -571,6 +585,9 @@ namespace Kalayci.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<byte>("JabTrackingPoint")
+                        .HasColumnType("tinyint unsigned");
+
                     b.Property<string>("KalayciUserId")
                         .HasColumnType("varchar(255)");
 
@@ -585,13 +602,13 @@ namespace Kalayci.Data.Migrations
                     b.Property<int>("PersonelId")
                         .HasColumnType("int");
 
-                    b.Property<byte>("SavePoint")
+                    b.Property<byte>("TeamWorkPoint")
                         .HasColumnType("tinyint unsigned");
 
-                    b.Property<string>("UserGivePoint")
+                    b.Property<string>("UserId")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UserNameGivePoint")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");

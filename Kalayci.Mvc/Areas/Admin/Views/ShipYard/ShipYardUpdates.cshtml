@@ -24,7 +24,7 @@
 </style>
 @if (TempData["Message"]!=null)
 {
-    <div class="alert alert-danger center display-4" role="alert">
+    <div id="MessageBox" class="alert  center display-4" role="alert">
         @TempData["Message"]
     </div>
 }
@@ -54,8 +54,7 @@
             </div>
 
 
-
-            </select> 
+             
 
         </div>
 
@@ -66,3 +65,12 @@
         </div>
     </form>
 </section>
+
+
+<script>
+
+        var messageBoxColor='@TempData["MessageColor"]';
+        console.log(messageBoxColor);
+         var d=document.getElementById("MessageBox");
+    d.classList.add(messageBoxColor);
+</script>

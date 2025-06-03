@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Exit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (TempData["Message"]!=null)
+{
+    <div id="MessageBox" class="alert text-center">
+       <div>
+            @TempData["Message"]
+       </div>
+        <br />
+        <hr />
+        <div>
+
+        @TempData["Message2"]
+       
+
+    </div>
+        <hr />
+    <div>
+        <a class="btn btn-primary my-5" asp-route-PersonelId=" @TempData["PersonelID"]" asp-area="Admin" asp-controller="Home" asp-action="AddPoint">
+            Personel Detay Sayfası Dön
+        </a>
+
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+<script>
+
+        var messageBoxColor='@TempData["MessageColor"]';
+   
+
+         var d=document.getElementById("MessageBox");
+    d.classList.add(messageBoxColor);
+</script>
+

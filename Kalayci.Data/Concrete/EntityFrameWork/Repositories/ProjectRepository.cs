@@ -20,8 +20,15 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
             _context = context;
         }
 
-        public async Task<ICollection<Project>> projectsWithUser()
+        public async Task<ICollection<Project>> projectsWithUser(int ShipYardID)
         {
+            if (ShipYardID>0)
+            {
+                return await _context.Project.Where(s=>s.shipYardId==ShipYardID).Include(x => x.User)
+              .ThenInclude(p => p.personel)
+              .Include(t => t.shipYard)
+              .ToListAsync();
+            }
             return await _context.Project.Include(x => x.User)
                 .ThenInclude(p=>p.personel)
                 .Include(t=>t.shipYard)

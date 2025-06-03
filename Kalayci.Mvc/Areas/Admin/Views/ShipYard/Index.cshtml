@@ -22,7 +22,7 @@
 
     @if (TempData["Message"]!=null)
     {
-        <div class="alert alert-danger center display-4" role="alert">
+        <div id="MessageBox" class="alert   center display-4" role="alert">
             @TempData["Message"]
         </div>
     }
@@ -54,7 +54,7 @@
                                 <td>@item.ShipYardName</td>
                                 <td>@item.ShipYardManagementName</td>
                                 <td>
-                                    <a class="btn btn-primary" asp-route-ShipYardID="@item.Id"  asp-action="ShipYardProject" asp-controller="ShipYard" asp-area="Admin">Projeleri Gör</a>
+                                    <a class="btn btn-primary" asp-route-ShipYardID="@item.Id" asp-action="Index" asp-controller="Project" asp-area="Admin">Projeler</a>
                                 </td>
                                 <td>
                                     <a class="btn btn-primary" asp-route-ShipYardId="@item.Id" asp-action="ShipYardUpdates" asp-controller="ShipYard" asp-area="Admin">Güncelle</a>
@@ -145,3 +145,16 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+<script>
+
+        var messageBoxColor='@TempData["MessageColor"]';
+        console.log(messageBoxColor);
+         var d=document.getElementById("MessageBox");
+    d.classList.add(messageBoxColor);
+</script>

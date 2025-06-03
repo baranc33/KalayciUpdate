@@ -13,7 +13,7 @@ namespace Kalayci.Entities.Concrete
         public string BranchDetay { get; set; } = "Detay Verisi";
 
         public ICollection<Personel> Personels { get; set; } 
-        public ICollection<PersonelProject> personelProjects{ get; set; }
+       public ICollection<PersonelProject> personelProjects{ get; set; }
         public ICollection<KalayciUser> KalayciUsers{ get; set; } 
     }
 }

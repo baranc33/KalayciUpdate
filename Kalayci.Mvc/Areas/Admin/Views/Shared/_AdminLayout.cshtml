@@ -31,8 +31,20 @@
             </div>
         </form>
         <!-- Navbar-->
+
+        <div>
+            @if (TempData["notification"] !=null)
+            {
+                <a asp-action="notification" asp-controller="Home" asp-area="Admin" style="text-decoration:none;">
+                <i class="fas fa-bell" style="color: #ff0000;"></i>
+                    <sup style="color: #ff0000;"> @TempData["notificationCount"] </sup>
+                @* <i class="fa-solid fa-comment" style="color: #ff0000;"> 1</i> *@
+                </a>
+            }
+        </div>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
+            
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>
                     @User.Identity.Name
                 </a>

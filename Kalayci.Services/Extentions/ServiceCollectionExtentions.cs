@@ -33,6 +33,11 @@ namespace Kalayci.Services.Extentions
 
 
 
+            serviceCollection.AddScoped<IPersonelProjectRepository, PersonelProjectRepository>();
+            serviceCollection.AddScoped<IPersonelProjectService, PersonelProjectService>();
+
+
+
             serviceCollection.AddScoped<IEmployeeExitRepository, EmployeeExitRepository>();
             serviceCollection.AddScoped<IEmployeeExitService, EmployeeExitService>();
 

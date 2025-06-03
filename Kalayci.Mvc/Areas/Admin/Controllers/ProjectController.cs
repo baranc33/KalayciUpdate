@@ -1,10 +1,13 @@
 ﻿using Kalayci.Entities.Concrete;
+using Kalayci.Mvc.Areas.Admin.Models.ViewModel.PersonelProject;
 using Kalayci.Mvc.Areas.Admin.Models.ViewModel.Project;
 using Kalayci.Mvc.Models.ViewModel;
 using Kalayci.Services.Abstract.Entities;
+using Kalayci.Services.Concrete.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
+using NuGet.Versioning;
 using System.Threading.Tasks;
 using Project = Kalayci.Entities.Concrete.Project;
 
@@ -17,10 +20,15 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         private readonly IProjectService _projectService;
         private readonly IKalayciUserService _kalayciUserService;
         private readonly IShipYardService _shipYardService;
+        private readonly IPersonelProjectService _personelProjectService;
 
-        public ProjectController(IProjectService projectService, IKalayciUserService kalayciUserService, IShipYardService shipYardService)
+        public ProjectController(IProjectService projectService, IKalayciUserService kalayciUserService,
+            IShipYardService shipYardService,
+            IPersonelProjectService personelProjectService
+            )
         {
-            _kalayciUserService= kalayciUserService;
+            _personelProjectService= personelProjectService;
+            _kalayciUserService = kalayciUserService;
             _shipYardService = shipYardService;
             _projectService = projectService;
         }
@@ -58,26 +66,9 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateProject(ProjectUpdateViewModel model)
         {
 
-            // gelen proje adı aynı  tersanede varmı diye kontrol edelim
+            
             var shipyard = await _shipYardService.GetAsync(x => x.Id == model.shipYardId, p => p.Projects);
-            // var olan bi proje adına kıyaslama yapmaya çalıştımda çakışma olduğundan kodu yazamadım
-            //bool count = false;
-            //foreach (var item in shipyard.Projects)
-            //{
-            //    if (item.ProjectName.ToUpper().Trim()==model.ProjectName.ToUpper().Trim())
-            //    {
-            //        if (count==true)
-            //        {
-            //            TempData["Message"] = $"Tersanede {item.ProjectName} Adlı Bir Proje Kayıtlıdır.";
-            //            return RedirectToAction("Index");
-            //        }
-            //        else
-            //        {
-            //            count=true;
-            //        }
-
-            //    }
-            //}
+    
 
             if (!ModelState.IsValid)
             {
@@ -105,17 +96,30 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
 
 
 
-
-
-
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> ProjectPersonelList(int ProjectId)
         {
-            ProjectListViewModel model = new ProjectListViewModel
-            {
-                Projects =await _projectService.projectsWithUser()
+            ICollection<PersonelProject> model = await _personelProjectService.GetAllAsync(x => x.ProjectId==ProjectId &&x.IsActiveWork==true, p => p.Personel, pr => pr.Project, b => b.Branch);
+            var project = await _projectService.GetAsync(x => x.Id == ProjectId,s=>s.shipYard);
 
-            };
+            TempData["ProjectName"]=$"{project.shipYard.ShipYardName} / {project.ProjectName} Projesine Ait Personel Listesi";
             return View(model);
+        }
+
+
+        public async Task<IActionResult> Index(int ShipYardID=0)
+        {
+          
+
+                ProjectListViewModel model = new ProjectListViewModel
+                {
+                    Projects =await _projectService.projectsWithUser(ShipYardID)
+
+                };
+            return View(model);
+         
+
+
         }
 
 

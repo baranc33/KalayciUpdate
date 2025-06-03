@@ -25,9 +25,9 @@ namespace Kalayci.Services.Concrete.Entities
             _projectRepository = projectRepository;
         }
 
-        public async Task<ICollection<Project>> projectsWithUser()
+        public async Task<ICollection<Project>> projectsWithUser(int ShipYardID)
         {
-            return await _projectRepository.projectsWithUser();
+            return await _projectRepository.projectsWithUser(ShipYardID);
         }
 
         public async Task<ICollection<Project>> projectsWithUserAndSpoolList()

@@ -17,6 +17,7 @@ namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel.Personel
 
 
 
+
         public enum GenderTypes
         {
             Male,
@@ -75,5 +76,15 @@ namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel.Personel
 
         public int branchId { get; set; }
         public ICollection<Entities.Concrete.Branch> branches { get; set; } =  new List<Entities.Concrete.Branch>();
+
+        [Required(ErrorMessage = "Personel Şefi Zorunludur.")]
+        [Display(Name = "Personel Şefi")]
+        public string ManagerId { get; set; }
+        public ICollection<Entities.Concrete.KalayciUser> Manager { get; set; } = new List<Entities.Concrete.KalayciUser>();
+
+
+        [Display(Name = "Çalıştığı Proje")]
+        public int ProjectId { get; set; }
+        public ICollection<Entities.Concrete.Project> Projects { get; set; } = new List<Entities.Concrete.Project>();
     }
 }

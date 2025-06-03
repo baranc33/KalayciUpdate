@@ -108,17 +108,17 @@ namespace Kalayci.Services.Concrete.Entities
         public async Task<ICollection<KalayciUser>> GetEngineerList()
         {
             ICollection<KalayciUser> users = await _kalayciUserRepository.GetAllIncludePersonelThenIncludeBranch();
-            ICollection<KalayciUser> engiierlist = new List<KalayciUser>();
+            //ICollection<KalayciUser> engiierlist = new List<KalayciUser>();
 
-            foreach (var user in users)
-            {
-                if (user.personel.branchId==2)
-                {
-                    engiierlist.Add(user);
-                }
-            }
+            //foreach (var user in users)
+            //{
+            //    if (user.personel.branchId==2)
+            //    {
+            //        engiierlist.Add(user);
+            //    }
+            //}
 
-            return engiierlist;
+            return users;
         }
 
         public async Task<KalayciUser> IncludePersonelThenIncludeBranch(string UserID)

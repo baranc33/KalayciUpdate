@@ -75,7 +75,16 @@
                                 <td>@item.Name</td>
                                 <td>@item.LastName</td>
                                 <td>@item.branch.BranchName</td>
-                                <td>@item.Phone</td>
+                                @if (item.Phone=="0 555 555 55 55")
+                                {
+                                    <td>Bilinmiyor</td>
+
+                                }
+                                else
+                                {
+                                    <td>@item.Phone</td>
+
+                                }
                                 @if(item.Gender==true)
                                 {
                                     <td>Bay</td>
@@ -84,11 +93,20 @@
                                 {
                                     <td>Bayan</td>
                                 }
-                                <td>@item.BirthDay.ToString("d")</td>
-                                <td>@item.WorkStartDate.ToString("d")</td>
-                      
+                                <td>@item.BirthDay.ToString("yyyy/MM/d")</td>
+                                <td>@item.WorkStartDate.ToString("yyyy/MM/d")</td>
+
                                 <td>
-                                    <a class="btn btn-primary" asp-route-PersonelId="@item.Id" asp-action="PersonelUpdate" asp-controller="Personel" asp-area="Admin">Detay</a>
+                                    @if (item.ManagerUserId==null)
+                                    {
+                                        <a class="btn btn-warning text-white" asp-route-PersonelId="@item.Id" asp-action="PersonelUpdate" asp-controller="Personel" asp-area="Admin">Şef Ata</a>
+
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary" asp-route-PersonelId="@item.Id" asp-action="PersonelUpdate" asp-controller="Personel" asp-area="Admin">Detay</a>
+
+                                    }
                                 </td>
                                 <td>
                                     <a class="btn btn-danger" asp-action="" asp-controller="" asp-area="">Çıkış ver</a>

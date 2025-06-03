@@ -1,0 +1,153 @@
+﻿@model ICollection<Personel>
+
+@{
+    ViewData["Title"] = "MyPersonelList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Bütün Personel Listesi</h1>
+
+    <div class="card mb-4">
+        @if (TempData["Message"] != null)
+        {
+            <div class="card-body row justify-content-between">
+
+                <div class="col-7">
+
+
+
+                    <div class="alert " id="MessageBox" role="alert">
+                        <p> @TempData["Message"] </p>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+
+
+
+    @if (Model.Count>0)
+    {
+
+
+        <div class="card mb-4">
+            <div class="card-header d-flex ">
+                <div class="">
+                    <img src="~/img/MPSIcon.png" alt="..." />
+                </div>
+
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            @* <th>İş Yeri</th> *@
+                            @*          <th>Scil No</th>
+                            <th>TC Kimlik </th> *@
+                            <th>Adı</th>
+                            <th>Soy Adı</th>
+                            <th>İşi</th>
+                            <th>Telefon</th>
+                            <th>Personelin Atanma Tarihi</th>
+                            @*<th>Genel</th>
+                            <th>Sağlık</th>
+                            <th>Eğitimi Veren 1</th>
+                            <th>Eğitimi Veren 2</th> 
+                            <th>Genel Puan</th> *@
+                            @* <th>Teknik Puan</th> *@
+                            <th>Güncelle</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            DateTime startDate = Convert.ToDateTime(TempData["StartDateTime"]);
+                            DateTime FinishtDateTime = Convert.ToDateTime(TempData["FinishtDateTime"]);
+                            if (item.points.Where(x => x.GiveDateStart  >= startDate && x.GiveDateFinish >= FinishtDateTime).Count()==0)
+                            {
+                                <tr class="bg-danger">
+                                    <td>@item.Name</td>
+                                    <td>@item.LastName</td>
+                                    <td>@item.branch.BranchName</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.PersonelProjects.Where(w => w.IsActiveWork==true).SingleOrDefault().StartDate.ToString("yyyy/MM/d")</td>
+
+                                    <td>
+                                        <a class="btn btn-danger" asp-route-PersonelId="@item.Id" asp-action="AddPointAdmin" asp-controller="Home" asp-area="Admin">Puan Gir  </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger" target="_blank" asp-route-PersonelId="@item.Id" asp-action="Exit" asp-controller="Home" asp-area="Admin">Çıkış ver</a>
+
+                                    </td>
+                                </tr>
+
+
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.LastName</td>
+                                    <td>@item.branch.BranchName</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.PersonelProjects.Where(w => w.IsActiveWork==true).SingleOrDefault().StartDate.ToString("yyyy/MM/d")</td>
+
+                                    <td>
+                                        <a class="btn btn-primary" asp-route-PersonelId="@item.Id" asp-action="AddPointAdmin" asp-controller="Home" asp-area="Admin">Profili Görüntüle  </a>
+
+
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger" target="_blank" asp-route-PersonelId="@item.Id" asp-action="Exit" asp-controller="Home" asp-area="Admin">Çıkış ver</a>
+
+                                    </td>
+                                </tr>
+                            }
+
+
+                        }
+
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <h2>
+                Henüz bir Tersane Eklenmemiştir
+            </h2>
+        </div>
+    }
+
+</div>
+
+
+
+
+<script>
+
+        var messageBoxColor='@TempData["MessageColor"]';
+        console.log(messageBoxColor);
+         var d=document.getElementById("MessageBox");
+    d.classList.add(messageBoxColor);
+</script>

@@ -65,7 +65,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Context
             modelBuilder.ApplyConfiguration(new PointMap());
             modelBuilder.ApplyConfiguration(new ShipyardAssemblyMap());
             modelBuilder.ApplyConfiguration(new SendingMap());
-            modelBuilder.ApplyConfiguration(new PersonelProjectMap());
+           modelBuilder.ApplyConfiguration(new PersonelProjectMap());
 
         }
 
