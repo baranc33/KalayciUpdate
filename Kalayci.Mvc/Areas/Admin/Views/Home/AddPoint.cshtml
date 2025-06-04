@@ -174,7 +174,7 @@
                                 <p class="text-secondary mb-1">@Model.Personel.branch.BranchName</p>
                                 <p class="text-muted font-size-sm">@yasi Yaşında</p>
                                 <button class="btn btn-primary">Resim Ekle</button>
-                                <a class="btn btn-outline-primary" target="_blank" asp-route-PersonelId="@Model.PersonelId" asp-action="AllLoginAndLogut" asp-controller="Home" asp-route="Admin">Giriş / Çıkış</a>
+                                <a class="btn btn-outline-primary" target="_blank" asp-route-PersonelId="@Model.Personel.Id" asp-action="AllLoginAndLogut" asp-controller="Home" asp-area="Admin">Giriş / Çıkış</a>
 
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                                 <a class="btn btn-info text-white  " target="__blank" asp-route-PersonelId="@Model.Personel.Id" asp-area="Admin" asp-controller="Personel" asp-action="PersonelUpdate">Personel Bilgilerini Güncelle</a>
                             </div>
                             <div class="col-3 offset-5">
-                                <a class="btn btn-info text-white  " target="__blank" asp-route-PersonelId="@Model.Personel.Id" asp-area="Admin" asp-controller="Personel" asp-action="Entitlement"> Hakediş Hesapla</a>
+                                <a class="btn btn-info text-white  " target="__blank" asp-route-PersonelId="@Model.Personel.Id" asp-area="Admin" asp-controller="Home" asp-action="Entitlement"> Hakediş Hesapla</a>
                             </div>
                         </div>
                     </div>
@@ -261,37 +261,37 @@
 
         @if (Model.Points.Count() > 0)
         {
-            
 
-                <div class="card mb-4">
-                    <div class="card-header d-flex ">
-                        <div class="">
-                            <img src="~/img/MPSIcon.png" alt="..." />
-                        </div>
 
+            <div class="card mb-4">
+                <div class="card-header d-flex ">
+                    <div class="">
+                        <img src="~/img/MPSIcon.png" alt="..." />
                     </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple">
-                            <thead>
-                                <tr>
-                                    <th>Puan Tarih Aralığı </th>
-                                    <th>Puanı Veren </th>
 
-                                    <th>Takım Çalışması Puanı</th>
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Puan Tarih Aralığı </th>
+                                <th>Puanı Veren </th>
+
+                                <th>Takım Çalışması Puanı</th>
                                 <th>İş Takibi Puanı</th>
                                 <th>Süreklilik Puanı</th>
                                 <th>Ortalama Puanı</th>
 
 
-                                    <th>Puanı Değiştir</th>
-                                    <th>Puanı Sil</th>
-                                </tr>
-                            </thead>
+                                <th>Puanı Değiştir</th>
 
-                            <tbody>
-                                @foreach (var item in Model.Points)
-                                {
-                                  if (item.UserNameGivePoint==User.Identity.Name)
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model.Points)
+                            {
+                                if (item.UserNameGivePoint==User.Identity.Name)
                                 {
                                     <tr>
                                         <td>@item.GiveDateStart.ToString("d")  ~  @item.GiveDateFinish.ToString("d")</td>
@@ -302,14 +302,21 @@
                                         <td>@item.AveragePoint</td>
 
 
+                                        @if (item.GiveDateStart <= DateTime.Now.AddMonths(-2))
+                                        {
+                                            <td>
+                                              Eski Puanlar Değiştirilemez
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <a class="btn btn-primary" asp-route-PointId="@item.Id" asp-action="UpdatePoint" asp-controller="Home" asp-area="Admin">Güncelle</a>
+                                            </td>
+                                        }
 
-                                        <td>
-                                            <a class="btn btn-primary" asp-route-PointId="@item.Id" asp-action="UpdatePoint" asp-controller="Home" asp-area="Admin">Güncelle</a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-primary" asp-route-ProjectId="@item.Id" asp-action="RemoveProject" asp-controller="Project" asp-area="Admin">Sil</a>
-
-                                        </td>
+                                      
+                             
                                     </tr>
                                 }
                                 }
@@ -366,7 +373,6 @@
 <script>
 
         var messageBoxColor='@TempData["MessageColor"]';
-        console.log(messageBoxColor);
          var d=document.getElementById("MessageBox");
     d.classList.add(messageBoxColor);
 </script>

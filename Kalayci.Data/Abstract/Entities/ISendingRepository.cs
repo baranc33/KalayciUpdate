@@ -10,5 +10,7 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface ISendingRepository : IEntityRepository<Sending>
     {
+        Task<(bool, string)> AutomaticAddRange(ICollection<Sending> sendings);
+
     }
 }

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "ImportExcel";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="jumbotron container">
+ 
+    <form method="post" asp-area="Admin" asp-controller="AdminManagment" asp-action="ImportExcel" enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input name="formFile" class="form-control" type="file" id="formFile">
+        </div>
+
+
+        <div class="form-field col-12  ">
+            <input class="submit-btn rounded-2" type="submit" value="Kaydet" />
+        </div>
+    </form>
+</div>

@@ -11,7 +11,7 @@ namespace Kalayci.Entities.Concrete
     ///sevk edilme 
     public class Sending : EntityBase, IEntity
     {
-        public byte Place{ get; set; } // sevk edilceği yer 
+        public byte Place { get; set; } = 0; // sevk edilceği yer 
         public byte Status { get; set; } = 0;// sevk edildimi
 
 

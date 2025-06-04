@@ -10,5 +10,7 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface IWeldingRepository : IEntityRepository<Welding>
     {
+        Task<(bool, string)> AutomaticAddRange(ICollection<Welding>  weldings);
+
     }
 }

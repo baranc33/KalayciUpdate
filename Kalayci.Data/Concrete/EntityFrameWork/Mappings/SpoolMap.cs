@@ -19,6 +19,30 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
 
 
 
+            builder.Property(r => r.CircuitName).IsRequired(true);
+            builder.Property(r => r.CircuitName).HasMaxLength(100);
+
+
+
+
+            builder.Property(r => r.No).IsRequired(true);
+            builder.Property(r => r.No).HasMaxLength(10);
+
+
+            builder.Property(r => r.Block).IsRequired(true);
+            builder.Property(r => r.Block).HasMaxLength(10);
+
+
+            builder.Property(r => r.Diameter).IsRequired(true);
+            builder.Property(r => r.Diameter).HasMaxLength(10);
+
+
+            builder.Property(r => r.TotalKg).IsRequired(true);
+            builder.Property(r => r.TotalKg).HasMaxLength(100);
+
+
+
+
             builder.Property(r => r.Shipmentlocation).IsRequired(true);
             builder.Property(r => r.spoolStatus).IsRequired(true);
             builder.Property(r => r.SpoolName).IsRequired(true);
@@ -59,7 +83,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
 
 
             builder.HasOne<Project>(a => a.Project).WithMany(u => u.spoolLists).HasForeignKey(a => a.ProjectId);
-            builder.HasOne<CircuitList>(a => a.CircuitList).WithMany(u => u.spoolLists).HasForeignKey(a => a.CircuitListId);
+            //builder.HasOne<CircuitList>(a => a.CircuitList).WithMany(u => u.spoolLists).HasForeignKey(a => a.CircuitListId);
         }
     }
 }

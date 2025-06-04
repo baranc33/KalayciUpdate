@@ -78,9 +78,10 @@ namespace Kalayci.Services.Concrete.Entities
 
                 while (StartWorkTime<ThisDate.AddMonths(-1))
                 {
-                    Point point = await _pointService.GetAsync(x => x.PersonelId==personel.Id && x.GiveDateStart==StartWorkTime);
+                  ICollection<Point> point = await _pointService.GetAllAsync(x => x.PersonelId==personel.Id && x.GiveDateStart==StartWorkTime);
 
-                    if (point==null)
+
+                    if (point.Count()==0)
                     {
                         Message+=$"{StartWorkTime.Year}  {GetMountNameTurkish(StartWorkTime.Month)} ,"+" "+" ";
                         countMessage++;

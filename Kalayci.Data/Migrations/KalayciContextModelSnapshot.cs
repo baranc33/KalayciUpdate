@@ -70,10 +70,10 @@ namespace Kalayci.Data.Migrations
                             BranchDetay = "Bilgi işlem departmanı, şirketin bilgi teknolojileri altyapısını yönetir ve destekler.",
                             BranchName = "Bilgi işlem",
                             CreatedByName = "System",
-                            CreatedDate = new DateTime(2025, 6, 3, 16, 19, 35, 924, DateTimeKind.Local).AddTicks(3928),
+                            CreatedDate = new DateTime(2025, 6, 4, 21, 50, 41, 259, DateTimeKind.Local).AddTicks(9883),
                             IsDeleted = false,
                             ModifiedByName = "System",
-                            ModifiedDate = new DateTime(2025, 6, 3, 16, 19, 35, 924, DateTimeKind.Local).AddTicks(3927)
+                            ModifiedDate = new DateTime(2025, 6, 4, 21, 50, 41, 259, DateTimeKind.Local).AddTicks(9883)
                         },
                         new
                         {
@@ -81,10 +81,10 @@ namespace Kalayci.Data.Migrations
                             BranchDetay = "Boru Donatım Mühendisi.",
                             BranchName = "Mühendis",
                             CreatedByName = "System",
-                            CreatedDate = new DateTime(2025, 6, 3, 16, 19, 35, 924, DateTimeKind.Local).AddTicks(3932),
+                            CreatedDate = new DateTime(2025, 6, 4, 21, 50, 41, 259, DateTimeKind.Local).AddTicks(9887),
                             IsDeleted = false,
                             ModifiedByName = "System",
-                            ModifiedDate = new DateTime(2025, 6, 3, 16, 19, 35, 924, DateTimeKind.Local).AddTicks(3931)
+                            ModifiedDate = new DateTime(2025, 6, 4, 21, 50, 41, 259, DateTimeKind.Local).AddTicks(9887)
                         });
                 });
 
@@ -253,35 +253,35 @@ namespace Kalayci.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "bdfbc430-c2be-484c-ad55-fde18aaa07dd",
+                            ConcurrencyStamp = "9422c4ad-d3b6-4b5f-8085-e50b10fea8bd",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "96c2dda9-0310-403c-aeaa-5b5b661bd86f",
+                            ConcurrencyStamp = "7474b1c9-2c55-494c-90e4-6c3baa2efeb4",
                             Name = "Yonetici",
                             NormalizedName = "YONETICI"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "62b24807-3ff9-4400-91dd-32232bb95105",
+                            ConcurrencyStamp = "8066ffba-ab65-4dbe-bb18-4111a8c88c3d",
                             Name = "Muhendis",
                             NormalizedName = "MUHENDIS"
                         },
                         new
                         {
                             Id = "4",
-                            ConcurrencyStamp = "0b5d537e-d943-47d6-8568-f2a9b20f691e",
+                            ConcurrencyStamp = "2eba72db-d1ba-497c-8422-11ef12302e49",
                             Name = "Atolye",
                             NormalizedName = "ATOLYE"
                         },
                         new
                         {
                             Id = "5",
-                            ConcurrencyStamp = "7e127d1c-782e-40e9-96d2-5d5a80e2c233",
+                            ConcurrencyStamp = "3e89ca6e-9884-4fa3-a91e-e25d096408a4",
                             Name = "Müşteri",
                             NormalizedName = "MUSTERI"
                         });
@@ -479,18 +479,18 @@ namespace Kalayci.Data.Migrations
                             Id = 1,
                             BirthDay = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedByName = "System",
-                            CreatedDate = new DateTime(2025, 6, 3, 16, 19, 35, 929, DateTimeKind.Local).AddTicks(9048),
+                            CreatedDate = new DateTime(2025, 6, 4, 21, 50, 41, 263, DateTimeKind.Local).AddTicks(5972),
                             Gender = false,
                             IsDeleted = false,
                             LastName = "İşlem",
                             ModifiedByName = "System",
-                            ModifiedDate = new DateTime(2025, 6, 3, 16, 19, 35, 929, DateTimeKind.Local).AddTicks(9058),
+                            ModifiedDate = new DateTime(2025, 6, 4, 21, 50, 41, 263, DateTimeKind.Local).AddTicks(5975),
                             Name = "Bilgi",
                             OverallScore = (byte)0,
                             Phone = "555 004 63 33",
                             TechnicalPoint = (byte)0,
-                            WorkFinishDate = new DateTime(2125, 6, 3, 16, 19, 35, 929, DateTimeKind.Local).AddTicks(9061),
-                            WorkStartDate = new DateTime(2025, 6, 3, 16, 19, 35, 929, DateTimeKind.Local).AddTicks(9060),
+                            WorkFinishDate = new DateTime(2125, 6, 4, 21, 50, 41, 263, DateTimeKind.Local).AddTicks(5978),
+                            WorkStartDate = new DateTime(2025, 6, 4, 21, 50, 41, 263, DateTimeKind.Local).AddTicks(5977),
                             branchId = 1
                         });
                 });
@@ -818,8 +818,15 @@ namespace Kalayci.Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CircuitListId")
-                        .HasColumnType("int");
+                    b.Property<string>("Block")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("CircuitName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("CreatedByName")
                         .IsRequired()
@@ -828,6 +835,11 @@ namespace Kalayci.Data.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Diameter")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -840,23 +852,32 @@ namespace Kalayci.Data.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("No")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
+
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<byte>("Shipmentlocation")
-                        .HasColumnType("tinyint unsigned");
+                    b.Property<string>("Shipmentlocation")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("SpoolName")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
+                    b.Property<string>("TotalKg")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
                     b.Property<byte>("spoolStatus")
                         .HasColumnType("tinyint unsigned");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CircuitListId");
 
                     b.HasIndex("ProjectId");
 
@@ -1204,19 +1225,11 @@ namespace Kalayci.Data.Migrations
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.Spool", b =>
                 {
-                    b.HasOne("Kalayci.Entities.Concrete.CircuitList", "CircuitList")
-                        .WithMany("spoolLists")
-                        .HasForeignKey("CircuitListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Kalayci.Entities.Concrete.Project", "Project")
                         .WithMany("spoolLists")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("CircuitList");
 
                     b.Navigation("Project");
                 });
@@ -1301,11 +1314,6 @@ namespace Kalayci.Data.Migrations
                     b.Navigation("Personels");
 
                     b.Navigation("personelProjects");
-                });
-
-            modelBuilder.Entity("Kalayci.Entities.Concrete.CircuitList", b =>
-                {
-                    b.Navigation("spoolLists");
                 });
 
             modelBuilder.Entity("Kalayci.Entities.Concrete.KalayciUser", b =>

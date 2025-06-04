@@ -13,9 +13,26 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
 {
     public class ShipYardAssemblyRepository : EfEntityRepositoryBase<ShipyardAssembly>, IShipYardAssemblyRepository
     {
-
+        private KalayciContext _context;
         public ShipYardAssemblyRepository(KalayciContext context) : base(context)
         {
+            _context = context;
+        }
+
+
+        public async Task<(bool, string)> AutomaticAddRange(ICollection<ShipyardAssembly>  shipyardAssemblies)
+        {
+
+            try
+            {
+                await _context.ShipyardAssembly.AddRangeAsync(shipyardAssemblies);
+                return (true,"");
+            }
+            catch (Exception ex)
+            {
+                string message = $"Mps Group :// An error occurred while adding spools: {ex.Message}";
+                return (false, message);
+            }
         }
     }
 }

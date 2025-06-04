@@ -10,5 +10,7 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface IShipYardAssemblyRepository : IEntityRepository<ShipyardAssembly>
     {
+        Task<(bool, string)> AutomaticAddRange(ICollection<ShipyardAssembly>  shipyardAssemblies);
+
     }
 }

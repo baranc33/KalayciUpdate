@@ -10,5 +10,7 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface ISpoolRepository : IEntityRepository<Spool>
     {
+        Task<(bool, ICollection<Spool>,string)> AddRangeSpoolistAsync(ICollection<Spool> spools);
+
     }
 }

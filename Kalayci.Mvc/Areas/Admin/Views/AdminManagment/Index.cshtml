@@ -20,7 +20,7 @@
                     </div>
                 }
             </div>
-           @*  <div class="col-2 offset-1">
+            @*  <div class="col-2 offset-1">
                 <a asp-area="Admin" asp-controller="Personel" asp-action="AddPersonel" class="btn btn-primary"> Personel Ekle</a>
             </div> *@
         </div>
@@ -30,58 +30,68 @@
 
 
 
-        <div class="card mb-4">
-            <div class="card-header d-flex ">
-                <div class="">
-                    <img src="~/img/MPSIcon.png" alt="..." />
-                </div>
-
+    <div class="card mb-4">
+        <div class="card-header d-flex ">
+            <div class="">
+                <img src="~/img/MPSIcon.png" alt="..." />
             </div>
-            <div class="card-body">
-                <table id="datatablesSimple">
-                    <thead>
-                        <tr>
-                        
-                            <th>Kod Adı</th>
+
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+
+                        <th>Kod Adı</th>
                         <th>Kod Açıklaması</th>
                         <th>Tespit Edilen Hata</th>
-                            <th>işlem</th>
-                           
-                        
-                        </tr>
-                    </thead>
+                        <th>işlem</th>
 
-                    <tbody>
 
-                            <tr>
+                    </tr>
+                </thead>
 
-                                <td>Personel Otomatik Proje Atama</td>
+                <tbody>
+
+                    <tr>
+
+                        <td>Personel Otomatik Proje Atama</td>
                         <td>Projeye Atanmamış Tüm personelleri Boştaki projeye atama sağlar</td>
                         <td>Çalışanlarım a tıklandığında Personel Giriş atama tarihi girilmemişse sayfa çalışmıyor bu hatayı düzeltmek için default Atama yapıyoruz.</td>
-                                <td>
+                        <td>
                             <a class="btn btn-danger" asp-action="EmptyProjectPersonelFill" asp-controller="AdminManagment" asp-area="Admin">Çalıştır</a>
 
-                                </td>
-                            </tr>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Import Excel  Spool</td>
+                        <td>Projeye Exceldeki Spoolları Otomatik Giren Ve Bağlantılı Tablolarıda oluşturur</td>
+                        <td>Veriler String Olarak Girildiği için Stun sıralamsını Dikkate Almıyor.</td>
+                        <td>
+                            <a class="btn btn-warning" asp-action="MpsGroupIMportExcelForSpoolList" asp-controller="AdminManagment" asp-area="Admin">Çalıştır</a>
+                        </td>
+                    </tr>
 
 
-                    </tbody>
 
-                    <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+
+
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
+    </div>
 
 
-    }
-
-
+    
 </div>
 
 

@@ -1,8 +1,77 @@
-﻿
+﻿@model PointCalculation
 @{
     ViewData["Title"] = "Entitlement";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Entitlement</h1>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>@Model.PersonelName  <sup>Hakediş Sonuçları</sup></h2>
+            @if (Model.EntitlementTeamWork.Item2==true)
+            {
+                <div class="alert alert-success">
+                    <strong> @Model.EntitlementTeamWork.Item1 </strong>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    <strong>@Model.EntitlementTeamWork.Item1</strong>
+                </div>
+            }
+
+            @if (Model.EntitlementJabTracking.Item2==true)
+            {
+                <div class="alert alert-success">
+                    <strong> @Model.EntitlementJabTracking.Item1 </strong>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    <strong>@Model.EntitlementJabTracking.Item1</strong>
+                </div>
+            }
+
+
+
+            @if (Model.EntitlementContinuity.Item2==true)
+            {
+                <div class="alert alert-success">
+                    <strong> @Model.EntitlementContinuity.Item1 </strong>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    <strong>@Model.EntitlementContinuity.Item1</strong>
+                </div>
+            }
+
+
+
+
+            @if (Model.EntitlementContinuity.Item2==true)
+            {
+                <div class="alert alert-success">
+                    <strong> @Model.Entitlement.Item1 </strong>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    <strong>@Model.Entitlement.Item1</strong>
+                </div>
+            }
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

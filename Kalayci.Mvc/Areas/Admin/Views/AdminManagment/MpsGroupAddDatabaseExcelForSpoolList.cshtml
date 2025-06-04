@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "MpsGroupAddDatabaseExcelForSpoolList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card mb-4">
+    <div class="card-body row justify-content-between">
+  
+
+
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert col-7" id="MessageBox" role="alert">
+                    <p> @TempData["Message"] </p>
+                </div>
+                <div class="col-2 offset-1">
+                    <a asp-area="Admin" asp-controller="AdminManagment" asp-action="MpsGroupIMportExcelForSpoolList" class="btn btn-primary"> Spool Excel Yükleme Sayfasıne Git </a>
+                </div>
+            }
+}
+        
+    </div>
+
+
+</div>
+
+<script>
+
+        var messageBoxColor='@TempData["MessageColor"]';
+         var d=document.getElementById("MessageBox");
+    d.classList.add(messageBoxColor);
+</script>

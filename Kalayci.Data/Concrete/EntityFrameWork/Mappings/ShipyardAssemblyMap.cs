@@ -11,6 +11,7 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Mappings
 {
     public class ShipyardAssemblyMap : IEntityTypeConfiguration<ShipyardAssembly>
     {
+        
         public void Configure(EntityTypeBuilder<ShipyardAssembly> builder)
         {
             builder.HasKey(c => c.Id);

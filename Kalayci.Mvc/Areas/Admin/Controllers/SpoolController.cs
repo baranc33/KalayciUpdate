@@ -17,6 +17,7 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult ProjectSpoolList(int ProjectId)
         {
+
             return View();
         }
 

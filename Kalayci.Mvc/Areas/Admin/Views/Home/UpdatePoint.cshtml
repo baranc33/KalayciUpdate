@@ -1,8 +1,212 @@
-﻿
+﻿@using System.Security.Claims
+@model PointUpdateViewModel
+@section CSS {
+    <link href="~/Admin/css/AddPersonelCss.css" rel="stylesheet">
+}
 @{
     ViewData["Title"] = "UpdatePoint";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>UpdatePoint</h1>
+<style>
+
+    input[type="month"] {
+        background-color: #001D4D;
+        padding: 10px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 100px;
+        font-family: "Sans Serif Collection",monospace;
+        color: #ffffff;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        margin-top: 25px;
+    }
+
+    #dateInput{
+        background-color: #001D4D;
+        padding: 10px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 100px;
+        font-family: "Sans Serif Collection",monospace;
+        color: #ffffff;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        margin-top: 25px;
+    }
+    .main-body {
+        padding: 15px;
+    }
+
+    .card {
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1rem;
+    }
+
+    .gutters-sm {
+        margin-right: -8px;
+        margin-left: -8px;
+    }
+
+        .gutters-sm > .col, .gutters-sm > [class*=col-] {
+            padding-right: 8px;
+            padding-left: 8px;
+        }
+
+    .mb-3, .my-3 {
+        margin-bottom: 1rem !important;
+    }
+
+    .bg-gray-300 {
+        background-color: #e2e8f0;
+    }
+
+    .h-100 {
+        height: 100% !important;
+    }
+
+    .shadow-none {
+        box-shadow: none !important;
+    }
+</style>
+<div class="container">
+    <div class="main-body">
+        @if (TempData["Message"]!=null)
+        {
+            <div id="MessageBox" class="alert   center display-4" role="alert">
+                @TempData["Message"]
+            </div>
+        }
+
+
+        <section class="get-in-touch">
+
+            <h1 class="title">Personele Puan Değiştirme</h1>
+            <form class="contact-form row" method="post" asp-area="Admin" asp-controller="Home" asp-action="UpdatePoint">
+                <input type="hidden" asp-for="@Model.PersonelId" value="@Model.PersonelId" />
+                <input type="hidden" asp-for="@Model.PointId" value="@Model.PointId" />
+
+
+
+                <div class="form-field col-3 ">
+                    <input class="input-text js-input " type="number" max="100" required asp-for="@Model.TeamWorkPoint">
+                    <label class="label" Asp-for="@Model.TeamWorkPoint">Takım Çalısması Puanı</label>
+                    <span class="text-danger" asp-validation-for="@Model.TeamWorkPoint"></span>
+                </div>
+
+
+
+                <div class="form-field col-3 ">
+                    <input class="input-text js-input " type="number" max="100" required asp-for="@Model.JabTrackingPoint">
+                    <label class="label" Asp-for="@Model.JabTrackingPoint">İş Takibi Puanı</label>
+                    <span class="text-danger" asp-validation-for="@Model.JabTrackingPoint"></span>
+                </div>
+
+                <div class="form-field col-3 ">
+                    <input class="input-text js-input " type="number" max="100" required asp-for="@Model.ContinuityPoint">
+                    <label class="label" Asp-for="@Model.ContinuityPoint">Süreklilik Puanı</label>
+                    <span class="text-danger" asp-validation-for="@Model.ContinuityPoint"></span>
+                </div>
+
+
+
+                @if (User.HasClaim(x => x.Type==ClaimTypes.Role && x.Value=="Admin"))
+                {
+                    <div class="alert alert-danger">
+                        Tarihi ayarlamayı unutma : @Model.GiveDateStart.ToString("d")
+                    </div>
+                    <div class="form-field col-5 " style="margin-top:-1px;">
+                        <label asp-for="UserId" for="browser">Puanı Veren Kullanıcı</label>
+                        <select asp-for="UserId" class="form-select form-select-lg my-2" aria-label=".form-select-lg example">
+
+                            @foreach (var item in Model.Users)
+                            {
+                                <option value="@item.Id">@item.personel.Name @item.personel.LastName </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-field col-3 ">
+                        <label style="position:absolute; margin-top:-40px;color:#2A4D78;" class="h4">Puan Tarihi</label>
+                        <input asp-for="GiveDateStart" type="month" id="GiveDateStart" name="GiveDateStart">
+                        <span class="text-danger" asp-validation-for="@Model.GiveDateStart"></span>
+                    </div>
+                }
+                else
+                {
+
+
+                    <div class="form-field col-5 " style="margin-top:-1px;">
+                        <label asp-for="UserId" for="browser">Puanı Veren Kullanıcı</label>
+                        <select asp-for="UserId" class="form-select form-select-lg my-2" aria-label=".form-select-lg example">
+                            <option value="@Model.UserId">@Model.Users.FirstOrDefault(x => x.Id==Model.UserId).personel.Name @Model.Users.FirstOrDefault(x => x.Id==Model.UserId).personel.LastName </option>
+                        </select>
+                    </div>
+                    <div class="form-field col-5   ">
+                        <label style="position:absolute; margin-top:-40px;color:#2A4D78;" class="h4">Puan Tarihi</label>
+                        <input class="mx-5" id="dateInput" readonly asp-for="GiveDateStart" type="text" value="@Model.GiveDateStart.ToString("d")" id="GiveDateStart" name="GiveDateStart">
+                    </div>
+                }
+
+
+
+           
+                <div class="form-field col-4    ">
+                    <input class="submit-btn rounded-2" type="submit" value="Kaydet" />
+                </div>
+            </form>
+        </section>
+        <hr />
+
+
+
+    </div>
+</div>
+
+@* <script>
+    const date = new Date();
+
+    const mount=date.getMonth();
+    if(mount<10){
+           const dateYear=date.getFullYear()+"-0"+(mount);
+
+    document.getElementById("GiveDateStart").defaultValue = dateYear.toString();
+    }
+    else{
+           const dateYear=date.getFullYear()+"-"+(mount);
+
+    document.getElementById("GiveDateStart").defaultValue  = dateYear.toString();
+    }
+
+</script> *@
+
+
+<script>
+
+        var messageBoxColor='@TempData["MessageColor"]';
+         var d=document.getElementById("MessageBox");
+    d.classList.add(messageBoxColor);
+</script>
+
 

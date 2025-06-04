@@ -19,11 +19,12 @@
             
             @if (User.HasClaim(x => x.Type==ClaimTypes.Role && x.Value=="Admin"))
             {
+               
                 <a class="nav-link" asp-action="AllPersonelList" asp-controller="Home" asp-area="Admin">
                     <div class="sb-nav-link-icon">
                         <i class="fa-solid fa-people-group"></i>
                     </div>
-                    Admin Çalışanlar
+                    Çalışanlar
                 </a>
                 <a class="nav-link" asp-action="Index" asp-controller="AdminManagment" asp-area="Admin">
                     <div class="sb-nav-link-icon">

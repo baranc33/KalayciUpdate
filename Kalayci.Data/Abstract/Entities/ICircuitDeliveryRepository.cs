@@ -10,5 +10,6 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface ICircuitDeliveryRepository : IEntityRepository<CircuitDelivery>
     {
+        Task<(bool, string)> AutomaticAddRange(ICollection<CircuitDelivery> circuitDeliveries);
     }
 }

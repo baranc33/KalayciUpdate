@@ -17,10 +17,15 @@ namespace Kalayci.Entities.Concrete
 
 
         // devre listesinden spoolun devresi alınacak.
-        public CircuitList CircuitList { get; set; }
-        public int CircuitListId { get; set; }
+        //public CircuitList CircuitList { get; set; }
+        //public int CircuitListId { get; set; }
 
+        public string CircuitName { get; set; }
 
+        public string No { get; set; }
+        public string Block { get; set; }
+        public string Diameter { get; set; }
+        public string TotalKg { get; set; }
 
 
 
@@ -36,7 +41,7 @@ namespace Kalayci.Entities.Concrete
 
         // nereye sevk edilcek Enumdan cağırılacak
         // sevk edilceği yere göre işlemler yapılacakytır.
-        public byte Shipmentlocation { get; set; }
+        public string Shipmentlocation { get; set; }
 
         // sevk edilceği yere 
 

@@ -40,7 +40,6 @@ namespace Kalayci.Data.Concrete.EntityFrameWork.Repositories
             return await _context.Project.Include(x => x.User)
                 .Include(x => x.User)
                 .Include(s => s.spoolLists)
-                .ThenInclude(s => s.CircuitList)
                 .ToListAsync();
         }
     }

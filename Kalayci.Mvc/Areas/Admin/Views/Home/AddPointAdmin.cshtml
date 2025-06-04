@@ -1,5 +1,6 @@
 ﻿@using Kalayci.Mvc.Areas.Admin.Views.Personel
 @model PersonelPointViewModel
+
 @section CSS {
 <link href="~/Admin/css/AddPersonelCss.css" rel="stylesheet">
 }
@@ -168,7 +169,7 @@
                                 <p class="text-secondary mb-1">@Model.Personel.branch.BranchName</p>
                                 <p class="text-muted font-size-sm">@yasi Yaşında</p>
                                 <button class="btn btn-primary">Resim Ekle</button>
-                                <a class="btn btn-outline-primary" target="_blank" asp-route-PersonelId="@Model.PersonelId" asp-action="AllLoginAndLogut" asp-controller="Home" asp-route="Admin">Giriş / Çıkış</a>
+                                <a class="btn btn-outline-primary" target="_blank" asp-route-PersonelId="@Model.Personel.Id" asp-action="AllLoginAndLogut" asp-controller="Home" asp-area="Admin">Giriş / Çıkış</a>
                             </div>
                         </div>
                     </div>
@@ -259,7 +260,7 @@
                                 <a class="btn btn-info text-white  " target="__blank" asp-route-PersonelId="@Model.Personel.Id" asp-area="Admin" asp-controller="Personel" asp-action="PersonelUpdate">Personel Bilgilerini Güncelle</a>
                             </div>
                             <div class="col-3 offset-5">
-                                <a class="btn btn-info text-white  " target="__blank" asp-route-PersonelId="@Model.Personel.Id" asp-area="Admin" asp-controller="Personel" asp-action="Entitlement"> Hakediş Hesapla</a>
+                                <a class="btn btn-info text-white  " target="__blank" asp-route-PersonelId="@Model.Personel.Id" asp-area="Admin" asp-controller="Home" asp-action="Entitlement"> Hakediş Hesapla</a>
                             </div>
                         </div>
                     </div>

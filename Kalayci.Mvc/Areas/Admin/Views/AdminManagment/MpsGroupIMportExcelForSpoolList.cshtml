@@ -1,0 +1,125 @@
+﻿@using Kalayci.Mvc.Areas.Admin.Models.ViewModel.ImportExcelFiless
+@model AddExcelSpoolListViewModel
+@{
+    ViewData["Title"] = "ShowExcelTest";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model.SpoolList.Count()==0)
+{
+    <div class="alert alert-danger">
+        Yükliceniz Excel Dosyasının Birden fazla Sayfası Varsa ilk Sayfayı Hedef Alacağız.
+        <br />
+        Excel Sayfasının ilk Satırı işleme alınmicaktır.
+        Veri Stun düzeni şu şekilde olmak Zorundadır.
+        <strong>
+            No - Blok - DEVRE ADI- SPOOL NO- ÇAP -Toplam Kg
+        </strong>
+    </div>
+    <div class="jumbotron container">
+
+        <form method="post" asp-area="Admin" asp-controller="AdminManagment" asp-action="MpsGroupIMportExcelForSpoolList" enctype="multipart/form-data">
+            <div class="container row">
+
+            <div class="mb-3 col-6">
+                <label for="formFile" class="form-label">Yukardaki Talimatlara Uygun Dosya Seçiniz</label>
+                <input name="formFile" class="form-control" type="file" id="formFile">
+            </div>
+
+
+            <div class="col-3  ">
+                    <label ></label>
+                    <input  class="btn btn-primary my-4 text-lg-center" style="font-size:23px" type="submit" value="Excel Dosyasını Yükle" />
+            </div>
+            </div>
+
+        </form>
+    </div>
+}
+else
+{
+
+    <form class="contact-form row container" method="post" asp-area="Admin" asp-controller="AdminManagment" asp-action="MpsGroupAddDatabaseExcelForSpoolList">
+
+        <h3>Bu işlem Yaparken Dikkatli Olunması gerekiyor </h3>
+        <h3>işlem Bitti mesajını Görmeden sayfayı Kapatmayınız.</h3>
+            <input type="hidden" asp-for="@Model.ExcelName" value="@Model.ExcelName" />
+
+            <div class="form-field col-6 ">
+                <select asp-for="ProjectId" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                    <option value="0" selected>Spoolların Ekleneceği Projeyi Seçiniz</option>
+
+                    @foreach (var item in Model.Projects)
+                    {
+                        <option asp-for="@Model.ProjectId" value="@item.Id">@item.ProjectName</option>
+                    }
+
+                </select>
+                <span class="text-danger" asp-validation-for="ProjectId"></span>
+            </div>
+
+
+            <div class="form-field col-3  ">
+                <input class="btn btn-primary " style="font-size:23px" type="submit" value="Veri Tabanına Kaydet" />
+
+            </div>
+    </form>
+
+        <div class="card mb-4">
+            <div class="card-header d-flex ">
+                <div class="">
+                    <img src="~/img/MPSIcon.png" alt="..." />
+                </div>
+
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+        
+
+                        <th>No</th>
+                        <th>  Blok</th>
+                        <th>DEVRE ADI</th>
+                        <th>SPOOL NO</th>
+                        <th>ÇAP</th>
+                        <th>Toplam Kg </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.SpoolList)
+                        {
+                            <tr>
+
+                                <td>@item.No</td>
+                            <td>@item.Block</td>
+                            <td>@item.CircutName</td>
+                            <td>@item.SpoolNo</td>
+                            <td>@item.Diameter</td>
+                            <td>@item.TotalKg</td>
+                                  
+                            </tr>
+                        }
+
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+ 
+
+
+
+
+}

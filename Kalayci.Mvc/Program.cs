@@ -24,7 +24,7 @@ var version = new MySqlServerVersion(new Version(10, 6, 18));
 
 builder.Services.AddDbContext<KalayciContext>(opt =>
 {
-    opt.UseMySql(connetionstring,version);
+    opt.UseMySql(connetionstring, version);
     //opt.UseMySql(connetionstring, version);
 });
 
@@ -69,6 +69,27 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute("AdminManagment", "Hakan-Baran-Cakirin-Admin-Ozel-Sayfasi", new { area = "Admin", controller = "AdminManagment", action = "Index" });
+
+app.MapControllerRoute("AllPersonelList", "Kalayci-Denizcilik-Personellerin-Bilgileri-Sayfasi/MpsGroup/", new { area = "Admin", controller = "Home", action = "AllPersonelList" });
+app.MapControllerRoute("AllPersonelList", "Kalayci-Denizcilik-Personellerin-Puan-Detay-Sayfasii/MpsGroup/", new { area = "Admin", controller = "Home", action = "AddPointAdmin" });
+app.MapControllerRoute("MemberLogin", "Kalayci-Denizcilik-Yetkili-Personel-sitesi/MpsGroup/", new { area = "Admin", controller = "Home", action = "AdminIndex" });
+app.MapControllerRoute("PersonelList", "Kalayci-Denizcilik-Size-Atanmis-Personel-Listesi/MpsGroup/", new { area = "Admin", controller = "Home", action = "MyPersonelList" });
+app.MapControllerRoute("PersonelPointDetail", "Kalayci-Denizcilik-Personel-Puan-Detay-Sayfasi/MpsGroup/", new { area = "Admin", controller = "Home", action = "AddPoint"  } );
+app.MapControllerRoute("ShipYards", "Kalayci-Denizcilik-Tersaneler/MpsGroup/", new { area = "Admin", controller = "ShipYard", action = "Index" } );
+app.MapControllerRoute("ShipYardsUpdate", "Kalayci-Denizcilik-Tersane/MpsGroup/", new { area = "Admin", controller = "ShipYard", action = "ShipYardUpdates" } );
+app.MapControllerRoute("CircutList", "Kalayci-Denizcilik-Proje-Devre-Listeleri/MpsGroup/", new { area = "Admin", controller = "CircuitList", action = "Index" } );
+app.MapControllerRoute("Branchs", "Kalayci-Denizcilik-Meslekler/MpsGroup/", new { area = "Admin", controller = "Branch", action = "Index" });
+app.MapControllerRoute("BranchPersonel", "Kalayci-Denizcilik-Meslekteki-Personeller/MpsGroup/", new { area = "Admin", controller = "Branch", action = "ListBranchPersonel" });
+app.MapControllerRoute("BranchUpdate", "Kalayci-Denizcilik-Meslek/MpsGroup/", new { area = "Admin", controller = "Branch", action = "UpdateBranch" });
+app.MapControllerRoute("ShipyardProject", "Kalayci-Denizcilik-Tersane-Proje-Listesi/MpsGroup/", new { area = "Admin", controller = "Project", action = "Index" });
+app.MapControllerRoute("ProjectList", "Kalayci-Denizcilik-Proje-Personel-Listesi/MpsGroup/", new { area = "Admin", controller = "Project", action = "ProjectPersonelList" });
+app.MapControllerRoute("ProjectUpdate", "Kalayci-Denizcilik-Proje/MpsGroup/", new { area = "Admin", controller = "Project", action = "UpdateProject" });
+app.MapControllerRoute("Personels", "Kalayci-Denizcilik-Personeller/MpsGroup/", new { area = "Admin", controller = "Personel", action = "Index" });
+app.MapControllerRoute("PersonelAdd", "Kalayci-Denizcilik-Personel-Ekleme-Sayfasi/MpsGroup/", new { area = "Admin", controller = "Personel", action = "AddPersonel" });
+app.MapControllerRoute("PersonelUpdate", "Kalayci-Denizcilik-Personel-Bilgileri-Sayfasi/MpsGroup/", new { area = "Admin", controller = "Personel", action = "PersonelUpdate" });
+
 
 
 

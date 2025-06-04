@@ -1,0 +1,145 @@
+﻿@model CaughtViewModel
+@{
+    ViewData["Title"] = "Caught";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    body {
+        background-color: #eee;
+    }
+
+    .title {
+        margin-bottom: 50px;
+        text-transform: uppercase;
+    }
+
+    .card-block {
+        font-size: 1em;
+        position: relative;
+        margin: 0;
+        padding: 1em;
+        border: none;
+        border-top: 1px solid rgba(34, 36, 38, .1);
+        box-shadow: none;
+    }
+
+    .card {
+        font-size: 1em;
+        overflow: hidden;
+        padding: 5;
+        border: none;
+        border-radius: .28571429rem;
+        box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+        margin-top: 20px;
+    }
+
+    .carousel-indicators li {
+        border-radius: 12px;
+        width: 12px;
+        height: 12px;
+        background-color: #404040;
+    }
+
+    .carousel-indicators li {
+        border-radius: 12px;
+        width: 12px;
+        height: 12px;
+        background-color: #404040;
+    }
+
+    .carousel-indicators .active {
+        background-color: white;
+        max-width: 12px;
+        margin: 0 3px;
+        height: 12px;
+    }
+
+    .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+    }
+
+    .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+    }
+
+    lex-direction: column;
+    }
+
+    .btn {
+        margin-top: auto;
+    }
+</style>
+ 
+
+<div class="container">
+    
+
+    <div class="card float-right">
+        <div class="row">
+            <div class="col-sm-5">
+                <img class="d-block w-100" src="/giff/Caught.gif" alt="Caught.png Bulunamadı" ">
+            </div>
+            <div class="col-sm-7">
+                <div class="card-block">
+                    <!--           <h4 class="card-title">Small card</h4> -->
+                    <p class="alert alert-danger display-5"><span style='font-size:50px;'>&#9940;</span> Uygunsuz işlem Tespit Edildi.</p>
+                    <p>
+                        Yapılan işlem:
+                        <sub>@Model.WhicProggress  &#128680;</sub>
+                        <p>
+                           
+                    <br>
+                    <br>
+                    <p style="color:crimson"><span style='font-size:30px;'>&#128110;</span> Sayın : @Model.CaughtPersonelName   </p>
+                    <p>
+                        <strong class="text-danger">
+                        Bu Sistemi Hacklemeye Çalıştığınız Anlamına Geliyor
+                            </strong>
+                            <br>
+
+                                eğer Sistem Hatası olduğunu Düşünüyorsanız Bu Hatanın oluşmasına Sebep olan işlemi bize detaylarıyla Bildiriniz 
+                        <br>
+                        Veya Bunu neden yapıtığınıza Dair Bir Açıklamanız Varsa Bize Bildirin </p>
+
+                    <strong class="text-danger">
+                        Yapmaya Çalıştığınız işlem Detaylarıyla Kaydedildi...
+                        <br>
+                        Hesabınız Kapatılacaktır Bildirim Yaptıktan sonra Bilgi işleme Açtırmak için Başvurunuz.
+                    </strong>
+                    <div id="editor">
+                        <p>Yakalandın!</p>
+                    </div>
+                    <a href="#" class="btn btn-primary btn-sm float-right">Mesajı Gönder </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+  <script src="https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.umd.js"></script>
+
+        <script>
+            const {
+                ClassicEditor,
+                Essentials,
+                Bold,
+                Italic,
+                Font,
+                Paragraph
+            } = CKEDITOR;
+
+            ClassicEditor
+                .create( document.querySelector( '#editor' ), {
+                    licenseKey: '<YOUR_LICENSE_KEY>',
+                    plugins: [ Essentials, Bold, Italic, Font, Paragraph ],
+                    toolbar: [
+                        'undo', 'redo', '|', 'bold', 'italic', '|',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                    ]
+                } )
+                .then( /* ... */ )
+                .catch( /* ... */ );
+        </script>

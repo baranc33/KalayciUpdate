@@ -9,5 +9,6 @@ namespace Kalayci.Services.Abstract.Entities
 {
     public interface ISpoolService : IGenericService<Spool>
     {
+        Task<(bool, string)> AddRangeSpoolistAsyncAutomatikExcelList(ICollection<Spool> spools);
     }
 }

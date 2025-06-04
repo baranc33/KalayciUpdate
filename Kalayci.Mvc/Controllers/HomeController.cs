@@ -100,7 +100,8 @@ namespace Kalayci.Mvc.Controllers
                     if (TempData["ReturnUrl"] != null)
                         return Redirect(TempData["ReturnUrl"].ToString());
 
-                    return RedirectToAction("AdminIndex", "Home",new {area ="Admin"});
+                  
+                    return RedirectToAction("AdminIndex", "Home", new { area = "Admin" });
                 }
             }
             else

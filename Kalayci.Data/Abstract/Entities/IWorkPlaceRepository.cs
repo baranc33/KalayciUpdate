@@ -10,5 +10,9 @@ namespace Kalayci.Data.Abstract.Entities
 {
     public interface IWorkPlaceRepository : IEntityRepository<WorkPlace>
     {
+        Task<(bool,string)> AutomaticAddRange(ICollection<WorkPlace> workPlaces);
+
     }
+
+
 }

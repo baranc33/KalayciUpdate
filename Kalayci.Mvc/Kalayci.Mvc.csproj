@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="wwwroot\MDB5\" />
+    <Folder Include="wwwroot\Excel\" />
     <Folder Include="wwwroot\Template\img\ship\" />
   </ItemGroup>
 
