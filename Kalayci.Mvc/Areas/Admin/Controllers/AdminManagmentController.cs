@@ -193,7 +193,75 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         {
             return View();
         }
+        // orjinal kod test amaçlı yorum satırı haline getirildi
+        //[HttpPost]
+        //public async Task<IActionResult> MpsGroupAddDatabaseExcelForSpoolList(AddExcelSpoolListViewModel model)
+        //{
+        //    if (model.ProjectId==0)
+        //    {
+        //        TempData["Message"]="Proje Seçmediniz. Tekradan Yükleme Yapmalısınız.";
+        //        TempData["MessageColor"]="alert-danger";
+        //        return View();
 
+        //    }
+        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Excel", model.ExcelName);
+
+        //    ICollection<Spool> spoolLists = new List<Spool>();
+        //    //var dataTable = new DataTable();
+        //    using (var workBook = new XLWorkbook(filePath))
+        //    {
+        //        var workSheet = workBook.Worksheet(1); // İlk sayfayı al
+        //        var range = workSheet.RangeUsed(); // Kullanılan aralığı al
+
+
+        //        int rowCount = range.RowCount();
+        //        // kaçıncı rowdan başlicağını seçioz "i" değeri olarak
+        //        for (int i = 2; i <= rowCount; i++)
+        //        {//satır değiştrip her satır için stun giriyoruz.
+        //            var cellRow = range.Row(i);
+
+
+        //            Spool spool = new Spool()
+        //            {
+        //                ProjectId= model.ProjectId,
+        //                CircuitName=cellRow.Cell(3).GetValue<string>(),
+        //                SpoolName=cellRow.Cell(4).GetValue<string>(),
+        //                spoolStatus= 0, // başlangıçta atölyede
+        //                Shipmentlocation="Bilinmiyor",
+        //                No =  cellRow.Cell(1).GetValue<string>(),
+        //                Block = cellRow.Cell(2).GetValue<string>(),
+        //                Diameter = cellRow.Cell(5).GetValue<string>(),
+        //                TotalKg = cellRow.Cell(6).GetValue<string>(),
+        //                CreatedByName = User.Identity.Name,
+        //                ModifiedByName = User.Identity.Name
+        //            };
+
+        //            if (!String.IsNullOrEmpty(spool.SpoolName))
+        //            {
+        //                spoolLists.Add(spool);
+        //            }
+
+        //        }
+
+        //    }
+
+        //    var result = await _spoolService.AddRangeSpoolistAsyncAutomatikExcelList(spoolLists);
+
+        //    if (result.Item1)
+        //    {
+        //        TempData["Message"] = $"{result.Item2}";
+        //        TempData["MessageColor"] = "alert-success";
+        //    }
+        //    else
+        //    {
+        //        TempData["Message"] = $"{result.Item2}";
+        //        TempData["MessageColor"] = "alert-danger";
+        //    }
+
+        //    return View(model);
+        //}
+
+        // değişitirilmiş kod blok , no , Dn , değerleri üstünde işlem yapabilmek amaçlıdır.
         [HttpPost]
         public async Task<IActionResult> MpsGroupAddDatabaseExcelForSpoolList(AddExcelSpoolListViewModel model)
         {

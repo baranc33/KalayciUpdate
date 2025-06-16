@@ -17,6 +17,8 @@ namespace Kalayci.Entities.Concrete
         public string ProjectName { get; set; } = "Kalaycı Denizcilik";
 
 
+        //public int personelId { get; set; }
+        //public Personel personel { get; set; }
 
 
 

@@ -15,7 +15,7 @@ namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel.ShipYard
         public string ShipYardManagerName { get; set; } = "";
 
         public ICollection<KalayciUser>  Users{ get; set; }
-        public int? PersonelID { get; set; }  // Tershane Sorumlusu Personel ID'si. Bu ID'ye göre personel bilgileri çekilecek.
+        public int PersonelID { get; set; }  // Tershane Sorumlusu Personel ID'si. Bu ID'ye göre personel bilgileri çekilecek.
         public Kalayci.Entities.Concrete.Personel User { get; set; }
 
      

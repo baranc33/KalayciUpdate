@@ -473,7 +473,7 @@ namespace Kalayci.Mvc.Areas.Admin.Controllers
         }
 
 
-
+         
 
         [HttpGet]
         public async Task<IActionResult> Caught(int PersonelId, string progress)

@@ -23,7 +23,6 @@ namespace Kalayci.Entities.Concrete
 
         // puanı veren kişi Oluşturan kişi
         public string UserNameGivePoint { get; set; }
-
         public string UserId { get; set; }
 
     

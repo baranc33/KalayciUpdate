@@ -15,7 +15,7 @@ namespace Kalayci.Mvc.Areas.Admin.Models.ViewModel
 
         [Display(Name ="Tersane Yetkilisi")]
         public string ShipYardManagementName { get; set; } = "";
-        public int? PersonelID { get; set; }
+        public int PersonelID { get; set; }
         public Kalayci.Entities.Concrete.Personel? Personel { get; set; }
 
         public ICollection<KalayciUser> Users { get; set; } = new List<KalayciUser>();

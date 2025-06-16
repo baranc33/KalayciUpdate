@@ -37,7 +37,7 @@ namespace Kalayci.Entities.Concrete
 
         public int branchId { get; set; }
         public Branch branch { get; set; }
-        public KalayciUser User{ get; set; }
+        public KalayciUser User{ get; set; } // kullanıcısı.
         public ICollection<Point> points { get; set; }
         public ICollection<EmployeeExit> employeeExits{ get; set; }
         public ICollection<PersonelProject> PersonelProjects { get; set; }

@@ -11,22 +11,14 @@ namespace Kalayci.Entities.Concrete
 {
     public class KalayciUser : IdentityUser, IEntity
     {
-  
 
-     
+
+        public int personelId { get; set; }
+        public Personel personel { get; set; }
+
+
         public string Linkedin { get; set; }
-    
-
-
         public string PasswordBackUp { get; set; }
-
-
-
-
-        public int personelId{ get; set; } // hangi spool gönderildi
-        public Personel personel{ get; set; }
-
-
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
         public virtual DateTime ModifiedDate { get; set; } = DateTime.Now;
         public virtual bool IsDeleted { get; set; } = false;

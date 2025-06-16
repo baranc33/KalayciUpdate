@@ -1,17 +1,20 @@
 ﻿using Kalayci.Data.Abstract;
 using Kalayci.Data.Abstract.Entities;
 using Kalayci.Entities.Concrete;
+using Kalayci.Entities.Dto;
 using Kalayci.Services.Abstract.Entities;
 using Kalayci.Shared.Data.Abstract;
+using Kalayci.Shared.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Kalayci.Services.Concrete.Entities
 {
-    public class SpoolService : GenericService<Spool>, ISpoolService
+    public class SpoolService : GenericService<Spool>, ISpoolService 
     {
         private IPersonelRepository _personelRepository;
         private readonly IKalayciUserService _kalayciUserService;
@@ -25,6 +28,7 @@ namespace Kalayci.Services.Concrete.Entities
         private readonly IShipYardAssemblyRepository _shipYardAssemblyRepository;
         private readonly IWeldingRepository _weldingRepository;
         private readonly IWorkPlaceRepository _workPlaceRepository;
+        private readonly IEntityRepository<Spool> _repository;
         public SpoolService(IEntityRepository<Spool> repository, IUnitOfWork unitOfWork,
             IPersonelRepository personelRepository,
             IKalayciUserService kalayciUserService,
@@ -38,6 +42,7 @@ namespace Kalayci.Services.Concrete.Entities
             IWorkPlaceRepository workPlaceRepository
             ) : base(unitOfWork, repository)
         {
+            _repository = repository;
             _circuitDeliveryRepository = circuitDeliveryRepository;
             _sendingRepository = sendingRepository;
             _shipYardAssemblyRepository = shipYardAssemblyRepository;
@@ -51,7 +56,7 @@ namespace Kalayci.Services.Concrete.Entities
             _spoolRepository = spoolRepository;
         }
 
-
+        //Aslan Parçası Kodum :D 
         public async Task<(bool,string)> AddRangeSpoolistAsyncAutomatikExcelList(ICollection<Spool> spools)
         {
             (bool, ICollection<Spool>,string) result = await _spoolRepository.AddRangeSpoolistAsync(spools);
@@ -121,7 +126,8 @@ namespace Kalayci.Services.Concrete.Entities
                         CreatedByName=item.CreatedByName,
                         ModifiedByName=item.ModifiedByName,
                         Status=0,
-                        SpoolAssemblyByName="Sistem Otomatik Giriş"
+                        SpoolAssemblyByName="Sistem Otomatik Giriş",
+          
                     };
                     shipyardAssemblys.Add(shipyardAssembly);
 
@@ -172,5 +178,30 @@ namespace Kalayci.Services.Concrete.Entities
             }
 
         }
+
+        public async Task<ICollection<PersonelProject>> GetProjectAllPersonelAndAllSpoolsAsync(int projectId)
+        {
+          return await _spoolRepository.GetProjectAllPersonelAndAllSpool(projectId);
+        }
+
+        public async Task<ProjectPercentageCalculate> ProjectPercentageCalculate(int projectId)
+        {
+            return await _spoolRepository.ProjectPercentageCalculate(projectId);
+        }
+
+        public async Task<IEnumerable<Spool>> GetAllAsyncAmount(int value, int valu2,Expression<Func<Spool, bool>> filter = null)
+        {
+         return  await _spoolRepository.GetAllAsyncAmount(value, valu2, filter);
+        }
+
+    
+
+        //public async Task<IEnumerable<PersonelProject>> GetAllAsyncAmountInclude(int Skip, int Take, Expression<Func<PersonelProject, bool>> filter = null, params Expression<Func<PersonelProject, object>>[] includeProperties)
+        //{
+        //        //persone , project,    Pojeden shipyard,
+        //                 //projeden user projeden spoollist
+        //}
+
+
     }
 }

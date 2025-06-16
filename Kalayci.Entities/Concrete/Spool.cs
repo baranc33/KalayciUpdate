@@ -31,7 +31,7 @@ namespace Kalayci.Entities.Concrete
 
         public string SpoolName { get; set; }
         public byte spoolStatus { get; set; } // spool nerde ? enumdan çağırcaz
-        // 0 atolye -1 kaynakta  - 2 devre teslimde  - 3 sevke hazır -4 tershanede
+        // 0 atolye -1 kaynakta  - 2 devre teslimde  - 3 sevke hazır -4 tershanede -5 bitmiş
 
 
         // burdan spool idsine göre önce tablolar çağırılır
@@ -44,8 +44,6 @@ namespace Kalayci.Entities.Concrete
         public string Shipmentlocation { get; set; }
 
         // sevk edilceği yere 
-
-
 
 
         //bire bir ilişkiler
@@ -65,6 +63,7 @@ namespace Kalayci.Entities.Concrete
         // 0 atolye -1 kaynakta  - 2 devre teslimde  - 3 sevke hazır -4 tershanede
         public string WhereIsSpool()
         {
+
             switch (this.spoolStatus)
             {
                 case 0:
@@ -77,6 +76,8 @@ namespace Kalayci.Entities.Concrete
                     return "Sevk";
                 case 4:
                     return "Tershane";
+                case 5:
+                    return "Bitti";
                 default:
                     return "Atolye";
             }

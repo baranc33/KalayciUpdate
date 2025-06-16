@@ -1,8 +1,676 @@
-﻿
+﻿@model ProjectSpoolListViewModel
 @{
     ViewData["Title"] = "ProjectSpoolList";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    img{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+    body {
+    margin-top: 20px;
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;
+    }
 
-<h1>ProjectSpoolList</h1>
+    .main-body {
+    padding: 15px;
+    }
 
+
+
+    .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    }
+
+    .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+    }
+
+    .gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+    }
+
+    .gutters-sm > .col, .gutters-sm > [class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+    }
+
+    .mb-3, .my-3 {
+    margin-bottom: 1rem !important;
+    }
+
+    .bg-gray-300 {
+    background-color: #e2e8f0;
+    }
+
+    .h-100 {
+    height: 100% !important;
+    }
+
+    .shadow-none {
+    box-shadow: none !important;
+    }
+    /* <!-- -Card Css--- > */
+    .cardSpol {
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+    position: relative;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    }
+
+    .l-bg-cherry {
+    /* background: linear-gradient(to right, #f09,#493240) !important; */
+    background: linear-gradient(to right, #8B0000,#493240) !important;
+    color: #fff;
+    }
+
+    .l-bg-red-dark {
+    /* color:   #8B0000 ; */
+    background: linear-gradient(to right, #8B0000,#000000) !important;
+    color: #fff;
+    }
+
+    .l-bg-web-dark {
+    /* color:   #8B0000 ; */
+    background: linear-gradient(to right, #E2E8F0,#000000) !important;
+    color: #fff;
+    }
+
+    .l-bg-blue-dark {
+    background: linear-gradient(to right, #8B0000,#373b44 ) !important;
+    /* background: linear-gradient(to right, #4286f4,#373b44 ) !important; */
+    color: #fff;
+    }
+
+    .l-bg-green-dark {
+    /* background: linear-gradient(to right, #0a504a, #38ef7d) !important; */
+    background: linear-gradient(to right, #373b44, #8B0000) !important;
+    /* background: linear-gradient(to right, #373b44, #38ef7d) !important; */
+    color: #fff;
+    }
+
+    .l-bg-orange-dark {
+    background: linear-gradient(to right, #C5C5C5, #003366) !important;
+    /* background: linear-gradient(to right, #a86008, #ffba56) !important; */
+    color: #fff;
+    }
+
+    .l-bg-white-dark {
+    background: linear-gradient(to right, #fff, #8B0000) !important;
+    /* background: linear-gradient(to right, #fff, #f09) !important; */
+    color: black;
+    }
+
+    .l-bg-gray-dark {
+    background: linear-gradient(to right, #003366, #000000 ) !important;
+    color: #fff;
+    }
+
+    .card .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
+    font-size: 110px;
+    }
+
+    .card .card-statistic-3 .card-icon {
+    text-align: center;
+    line-height: 50px;
+    margin-left: 15px;
+    color: #000;
+    position: absolute;
+    right: -5px;
+    top: 20px;
+    opacity: 0.1;
+    }
+
+    .l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
+    }
+
+    .l-bg-green {
+    background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+    color: #fff;
+    }
+
+    .l-bg-orange {
+    background: linear-gradient(to right, #f9900e, #ffba56) !important;
+    color: #fff;
+    }
+
+    .l-bg-dark {
+    background: linear-gradient(to right, #8B0000, #000000) !important;
+    color: #fff;
+    }
+
+    .l-bg-darkRed {
+    background: linear-gradient(to right, #000000,#8B0000) !important;
+    color: #fff;
+    }
+
+    .l-bg-darkBlue {
+    background: linear-gradient(to right, #000000,#003366) !important;
+    color: #fff;
+    }
+
+    .l-bg-darkAqua {
+    background: linear-gradient(to right, #000000,#289cf5) !important;
+    color: #fff;
+    }
+
+    .l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
+    }
+</style>
+
+<div class="card mb-4 " style="background-color:#E2E8F0">
+    <div class="card-body row justify-content-between">
+
+
+
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert col-12 text-center display-5  " id="MessageBox" role="alert">
+                <p> @TempData["Message"] </p>
+            </div>
+
+        }
+
+    </div>
+
+
+</div>
+
+@if (Model.Spools.Count()>0)
+{
+    <div class="container">
+        <div class="main-body">
+
+
+            <div class="row gutters-sm">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column align-items-center text-center">
+                                        <h4>
+                                            Proje Sorumlusu 
+
+
+                                        </h4>
+                                        <img src="~/Template/img/Team/@Model.User.personel.Picture" alt="Proje Yetkili Resmi Bulunamadı" class="rounded-circle" width="200">
+
+                                        <div class="mt-3">
+                                            <span>@Model.User.personel.Name @Model.User.personel.LastName</span>
+                                            <p class="text-secondary mb-1 my-3">@Model.User.personel.branch.BranchName</p>
+                                            <button class="btn btn-primary  ">Follow</button>
+                                            <button class="btn btn-outline-primary">Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h4>@Model.shipYardName / @Model.ProjectName Projesinin Detayları</h4>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3 my-1">
+                                    <h6 class="mb-0">Çalışan Sayısı</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.WorkPersonelCount
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3 my-1">
+                                    <h6 class="mb-0">Başlama Tarihi </h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.ProjectStartTime.ToString("d")
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Puantör  </h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    Bu Kısım Kodlanacaktır.
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Tamamlanan</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.projectPercentageCalculate.FinishCount %
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    Bay Area, San Francisco, CA
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="col-12">
+
+                    <div class="row gutters-sm">
+
+                        <div class="container">
+                            <div class="row ">
+                                <div class="col-12 my-2">
+                                    <div class="cardSpol l-bg-red-dark ">
+                                        <div class="card-statistic-3 p-4 text-center">
+
+                                            <h2>Girilen Toplam Spool Sayısı :  @Model.Spools.Count()</h2>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <a asp-route-SpoolStatu="0" asp-route-ProjectId="@Model.ProjectId" asp-action="ProjectStatusSpoolList" asp-controller="Spool" asp-area="Admin" style="text-decoration:none">
+
+                                        <div class="cardSpol l-bg-green-dark">
+                                            <div class="card-statistic-3 p-4">
+                                                <div class="mb-4">
+                                                    <h5 class="card-title mb-0">Ön imalat Atolye  </h5>
+                                                </div>
+                                                <div class="row align-items-center mb-2 d-flex">
+                                                    <div class="col-8">
+                                                        <h2 class="d-flex align-items-center mb-0">
+                                                            @Model.projectPercentageCalculate.WorkPlaceCount
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-4 text-right h5">
+                                                        <span><i class="fa-solid fa-check-to-slot"></i> @Model.projectPercentageCalculate.WorkPlacePercentage%  </span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                                    <div class="progress-bar l-bg-dark" role="progressbar" data-width="@Model.projectPercentageCalculate.WorkPlacePercentage%" aria-valuenow="@Model.projectPercentageCalculate.WorkPlacePercentage" aria-valuemin="0" aria-valuemax="100" style="width: @Model.projectPercentageCalculate.WorkPlacePercentage%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                <div class="col-4">
+                                    <a asp-route-SpoolStatu="1" asp-route-ProjectId="@Model.ProjectId" asp-action="ProjectStatusSpoolList" asp-controller="Spool" asp-area="Admin" style="text-decoration:none">
+
+                                        <div class="cardSpol l-bg-cherry">
+                                            <div class="card-statistic-3 p-4">
+                                                <div class="mb-4">
+                                                    <h5 class="card-title mb-0">Kaynak işlemindekiler</h5>
+                                                </div>
+                                                <div class="row align-items-center mb-2 d-flex">
+                                                    <div class="col-8">
+                                                        <h2 class="d-flex align-items-center mb-0">
+                                                            @Model.projectPercentageCalculate.WeldingCount
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-4 text-right h5">
+                                                        <span> <i class="fa-solid fa-check-to-slot"></i> @Model.projectPercentageCalculate.WeldingPercentage%  </span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                                    <div class="progress-bar l-bg-darkRed" role="progressbar" data-width="@Model.projectPercentageCalculate.WeldingPercentage%" aria-valuenow="@Model.projectPercentageCalculate.WeldingPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @Model.projectPercentageCalculate.WeldingPercentage%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-4">
+                                    <a asp-route-SpoolStatu="2" asp-route-ProjectId="@Model.ProjectId" asp-action="ProjectStatusSpoolList" asp-controller="Spool" asp-area="Admin" style="text-decoration:none">
+
+                                        <div class="cardSpol l-bg-blue-dark">
+                                            <div class="card-statistic-3 p-4">
+                                                <div class="mb-4">
+                                                    <h5 class="card-title mb-0">Devre Teslimdeki Spollar</h5>
+                                                </div>
+                                                <div class="row align-items-center mb-2 d-flex">
+                                                    <div class="col-8">
+                                                        <h2 class="d-flex align-items-center mb-0">
+                                                            @Model.projectPercentageCalculate.CircuitDeliveryCount
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-4 text-right h5">
+                                                        <span> <i class="fa-solid fa-check-to-slot"></i> @Model.projectPercentageCalculate.CircuitDeliveryPercentage% </span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                                    <div class="progress-bar l-bg-darkRed" role="progressbar" data-width="@Model.projectPercentageCalculate.CircuitDeliveryPercentage%" aria-valuenow="@Model.projectPercentageCalculate.CircuitDeliveryPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @Model.projectPercentageCalculate.CircuitDeliveryPercentage%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-4">
+                                    <a asp-route-SpoolStatu="3" asp-route-ProjectId="@Model.ProjectId" asp-action="ProjectStatusSpoolList" asp-controller="Spool" asp-area="Admin" style="text-decoration:none">
+
+                                        <div class="cardSpol l-bg-white-dark">
+                                            <div class="card-statistic-3 p-4">
+                                                <div class="mb-4">
+                                                    <h5 class="card-title mb-0">Sevkteki Spoollar </h5>
+                                                </div>
+                                                <div class="row align-items-center mb-2 d-flex">
+                                                    <div class="col-8">
+                                                        <h2 class="d-flex align-items-center mb-0">
+                                                            @Model.projectPercentageCalculate.SendingCount
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-4 text-right h5">
+                                                        <span><i class="fa-solid fa-check-to-slot"></i> @Model.projectPercentageCalculate.SendingPercentage%   </span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                                    <div class="progress-bar l-bg-darkBlue" role="progressbar" data-width="@Model.projectPercentageCalculate.SendingPercentage%" aria-valuenow="@Model.projectPercentageCalculate.SendingPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @Model.projectPercentageCalculate.SendingPercentage%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-4">
+                                    <a asp-route-SpoolStatu="4" asp-route-ProjectId="@Model.ProjectId" asp-action="ProjectStatusSpoolList" asp-controller="Spool" asp-area="Admin" style="text-decoration:none">
+
+                                        <div class="cardSpol l-bg-orange-dark">
+                                            <div class="card-statistic-3 p-4">
+                                                <div class="mb-4">
+                                                    <h5 class="card-title mb-0"> Montajdaki Spoollar </h5>
+                                                </div>
+                                                <div class="row align-items-center mb-2 d-flex">
+                                                    <div class="col-8">
+                                                        <h2 class="d-flex align-items-center mb-0">
+                                                            @Model.projectPercentageCalculate.ShipyardAssemblyCount
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-4 text-right h5">
+                                                        <span> <i class="fa-solid fa-check-to-slot"></i> @Model.projectPercentageCalculate.ShipyardAssemblyPercentage%  </span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                                    <div class="progress-bar l-bg-darkBlue" role="progressbar" data-width="@Model.projectPercentageCalculate.ShipyardAssemblyPercentage%" aria-valuenow="@Model.projectPercentageCalculate.ShipyardAssemblyPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @Model.projectPercentageCalculate.ShipyardAssemblyPercentage%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-4">
+                                    <a asp-route-SpoolStatu="5" asp-route-ProjectId="@Model.ProjectId" asp-action="ProjectStatusSpoolList" asp-controller="Spool" asp-area="Admin" style="text-decoration:none">
+
+                                        <div class="cardSpol l-bg-gray-dark">
+                                            <div class="card-statistic-3 p-4">
+                                                <div class="mb-4">
+                                                    <h5 class="card-title mb-0">Bitmiş Spoollar</h5>
+                                                </div>
+                                                <div class="row align-items-center mb-2 d-flex">
+                                                    <div class="col-8">
+                                                        <h2 class="d-flex align-items-center mb-0">
+                                                            @Model.projectPercentageCalculate.FinishCount
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-4 text-right h5">
+                                                        <span> <i class="fa-solid fa-check-to-slot"></i> @Model.projectPercentageCalculate.FinishPercentage%  </span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                                    <div class="progress-bar l-bg-darkAqua" role="progressbar" data-width="  @Model.projectPercentageCalculate.FinishPercentage%" aria-valuenow="@Model.projectPercentageCalculate.FinishPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @Model.projectPercentageCalculate.FinishPercentage%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    <div class="col-12 mx-4">
+
+        <div class="card mb-4 container">
+            <div class="card-header d-flex ">
+                <div class="">
+                    <img src="~/img/MPSIcon.png" alt="..." />
+                </div>
+
+            </div>
+            <div class="card-body ">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Blok</th>
+                            <th>Devre Adı</th>
+                            <th>Spool Numarası</th>
+                            <th>Nerde</th>
+                            @* <th>Durumu</th> *@
+                            @* <th>Sevk Yeri</th> *@
+                  @*           <th>imalat Ustası</th>
+                            <th>Montajı Yapan</th>
+                            <th>Montaj Tarihi</th>
+ *@
+                         @*    <th>Güncelle</th>
+                            <th>Sil</th> *@
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Spools)
+                        {
+                            <tr>
+
+                                <td>@item.No</td>
+                                <td>@item.Block</td>
+                                <td>@item.CircuitName</td>
+                                <td>@item.SpoolName</td>
+                                <td>@item.WhereIsSpool()</td>
+                               @*  @if (item.spoolStatus==0)
+                                {
+                                    <td>
+                                        @item.WorkPlace.Statu()
+                                    </td>
+
+                                }
+                                else if (item.spoolStatus == 1)
+                                {
+
+                                    <td>
+                                        @item.Welding.Statu()
+                                    </td>
+
+
+                                }
+                                else if (item.spoolStatus==2)
+                                {
+                                    <td>
+                                        @item.CircuitDelivery.Statu()
+                                    </td>
+
+
+                                }
+                                else if (item.spoolStatus==3)
+                                {
+                                    <td>
+                                        @item.Sending.Statu()
+                                    </td>
+
+
+                                }
+                                else if (item.spoolStatus==4)
+                                {
+
+                                    <td>
+                                        @item.ShipyardAssembly.Statu()
+                                    </td>
+                                }
+                                else if (item.spoolStatus==5)
+                                {
+                                    <td>Bitmiş</td>
+                                } *@
+                                @* <td>@item.Shipmentlocation</td> *@
+@* 
+                                <td> 
+                                    @if (@item.WorkPlace.SpoolCreatedByName=="Sistem Otomatik Giriş")
+                                    {
+
+                                        <strong>Girilmemiş</strong>
+                                    }
+                                    else
+                                    {
+                                        @item.WorkPlace.SpoolCreatedByName
+                                    }
+
+                                </td>
+                                <td>
+                                    @if (@item.ShipyardAssembly.SpoolAssemblyByName=="Sistem Otomatik Giriş")
+                                    {
+                                        
+                                    <strong>Girilmemiş</strong>
+                                    }
+                                    else
+                                    {
+                                        @item.ShipyardAssembly.SpoolAssemblyByName
+                                    }
+                                   
+                                
+                                </td>
+                                <td>
+                                    @if (@item.ShipyardAssembly.SpoolAssemblyDateTime.ToString("d")=="1.01.0001")
+                                    {
+                                        
+                                    }
+                                    else
+                                    {
+                                        @item.ShipyardAssembly.SpoolAssemblyDateTime.ToString("d")
+
+                                    }
+                                </td> *@
+
+
+@* 
+                                <td>
+                                    <a class="btn btn-danger" asp-action="" asp-controller="" asp-area="">Güncelle</a>
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" asp-action="" asp-controller="" asp-area="">Sil</a>
+
+                                </td> *@
+                            </tr>
+                        }
+
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+}
+else
+{
+    <div class="card mb-4">
+        <div class="card-body row justify-content-between">
+
+
+
+
+            <div class="alert alert-danger col-12 text-center display-5  " id="MessageBox" role="alert">
+                <p> Projede Spool Bulanamadığı için Sayfa Görüntülenemiyor</p>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+        var messageBoxColor='@TempData["MessageColor"]';
+         var d=document.getElementById("MessageBox");
+    d.classList.add(messageBoxColor);
+</script>

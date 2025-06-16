@@ -1,4 +1,5 @@
 ﻿using Kalayci.Shared.Entities.Abstract;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,10 @@ namespace Kalayci.Shared.Data.Abstract
     public interface IEntityRepository<T> where T : class, IEntity, new()
     {
 
+        Task<IEnumerable<T>> GetAllAsyncAmount(int Skip, int Take, Expression<Func<T, bool>> filter = null);
+        Task<IEnumerable<T>> GetAllAsyncAmountInclude(int Skip, int Take, Expression<Func<T, bool>> filter = null , 
+            params Expression<Func<T, object>>[] includeProperties);
+ 
         Task<T> AddAsync(T Entity);
         Task<T> UpdateAsync(T Entity);
         Task DeleteAsync(T Entity);
@@ -26,7 +31,7 @@ namespace Kalayci.Shared.Data.Abstract
 
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
         Task<int> CountAsync(Expression<Func<T, bool>> predicate);
-
+       
 
     }
 }

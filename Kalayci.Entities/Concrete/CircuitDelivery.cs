@@ -23,6 +23,20 @@ namespace Kalayci.Entities.Concrete
         public  Spool spool { get; set; }
 
 
-         
+        public string Statu()
+        {
+            string Message ="";
+
+            if (!QualityControl) Message += " Kalite Kontrol , ";
+            if (!Grinding) Message += " Taslama , ";
+            if (!PressureTest) Message += " Basınç Testi , ";
+            if (!Dimensioning) Message += " Ölçülendirme , ";
+            if (!WeldingTest) Message += " Kaynak Testi , ";
+
+            string MessageClear = Message.Remove(Message.Length-1);
+            MessageClear+=" işlemleri Yapılmadı.";
+
+            return MessageClear;
+        }
     }
 }
